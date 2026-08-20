@@ -1,242 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Study Planner</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      background: #f5f7fb;
-      color: #222;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: auto;
-    }
-
-    h1 {
-      text-align: center;
-      color: #2255cc;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 15px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-
-    input {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 12px;
-      border: none;
-      border-radius: 10px;
-      background: #2255cc;
-      color: white;
-      font-size: 16px;
-    }
-
-    .task {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px;
-      margin-top: 10px;
-      background: #f0f3f8;
-      border-radius: 10px;
-    }
-
-    .task span {
-      flex: 1;
-    }
-
-    .completed span {
-      text-decoration: line-through;
-      color: #888;
-    }
-
-    .delete {
-      width: auto;
-      margin: 0;
-      padding: 8px 12px;
-      background: #e53935;
-    }
-
-    .progress-bg {
-      width: 100%;
-      height: 14px;
-      margin-top: 15px;
-      background: #ddd;
-      border-radius: 20px;
-      overflow: hidden;
-    }
-
-    .progress {
-      height: 100%;
-      width: 0%;
-      background: #22c55e;
-      transition: width 0.3s;
-    }
-
-    #progressText {
-      text-align: center;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-  </style>
+<title>Login Page</title>
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f4f4;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+.login-box{
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+width:300px;
+}
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+button{
+width:100%;
+padding:10px;
+background:blue;
+color:white;
+border:none;
+}
+</style>
 </head>
-
 <body>
 
-  <div class="container">
+<div class="login-box">
+<h2>Student Login</h2>
 
-    <h1>📚 students Study Planner</h1>
+<input type="text" id="username" placeholder="Username">
 
-    <div class="card">
-      <h2>Add Study Task</h2>
+<input type="password" id="password" placeholder="Password">
 
-      <input
-        type="text"
-        id="taskInput"
-        placeholder="Enter your study task..."
-      >
+<button onclick="login()">Login</button>
 
-      <button onclick="addTask()">Add Task</button>
-    </div>
-
-    <div class="card">
-    <h2>📋 My Tasks</h2>
-    <div id="taskList"></div>
+<p id="msg"></p>
 </div>
 
+<script>
+function login(){
+let user=document.getElementById("username").value;
+let pass=document.getElementById("password").value;
 
-
-    
-
-    <div class="card">
-      <h2>📊 Progress</h2>
-
-      <div class="progress-bg">
-        <div class="progress" id="progress"></div>
-      </div>
-
-      <p id="progressText">0% completed</p>
-    </div>
-
-  </div>
-
-  <script>
-    let tasks = [];
-
-    function addTask() {
-      const input = document.getElementById("taskInput");
-      const text = input.value.trim();
-
-      if (text === "") {
-        alert("Please enter a study task!");
-        return;
-      }
-
-      tasks.push({
-        text: text,
-        completed: false
-      });
-
-      input.value = "";
-      displayTasks();
-    }
-
-    function displayTasks() {
-      const list = document.getElementById("taskList");
-
-      list.innerHTML = "";
-
-      tasks.forEach((task, index) => {
-
-        const div = document.createElement("div");
-
-        div.className = "task" +
-          (task.completed ? " completed" : "");
-
-        div.innerHTML = `
-          <input
-            type="checkbox"
-            ${task.completed ? "checked" : ""}
-            onchange="toggleTask(${index})"
-            style="width:auto; margin:0;"
-          >
-
-          <span>${task.text}</span>
-
-          <button
-            class="delete"
-            onclick="deleteTask(${index})"
-          >
-            Delete
-          </button>
-        `;
-
-        list.appendChild(div);
-      });
-
-      updateProgress();
-    }
-
-    function toggleTask(index) {
-      tasks[index].completed = !tasks[index].completed;
-      displayTasks();
-    }
-
-    function deleteTask(index) {
-      tasks.splice(index, 1);
-      displayTasks();
-    }
-
-    function updateProgress() {
-      const total = tasks.length;
-
-      if (total === 0) {
-        document.getElementById("progress").style.width = "0%";
-        document.getElementById("progressText").innerText =
-          "0% completed";
-        return;
-      }
-
-      const completed = tasks.filter(
-        task => task.completed
-      ).length;
-
-      const percent = Math.round(
-        (completed / total) * 100
-      );
-
-      document.getElementById("progress").style.width =
-        percent + "%";
-
-      document.getElementById("progressText").innerText =
-        percent + "% completed";
-    }
-  </script>
+if(user==="admin" && pass==="1234"){
+document.getElementById("msg").innerHTML="Login Successful";
+}else{
+document.getElementById("msg").innerHTML="Invalid Username or Password";
+}
+}
+</script>
 
 </body>
 </html>
