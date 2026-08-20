@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+</head>
+<body>
+
+<h1>Student Login</h1>
+
+<input type="email" placeholder="Email">
+
+<br><br>
+
+<input type="password" placeholder="Password">
+
+<br><br>
+
+<button onclick="login()">Login</button>
+
+<script>
+function login() {
+    let email = document.querySelector('input[type="email"]').value;
+    let password = document.querySelector('input[type="password"]').value;
+
+    if(email === "admin@gmail.com" && password === "1234") {
+        alert("Login Success");
+        window.location.href = "index.html";
+    } else {
+        alert("Invalid Login");
+    }
+}
+</script>
+
+</body>
+</html>
