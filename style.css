@@ -254,3 +254,21 @@ select:focus{
     background:#1e1e1e;
     color:white;
 }
+#darkModeBtn{
+    padding:10px 15px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    margin:10px 0;
+}
+
+.dark-mode{
+    background:#121212;
+    color:white;
+}
+
+.dark-mode .section-card,
+.dark-mode .card{
+    background:#1e1e1e;
+    color:white;
+}
