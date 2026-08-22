@@ -1,6 +1,9 @@
 
 function addTask(){
 
+    alert("Button Working");
+
+    
     let subject = document.getElementById("subject").value;
     let topic = document.getElementById("topic").value;
     let date = document.getElementById("date").value;
