@@ -127,3 +127,50 @@ font-weight:bold;
     border-radius:15px;
     box-shadow:0 2px 10px rgba(0,0,0,0.1);
 }
+h2{
+    color:#4f46e5;
+    margin-bottom:15px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    box-sizing:border-box;
+}
+
+button{
+    background:#4f46e5;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#4338ca;
+}
+
+ul{
+    background:white;
+    padding:15px 20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+
+li{
+    margin-bottom:8px;
+}
+
+.header h1{
+    margin:0;
+    font-size:30px;
+}
+
+.header p{
+    opacity:0.9;
+}
