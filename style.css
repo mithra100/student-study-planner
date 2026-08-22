@@ -233,3 +233,24 @@ select:focus{
 .profile-card p{
     color:gray;
 }
+#darkModeBtn{
+    background:#fff;
+    color:#7c3aed;
+    border:none;
+    padding:10px 15px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.dark-mode{
+    background:#121212;
+    color:white;
+}
+
+.dark-mode .section-card,
+.dark-mode .card,
+.dark-mode .profile-card{
+    background:#1e1e1e;
+    color:white;
+}
