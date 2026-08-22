@@ -272,3 +272,20 @@ select:focus{
     background:#1e1e1e;
     color:white;
 }
+.dark-mode {
+    background: #121212;
+    color: white;
+}
+
+.dark-mode .section-card,
+.dark-mode .card {
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark-mode input,
+.dark-mode select {
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+}
