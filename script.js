@@ -1,23 +1,25 @@
 const darkModeBtn = document.getElementById("darkModeBtn");
 
-darkModeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
-const darkModeBtn = document.getElementById("darkModeBtn");
+if(darkModeBtn){
+    darkModeBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+    });
+}
 
-darkModeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark-mode");
-});
+function addTask(){
 
-// Login Function
-function login(){
-    let user = document.getElementById("username").value;
-    let pass = document.getElementById("password").value;
+    let subject = document.getElementById("subject").value;
+    let topic = document.getElementById("topic").value;
+    let date = document.getElementById("date").value;
 
-    if(user.trim() == "admin" && pass.trim() == "1234"){
-        window.location.href = "dashboard.html";
-    }else{
-        document.getElementById("msg").innerHTML =
-        "Invalid Username or Password";
+    if(subject=="" || topic=="" || date==""){
+        alert("Fill all fields");
+        return;
     }
+
+    alert(
+        "Subject: " + subject +
+        "\nTopic: " + topic +
+        "\nDate: " + date
+    );
 }
