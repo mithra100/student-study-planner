@@ -1,10 +1,3 @@
-const darkModeBtn = document.getElementById("darkModeBtn");
-
-if(darkModeBtn){
-    darkModeBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-    });
-}
 
 function addTask(){
 
@@ -17,9 +10,12 @@ function addTask(){
         return;
     }
 
-    alert(
-        "Subject: " + subject +
-        "\nTopic: " + topic +
-        "\nDate: " + date
-    );
+    let li = document.createElement("li");
+    li.innerHTML = subject + " - " + topic + " - Pending";
+
+    document.getElementById("taskList").appendChild(li);
+
+    document.getElementById("subject").value="";
+    document.getElementById("topic").value="";
+    document.getElementById("date").value="";
 }
