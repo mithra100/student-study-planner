@@ -1,8 +1,10 @@
-
-
-    function completeTask(btn) {
+function completeTask(btn) {
     let li = btn.parentElement;
+
     li.innerHTML = li.innerText.replace("Pending", "Completed");
+
+    document.querySelector(".section-card:nth-of-type(3) ul")
+        .appendChild(li);
 }
 
 function addTask() {
