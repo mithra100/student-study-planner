@@ -19,9 +19,10 @@ function addTask() {
     let li = document.createElement("li");
 
     li.innerHTML =
-    subject + " - " + topic +
-    " - Pending <button onclick='completeTask(this)'>✅ Complete</button>";
-
+subject + " - " + topic +
+" - Pending " +
+"<button onclick='completeTask(this)'>✅ Complete</button> " +
+"<button onclick='deleteTask(this)'>🗑 Delete</button>";
     document.getElementById("taskList").appendChild(li);
 
     document.getElementById("subject").value = "";
