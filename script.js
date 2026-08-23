@@ -29,3 +29,6 @@ subject + " - " + topic +
     document.getElementById("topic").value = "";
     document.getElementById("date").value = "";
 }
+function deleteTask(btn) {
+    btn.parentElement.remove();
+}
