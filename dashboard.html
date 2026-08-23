@@ -1,108 +1,63 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Student Study Planner</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Study Tracker Dashboard</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
-<script src="script.js"></script>
+
 <body>
-<div class="profile-card">
-    <img src="https://i.pravatar.cc/120" alt="Profile">
-    <h2>Mithra</h2>
-    <p>Future Data Analyst 🚀</p>
-</div>
-<button id="darkModeBtn">🌙 Dark Mode</button>
-<p id="clock"></p>
 
-</div>
+<h1>📚 Study Tracker Dashboard</h1>
 
-<div class="stats-container">
+<div class="section-card">
+    <h2>➕ Add New Task</h2>
 
-<div class="card">
-<h3>Total Tasks</h3>
-<p>0</p>
-</div>
+    <input type="text" id="subject" placeholder="Subject Name">
 
-<div class="card">
-<h3>Completed Tasks</h3>
-<p>0</p>
-</div>
+    <input type="text" id="topic" placeholder="Study Topic">
 
-<div class="card">
-<h3>Pending Tasks</h3>
-<p>0</p>
-</div>
+    <input type="date" id="date">
 
-<div class="card">
-<h3>Progress</h3>
-<p>0%</p>
-</div>
-
+    <button onclick="addTask()">Add Task</button>
 </div>
 
 <div class="section-card">
-<h2>➕ Add New Task</h2>
+    <h2>📋 Task List</h2>
 
-<input type="text" id="subject" placeholder="Subject Name">
-
-<input type="text" id="topic" placeholder="Study Topic">
-
-<input type="date" id="date">
-
-<button onclick="addTask()">Add Task</button>
-
-
-<div class="section-card">
-<h2>📋 Task List</h2>
-<ul id="taskList">
-</ul>
-
+    <ul id="taskList"></ul>
 </div>
 
 <div class="section-card">
-<h2>✅ Completed Tasks</h2>
-<ul id="completedList">
-<li>English - Grammar - Completed</li>
-</ul>
+    <h2>✅ Completed Tasks</h2>
+
+    <ul id="completedList">
+        <li>English - Grammar - Completed</li>
+    </ul>
 </div>
 
 <div class="section-card">
-<h2>📅 Upcoming Exams</h2>
-<ul>
-<li>Maths Test - 25 Aug 2026</li>
-<li>Science Exam - 30 Aug 2026</li>
-</ul>
+    <h2>📅 Upcoming Exams</h2>
+
+    <ul>
+        <li>Maths Test - 25 Aug 2026</li>
+        <li>Science Exam - 30 Aug 2026</li>
+    </ul>
 </div>
 
 <div class="section-card">
-<h2>🎯 Study Goals</h2>
-<ul>
-<li>Complete Maths Chapter 5</li>
-<li>Revise Physics Notes</li>
-<li>Practice English Grammar</li>
-</ul>
+    <h2>🎯 Study Goals</h2>
+
+    <ul>
+        <li>Complete Maths Chapter 5</li>
+        <li>Revise Physics Notes</li>
+        <li>Practice English Grammar</li>
+    </ul>
 </div>
 
-<div class="section-card">
-<h2>🕒 Today's Timetable</h2>
-<ul>
-<li>09:00 AM - Maths</li>
-<li>11:00 AM - Science</li>
-<li>02:00 PM - English</li>
-</ul>
-</div>
-
-<div class="section-card">
-<h2>💡 Motivation Quote</h2>
-<p>"Success comes from consistent daily study."</p>
-</div>
-
-<div class="section-card">
-<h2>👨‍🎓 Attendance Tracker</h2>
-<p>Present Days: 22</p>
-<p>Absent Days: 3</p>
-<p>Attendance: 88%</p>
-</div>
 <script src="script.js"></script>
+
 </body>
 </html>
