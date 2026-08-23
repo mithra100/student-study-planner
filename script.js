@@ -3,6 +3,9 @@ function completeTask(btn) {
 
     li.innerHTML = li.innerText.replace("Pending", "Completed");
 
+    document.getElementById("completedList").appendChild(li);
+}
+
     document.querySelector(".section-card:nth-of-type(3) ul")
         .appendChild(li);
 }
