@@ -34,3 +34,15 @@ function addTask() {
     document.getElementById("topic").value = "";
     document.getElementById("date").value = "";
 }
+function updateCounters() {
+    let total = document.querySelectorAll("#taskList li").length +
+                document.querySelectorAll("#completedList li").length;
+
+    let completed = document.querySelectorAll("#completedList li").length;
+
+    let pending = document.querySelectorAll("#taskList li").length;
+
+    document.getElementById("totalTasks").innerText = total;
+    document.getElementById("completedTasks").innerText = completed;
+    document.getElementById("pendingTasks").innerText = pending;
+}
