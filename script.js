@@ -15,21 +15,23 @@ function deleteTask(btn) {
 }
 
 function addTask() {
-    let subject = document.getElementById("subject").value;
-    let topic = document.getElementById("topic").value;
+    let subject = document.getElementById("subject").value.trim();
+    let topic = document.getElementById("topic").value.trim();
     let date = document.getElementById("date").value;
 
     if (subject === "" || topic === "" || date === "") {
-        alert("Fill all fields");
+        alert("Please enter Subject, Topic and Date");
         return;
     }
 
     let li = document.createElement("li");
 
-    li.innerHTML =
-        subject + " - " + topic + " - Pending " +
-        "<button onclick='completeTask(this)'>✅ Complete</button>" +
-        "<button onclick='deleteTask(this)'>🗑️ Delete</button>";
+    li.innerHTML = `
+        <strong>${subject}</strong> - ${topic}
+        <span> | ${date} </span>
+        <button onclick="completeTask(this)">Complete</button>
+        <button onclick="deleteTask(this)">Delete</button>
+    `;
 
     document.getElementById("taskList").appendChild(li);
 
