@@ -107,3 +107,27 @@ function loadTasks() {
 window.onload = function () {
     loadTasks();
 };
+function generateStudyPlan() {
+    let subject = document.getElementById("aiSubject").value.trim();
+    let topic = document.getElementById("aiTopic").value.trim();
+    let result = document.getElementById("aiResult");
+
+    if (subject === "" || topic === "") {
+        result.innerHTML = "⚠️ Please enter Subject and Study Topic.";
+        return;
+    }
+
+    result.innerHTML = `
+        <h3>📚 AI Study Plan</h3>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Topic:</strong> ${topic}</p>
+
+        <ol>
+            <li>📖 Read and understand the basic concepts.</li>
+            <li>📝 Make short notes.</li>
+            <li>✏️ Practice important questions.</li>
+            <li>🔄 Revise the topic.</li>
+            <li>✅ Take a small self-test.</li>
+        </ol>
+    `;
+}
