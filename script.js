@@ -131,3 +131,29 @@ function generateStudyPlan() {
         </ol>
     `;
 }
+function generateQuiz() {
+    let subject = document.getElementById("quizSubject").value.trim();
+    let topic = document.getElementById("quizTopic").value.trim();
+    let result = document.getElementById("quizResult");
+
+    if (subject === "" || topic === "") {
+        result.innerHTML = "⚠️ Please enter Subject and Study Topic.";
+        return;
+    }
+
+    result.innerHTML = `
+        <h3>🧠 Practice Questions</h3>
+        <p><strong>Subject:</strong> ${subject}</p>
+        <p><strong>Topic:</strong> ${topic}</p>
+
+        <ol>
+            <li>What is the basic concept of ${topic}?</li>
+            <li>Explain ${topic} in your own words.</li>
+            <li>Write one important example of ${topic}.</li>
+            <li>What are the key points to remember?</li>
+            <li>Try one practice problem related to ${topic}.</li>
+        </ol>
+
+        <p>🎯 Good luck with your practice!</p>
+    `;
+}
