@@ -1,69 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Study Tracker Dashboard</title>
 
-<link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Study Tracker Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<div class="container">
 
-<h1>📚 Study Tracker Dashboard</h1>
-<div class="section-card">
-    <h2>📊 Statistics</h2>
+    <div class="container">
 
-    <p>Total Tasks: <span id="totalTasks">0</span></p>
+        <!-- Dashboard Header -->
+        <h1>📚 Study Tracker Dashboard</h1>
 
-    <p>Pending Tasks: <span id="pendingTasks">0</span></p>
 
-    <p>Completed Tasks: <span id="completedTasks">0</span></p>
-</div>
-<div class="section-card">
-    <h2>➕ Add New Task</h2>
+        <!-- Statistics -->
+        <div class="section-card">
 
-    <input type="text" id="subject" placeholder="Subject Name">
+            <h2>📊 Statistics</h2>
 
-    <input type="text" id="topic" placeholder="Study Topic">
+            <p>
+                Total Tasks:
+                <span id="totalTasks">0</span>
+            </p>
 
-    <input type="date" id="date">
+            <p>
+                Pending Tasks:
+                <span id="pendingTasks">0</span>
+            </p>
 
-    <button onclick="addTask()">Add Task</button>
-</div>
+            <p>
+                Completed Tasks:
+                <span id="completedTasks">0</span>
+            </p>
 
-<div class="section-card">
-    <h2>📋 Task List</h2>
+        </div>
 
-    <ul id="taskList"></ul>
-<div class="section-card">
-    
 
-<div class="section-card">
-    <h2>✅ Completed Tasks</h2>
+        <!-- Add New Task -->
+        <div class="section-card">
 
-    <ul id="completedList"></ul>
-</div>
-    <h2>📅 Upcoming Exams</h2>
+            <h2>➕ Add New Task</h2>
 
-    <ul>
-        <li>Maths Test - 25 Aug 2026</li>
-        <li>Science Exam - 30 Aug 2026</li>
-    </ul>
-</div>
+            <input
+                type="text"
+                id="subject"
+                placeholder="Subject Name"
+            >
 
-<div class="section-card">
-    <h2>🎯 Study Goals</h2>
+            <input
+                type="text"
+                id="topic"
+                placeholder="Study Topic"
+            >
 
-    <ul>
-        <li>Complete Maths Chapter 5</li>
-        <li>Revise Physics Notes</li>
-        <li>Practice English Grammar</li>
-    </ul>
-</div>
+            <input
+                type="date"
+                id="date"
+            >
 
-<script src="script.js"></script>
+            <button onclick="addTask()">
+                Add Task
+            </button>
+
+        </div>
+
+
+        <!-- Task List -->
+        <div class="section-card">
+
+            <h2>📋 Task List</h2>
+
+            <ul id="taskList"></ul>
+
+        </div>
+
+
+        <!-- Completed Tasks -->
+        <div class="section-card">
+
+            <h2>✅ Completed Tasks</h2>
+
+            <ul id="completedList"></ul>
+
+        </div>
+
+
+        <!-- Upcoming Exams -->
+        <div class="section-card">
+
+            <h2>📅 Upcoming Exams</h2>
+
+            <ul>
+
+                <li>
+                    Maths Test - 25 Aug 2026
+                </li>
+
+                <li>
+                    Science Exam - 30 Aug 2026
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- Study Goals -->
+        <div class="section-card">
+
+            <h2>🎯 Study Goals</h2>
+
+            <ul>
+
+                <li>
+                    Complete Maths Chapter 5
+                </li>
+
+                <li>
+                    Revise Physics Notes
+                </li>
+
+                <li>
+                    Practice English Grammar
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 
 </body>
+
 </html>
