@@ -157,3 +157,31 @@ function generateQuiz() {
         <p>🎯 Good luck with your practice!</p>
     `;
 }
+function generateQuiz() {
+    let subject = document.getElementById("quizSubject").value.trim();
+    let topic = document.getElementById("quizTopic").value.trim();
+
+    if (subject === "" || topic === "") {
+        alert("Please enter Subject and Study Topic");
+        return;
+    }
+
+    document.getElementById("quizResult").innerHTML = `
+        <div class="quiz-card">
+            <h2>📝 Practice Quiz</h2>
+
+            <p><strong>Subject:</strong> ${subject}</p>
+            <p><strong>Topic:</strong> ${topic}</p>
+
+            <ol>
+                <li>📚 What is the basic concept of ${topic}?</li>
+                <li>✏️ Explain ${topic} in your own words.</li>
+                <li>🔍 Give one important example of ${topic}.</li>
+                <li>🧠 What are the key points to remember?</li>
+                <li>✅ Solve one practice question related to ${topic}.</li>
+            </ol>
+
+            <p>🎯 Good luck with your quiz!</p>
+        </div>
+    `;
+}
