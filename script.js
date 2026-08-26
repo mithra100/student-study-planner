@@ -1,18 +1,36 @@
+function saveTasks() {
+    const tasks = [];
+
+    document.querySelectorAll("#taskList li, #completedList li").forEach(li => {
+        tasks.push({
+            html: li.innerHTML,
+            completed: li.parentElement.id === "completedList"
+        });
+    });
+
+    localStorage.setItem("studyTasks", JSON.stringify(tasks));
+}
+
+
 function completeTask(btn) {
     let li = btn.parentElement;
 
-    li.innerHTML = li.innerText.replace("Pending", "Completed");
+    li.innerHTML = li.innerHTML.replace("Pending", "Completed");
 
     document.getElementById("completedList").appendChild(li);
 
+    saveTasks();
     updateCounters();
 }
+
 
 function deleteTask(btn) {
     btn.parentElement.remove();
 
+    saveTasks();
     updateCounters();
 }
+
 
 function addTask() {
     let subject = document.getElementById("subject").value.trim();
@@ -39,8 +57,10 @@ function addTask() {
     document.getElementById("topic").value = "";
     document.getElementById("date").value = "";
 
+    saveTasks();
     updateCounters();
 }
+
 
 function updateCounters() {
     let total =
@@ -58,4 +78,32 @@ function updateCounters() {
     document.getElementById("pendingTasks").innerText = pending;
 }
 
-updateCounters();
+
+function loadTasks() {
+    let savedTasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
+
+    let taskList = document.getElementById("taskList");
+    let completedList = document.getElementById("completedList");
+
+    taskList.innerHTML = "";
+    completedList.innerHTML = "";
+
+    savedTasks.forEach(task => {
+        let li = document.createElement("li");
+
+        li.innerHTML = task.html;
+
+        if (task.completed) {
+            completedList.appendChild(li);
+        } else {
+            taskList.appendChild(li);
+        }
+    });
+
+    updateCounters();
+}
+
+
+window.onload = function () {
+    loadTasks();
+};
