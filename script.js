@@ -212,3 +212,33 @@ function generateAIHelp() {
         </div>
     `;
 }
+function solveDoubt() {
+
+    let doubt =
+    document.getElementById("doubtInput").value;
+
+    let result =
+    document.getElementById("doubtResult");
+
+    if(doubt.trim() === ""){
+        result.innerHTML =
+        "⚠️ Please enter your doubt.";
+        return;
+    }
+
+    result.innerHTML = `
+    <div class="quiz-card">
+        <h3>🤖 AI Answer</h3>
+        <p>
+        Your question:
+        <b>${doubt}</b>
+        </p>
+
+        <p>
+        This is a demo AI answer.
+        In future we can connect
+        real AI API for accurate answers.
+        </p>
+    </div>
+    `;
+}
