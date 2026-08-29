@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Student Study Planner</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
@@ -14,72 +16,112 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            background: linear-gradient(135deg, #eef2ff, #f8fafc);
             min-height: 100vh;
+
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        .auth-box {
-            width: 350px;
+        .container {
+            width: 380px;
+            max-width: 92%;
             background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            padding: 30px;
+            border-radius: 22px;
+
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .logo {
+            width: 65px;
+            height: 65px;
+            margin: auto;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: #4f46e5;
+            color: white;
+
+            border-radius: 18px;
+            font-size: 30px;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 5px;
-            color: #222;
+            margin: 15px 0 5px;
+            color: #111827;
         }
 
         .subtitle {
             text-align: center;
-            color: #777;
+            color: #6b7280;
             margin-bottom: 25px;
         }
 
         h2 {
+            color: #111827;
             margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 12px;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #374151;
         }
 
         input {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            padding: 13px;
+
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+
             font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
         }
 
         button {
             width: 100%;
-            padding: 12px;
-            margin-top: 12px;
+            padding: 13px;
+            margin-top: 20px;
+
             border: none;
-            border-radius: 6px;
-            background: blue;
+            border-radius: 10px;
+
+            background: #4f46e5;
             color: white;
+
             font-size: 16px;
+            font-weight: bold;
+
             cursor: pointer;
         }
 
         button:hover {
-            background: darkblue;
+            background: #3730a3;
         }
 
         .switch {
             text-align: center;
-            margin-top: 18px;
-            font-size: 14px;
+            margin-top: 20px;
+            color: #6b7280;
         }
 
-        .switch a {
-            color: blue;
-            cursor: pointer;
+        .switch span {
+            color: #4f46e5;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .message {
@@ -91,80 +133,122 @@
         .hidden {
             display: none;
         }
+
     </style>
 </head>
 
+
 <body>
 
-    <div class="auth-box">
+    <div class="container">
+
+        <div class="logo">
+            📚
+        </div>
 
         <h1>Student Study Planner</h1>
-        <p class="subtitle">Manage your studies easily</p>
+
+        <p class="subtitle">
+            Plan smarter. Study better.
+        </p>
 
 
-        <!-- LOGIN PAGE -->
+        <!-- LOGIN -->
+
         <div id="loginPage">
 
-            <h2>Student Login</h2>
+            <h2>Welcome Back 👋</h2>
+
+            <label>Phone Number</label>
 
             <input
-                type="email"
-                id="loginEmail"
-                placeholder="Email"
+                type="tel"
+                id="loginPhone"
+                placeholder="Enter your phone number"
             >
+
+
+            <label>Password</label>
 
             <input
                 type="password"
                 id="loginPassword"
-                placeholder="Password"
+                placeholder="Enter your password"
             >
+
 
             <button onclick="login()">
                 Login
             </button>
 
+
             <p id="loginMsg" class="message"></p>
 
+
             <div class="switch">
+
                 Don't have an account?
-                <a onclick="showSignup()">Create Account</a>
+
+                <span onclick="showSignup()">
+                    Create Account
+                </span>
+
             </div>
 
         </div>
 
 
-        <!-- SIGN UP PAGE -->
+
+        <!-- CREATE ACCOUNT -->
+
         <div id="signupPage" class="hidden">
 
-            <h2>Create Account</h2>
+            <h2>Create Your Account ✨</h2>
+
+
+            <label>Full Name</label>
 
             <input
                 type="text"
                 id="signupName"
-                placeholder="Full Name"
+                placeholder="Enter your full name"
             >
 
+
+            <label>Phone Number</label>
+
             <input
-                type="email"
-                id="signupEmail"
-                placeholder="Email"
+                type="tel"
+                id="signupPhone"
+                placeholder="Enter your phone number"
             >
+
+
+            <label>Password</label>
 
             <input
                 type="password"
                 id="signupPassword"
-                placeholder="Password"
+                placeholder="Create a password"
             >
+
 
             <button onclick="createAccount()">
                 Create Account
             </button>
 
+
             <p id="signupMsg" class="message"></p>
 
+
             <div class="switch">
+
                 Already have an account?
-                <a onclick="showLogin()">Login</a>
+
+                <span onclick="showLogin()">
+                    Login
+                </span>
+
             </div>
 
         </div>
@@ -172,49 +256,59 @@
     </div>
 
 
+
     <script>
 
-        // SHOW SIGNUP PAGE
+        // SHOW CREATE ACCOUNT PAGE
+
         function showSignup() {
 
-            document.getElementById("loginPage")
+            document
+                .getElementById("loginPage")
                 .classList.add("hidden");
 
-            document.getElementById("signupPage")
+            document
+                .getElementById("signupPage")
                 .classList.remove("hidden");
 
         }
+
 
 
         // SHOW LOGIN PAGE
+
         function showLogin() {
 
-            document.getElementById("signupPage")
+            document
+                .getElementById("signupPage")
                 .classList.add("hidden");
 
-            document.getElementById("loginPage")
+            document
+                .getElementById("loginPage")
                 .classList.remove("hidden");
 
         }
 
 
+
         // CREATE ACCOUNT
+
         function createAccount() {
 
             let name =
                 document.getElementById("signupName").value.trim();
 
-            let email =
-                document.getElementById("signupEmail").value.trim();
+            let phone =
+                document.getElementById("signupPhone").value.trim();
 
             let password =
                 document.getElementById("signupPassword").value.trim();
 
 
-            if (name === "" || email === "" || password === "") {
+            if (name === "" || phone === "" || password === "") {
 
                 document.getElementById("signupMsg").innerHTML =
-                    "Please fill all fields.";
+                    "Please fill all the fields.";
 
                 return;
             }
@@ -223,16 +317,18 @@
             if (password.length < 6) {
 
                 document.getElementById("signupMsg").innerHTML =
-                    "Password must be at least 6 characters.";
+                    "Password must contain at least 6 characters.";
 
                 return;
             }
 
 
             let account = {
+
                 name: name,
-                email: email,
+                phone: phone,
                 password: password
+
             };
 
 
@@ -250,19 +346,21 @@
 
                 showLogin();
 
-                document.getElementById("loginEmail").value =
-                    email;
+                document.getElementById("loginPhone").value =
+                    phone;
 
             }, 1000);
 
         }
 
 
+
         // LOGIN
+
         function login() {
 
-            let email =
-                document.getElementById("loginEmail").value.trim();
+            let phone =
+                document.getElementById("loginPhone").value.trim();
 
             let password =
                 document.getElementById("loginPassword").value.trim();
@@ -275,7 +373,7 @@
             if (savedAccount === null) {
 
                 document.getElementById("loginMsg").innerHTML =
-                    "No account found. Please create an account.";
+                    "Please create an account first.";
 
                 return;
             }
@@ -286,7 +384,7 @@
 
 
             if (
-                email === account.email &&
+                phone === account.phone &&
                 password === account.password
             ) {
 
@@ -309,7 +407,7 @@
             else {
 
                 document.getElementById("loginMsg").innerHTML =
-                    "Invalid email or password.";
+                    "Invalid phone number or password.";
 
             }
 
@@ -318,4 +416,5 @@
     </script>
 
 </body>
+
 </html>
