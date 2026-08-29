@@ -157,34 +157,63 @@ function generateQuiz() {
         <p>🎯 Good luck with your practice!</p>
     `;
 }
-
 function generateAIHelp() {
+
     let subject = document.getElementById("aiSubject").value.trim();
     let topic = document.getElementById("aiTopic").value.trim();
 
     if (subject === "" || topic === "") {
+
         alert("Please enter Subject and Study Topic");
+
         return;
     }
 
     document.getElementById("aiHelpResult").innerHTML = `
         <div class="quiz-card">
+
             <h2>🤖 AI Study Help</h2>
-            <p><strong>Subject:</strong> ${subject}</p>
-            <p><strong>Topic:</strong> ${topic}</p>
+
+            <p>
+                <strong>Subject:</strong> ${subject}
+            </p>
+
+            <p>
+                <strong>Topic:</strong> ${topic}
+            </p>
 
             <ol>
-                <li>📚 Understand the basic concepts of ${topic}.</li>
-                <li>📝 Make short notes for ${topic}.</li>
-                <li>🔍 Learn important examples.</li>
-                <li>🧠 Revise the key points.</li>
-                <li>✅ Practice questions related to ${topic}.</li>
+
+                <li>
+                    📚 Understand the basic concepts of ${topic}.
+                </li>
+
+                <li>
+                    📝 Make short notes for ${topic}.
+                </li>
+
+                <li>
+                    🔍 Learn important examples related to ${topic}.
+                </li>
+
+                <li>
+                    🧠 Revise the key points of ${topic}.
+                </li>
+
+                <li>
+                    ✅ Practice questions related to ${topic}.
+                </li>
+
             </ol>
 
-            <p>🎯 Keep learning and practice regularly!</p>
+            <p>
+                🎯 Keep learning and practice regularly!
+            </p>
+
         </div>
     `;
 }
+
 function solveDoubt() {
 
     let doubt =
