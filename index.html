@@ -1,74 +1,321 @@
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Login Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-font-family:Arial,sans-serif;
-background:#f4f4f4;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-}
+    <title>Student Study Planner</title>
 
-.login-box{
-background:white;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
-width:300px;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+        }
 
-input{
-width:100%;
-padding:10px;
-margin:10px 0;
-box-sizing:border-box;
-}
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-button{
-width:100%;
-padding:10px;
-background:blue;
-color:white;
-border:none;
-cursor:pointer;
-}
-</style>
+        .auth-box {
+            width: 350px;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
 
+        h1 {
+            text-align: center;
+            margin-bottom: 5px;
+            color: #222;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 6px;
+            background: blue;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: darkblue;
+        }
+
+        .switch {
+            text-align: center;
+            margin-top: 18px;
+            font-size: 14px;
+        }
+
+        .switch a {
+            color: blue;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 14px;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="login-box">
-<h2>Student Login</h2>
+    <div class="auth-box">
 
-<input type="text" id="username" placeholder="Username">
+        <h1>Student Study Planner</h1>
+        <p class="subtitle">Manage your studies easily</p>
 
-<input type="password" id="password" placeholder="Password">
 
-<button onclick="login()">Login</button>
+        <!-- LOGIN PAGE -->
+        <div id="loginPage">
 
-<p id="msg"></p>
-</div>
+            <h2>Student Login</h2>
 
-<script>
-function login(){
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email"
+            >
 
-let user=document.getElementById("username").value;
-let pass=document.getElementById("password").value;
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+            >
 
-if(user.trim()=="admin" && pass.trim()=="1234"){
-window.location.href="dashboard.html";
-}
-else{
-document.getElementById("msg").innerHTML="Invalid Username or Password";
-}
+            <button onclick="login()">
+                Login
+            </button>
 
-}
-</script>
+            <p id="loginMsg" class="message"></p>
+
+            <div class="switch">
+                Don't have an account?
+                <a onclick="showSignup()">Create Account</a>
+            </div>
+
+        </div>
+
+
+        <!-- SIGN UP PAGE -->
+        <div id="signupPage" class="hidden">
+
+            <h2>Create Account</h2>
+
+            <input
+                type="text"
+                id="signupName"
+                placeholder="Full Name"
+            >
+
+            <input
+                type="email"
+                id="signupEmail"
+                placeholder="Email"
+            >
+
+            <input
+                type="password"
+                id="signupPassword"
+                placeholder="Password"
+            >
+
+            <button onclick="createAccount()">
+                Create Account
+            </button>
+
+            <p id="signupMsg" class="message"></p>
+
+            <div class="switch">
+                Already have an account?
+                <a onclick="showLogin()">Login</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // SHOW SIGNUP PAGE
+        function showSignup() {
+
+            document.getElementById("loginPage")
+                .classList.add("hidden");
+
+            document.getElementById("signupPage")
+                .classList.remove("hidden");
+
+        }
+
+
+        // SHOW LOGIN PAGE
+        function showLogin() {
+
+            document.getElementById("signupPage")
+                .classList.add("hidden");
+
+            document.getElementById("loginPage")
+                .classList.remove("hidden");
+
+        }
+
+
+        // CREATE ACCOUNT
+        function createAccount() {
+
+            let name =
+                document.getElementById("signupName").value.trim();
+
+            let email =
+                document.getElementById("signupEmail").value.trim();
+
+            let password =
+                document.getElementById("signupPassword").value.trim();
+
+
+            if (name === "" || email === "" || password === "") {
+
+                document.getElementById("signupMsg").innerHTML =
+                    "Please fill all fields.";
+
+                return;
+            }
+
+
+            if (password.length < 6) {
+
+                document.getElementById("signupMsg").innerHTML =
+                    "Password must be at least 6 characters.";
+
+                return;
+            }
+
+
+            let account = {
+                name: name,
+                email: email,
+                password: password
+            };
+
+
+            localStorage.setItem(
+                "studentAccount",
+                JSON.stringify(account)
+            );
+
+
+            document.getElementById("signupMsg").innerHTML =
+                "Account created successfully!";
+
+
+            setTimeout(function() {
+
+                showLogin();
+
+                document.getElementById("loginEmail").value =
+                    email;
+
+            }, 1000);
+
+        }
+
+
+        // LOGIN
+        function login() {
+
+            let email =
+                document.getElementById("loginEmail").value.trim();
+
+            let password =
+                document.getElementById("loginPassword").value.trim();
+
+
+            let savedAccount =
+                localStorage.getItem("studentAccount");
+
+
+            if (savedAccount === null) {
+
+                document.getElementById("loginMsg").innerHTML =
+                    "No account found. Please create an account.";
+
+                return;
+            }
+
+
+            let account =
+                JSON.parse(savedAccount);
+
+
+            if (
+                email === account.email &&
+                password === account.password
+            ) {
+
+                localStorage.setItem(
+                    "loggedIn",
+                    "true"
+                );
+
+                localStorage.setItem(
+                    "studentName",
+                    account.name
+                );
+
+
+                window.location.href =
+                    "dashboard.html";
+
+            }
+
+            else {
+
+                document.getElementById("loginMsg").innerHTML =
+                    "Invalid email or password.";
+
+            }
+
+        }
+
+    </script>
 
 </body>
 </html>
