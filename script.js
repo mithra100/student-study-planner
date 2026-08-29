@@ -13,6 +13,7 @@ function saveTasks() {
 
 
 function completeTask(btn) {
+
     let li = btn.parentElement;
 
     li.innerHTML = li.innerHTML.replace("Pending", "Completed");
@@ -25,6 +26,7 @@ function completeTask(btn) {
 
 
 function deleteTask(btn) {
+
     btn.parentElement.remove();
 
     saveTasks();
@@ -33,29 +35,49 @@ function deleteTask(btn) {
 
 
 function addTask() {
-    let subject = document.getElementById("subject").value.trim();
-    let topic = document.getElementById("topic").value.trim();
-    let date = document.getElementById("date").value;
+
+    let subject =
+        document.getElementById("subject").value.trim();
+
+    let topic =
+        document.getElementById("topic").value.trim();
+
+    let date =
+        document.getElementById("date").value;
+
 
     if (subject === "" || topic === "" || date === "") {
+
         alert("Please enter Subject, Topic and Date");
+
         return;
     }
 
+
     let li = document.createElement("li");
+
 
     li.innerHTML = `
         <strong>${subject}</strong> - ${topic}
-        <span> | ${date} </span>
-        <button onclick="completeTask(this)">Complete</button>
-        <button onclick="deleteTask(this)">Delete</button>
+        <span> | ${date} | Pending </span>
+
+        <button onclick="completeTask(this)">
+            Complete
+        </button>
+
+        <button onclick="deleteTask(this)">
+            Delete
+        </button>
     `;
 
+
     document.getElementById("taskList").appendChild(li);
+
 
     document.getElementById("subject").value = "";
     document.getElementById("topic").value = "";
     document.getElementById("date").value = "";
+
 
     saveTasks();
     updateCounters();
@@ -63,90 +85,94 @@ function addTask() {
 
 
 function updateCounters() {
+
     let total =
         document.querySelectorAll("#taskList li").length +
         document.querySelectorAll("#completedList li").length;
 
+
     let completed =
         document.querySelectorAll("#completedList li").length;
+
 
     let pending =
         document.querySelectorAll("#taskList li").length;
 
+
     document.getElementById("totalTasks").innerText = total;
+
     document.getElementById("completedTasks").innerText = completed;
+
     document.getElementById("pendingTasks").innerText = pending;
 }
 
 
 function loadTasks() {
-    let savedTasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
 
-    let taskList = document.getElementById("taskList");
-    let completedList = document.getElementById("completedList");
+    let savedTasks =
+        JSON.parse(localStorage.getItem("studyTasks")) || [];
+
+
+    let taskList =
+        document.getElementById("taskList");
+
+
+    let completedList =
+        document.getElementById("completedList");
+
 
     taskList.innerHTML = "";
+
     completedList.innerHTML = "";
 
+
     savedTasks.forEach(task => {
+
         let li = document.createElement("li");
 
         li.innerHTML = task.html;
 
+
         if (task.completed) {
+
             completedList.appendChild(li);
+
         } else {
+
             taskList.appendChild(li);
         }
+
     });
+
 
     updateCounters();
 }
 
 
 window.onload = function () {
+
     loadTasks();
+
 };
+
+
+/* =========================
+   AI STUDY PLAN
+========================= */
+
 function generateStudyPlan() {
-    let subject = document.getElementById("aiSubject").value.trim();
-    let topic = document.getElementById("aiTopic").value.trim();
-    let result = document.getElementById("aiResult");
 
-    if (subject === "" || topic === "") {
-        result.innerHTML = "⚠️ Please enter Subject and Study Topic.";
-        return;
-    }
+    let subject =
+        document.getElementById("aiSubject").value.trim();
 
-    result.innerHTML = `
-        <h3>📚 AI Study Plan</h3>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Topic:</strong> ${topic}</p>
 
-        <ol>
-            <li>📖 Read and understand the basic concepts.</li>
-            <li>📝 Make short notes.</li>
-            <li>✏️ Practice important questions.</li>
-            <li>🔄 Revise the topic.</li>
-            <li>✅ Take a small self-test.</li>
-        </ol>
-    `;
-}
-let currentAssessment = [];
+    let topic =
+        document.getElementById("aiTopic").value.trim();
 
-function generateQuiz() {
 
-    let subject = document
-        .getElementById("quizSubject")
-        .value
-        .trim();
+    let result =
+        document.getElementById("aiResult");
 
-    let topic = document
-        .getElementById("quizTopic")
-        .value
-        .trim();
-
-    let result = document
-        .getElementById("quizResult");
 
     if (subject === "" || topic === "") {
 
@@ -156,11 +182,90 @@ function generateQuiz() {
         return;
     }
 
-    let questions = getQuestions(subject, topic);
+
+    result.innerHTML = `
+
+        <div class="quiz-card">
+
+            <h3>📚 AI Study Plan</h3>
+
+            <p>
+                <strong>Subject:</strong> ${subject}
+            </p>
+
+            <p>
+                <strong>Topic:</strong> ${topic}
+            </p>
+
+            <ol>
+
+                <li>
+                    📖 Read and understand the basic concepts.
+                </li>
+
+                <li>
+                    📝 Make short notes.
+                </li>
+
+                <li>
+                    ✏️ Practice important questions.
+                </li>
+
+                <li>
+                    🔄 Revise the topic.
+                </li>
+
+                <li>
+                    ✅ Take a small self-test.
+                </li>
+
+            </ol>
+
+        </div>
+
+    `;
+}
+
+
+/* =========================
+   QUIZ / ASSESSMENT
+========================= */
+
+let currentAssessment = [];
+
+
+function generateQuiz() {
+
+    let subject =
+        document.getElementById("quizSubject").value.trim();
+
+
+    let topic =
+        document.getElementById("quizTopic").value.trim();
+
+
+    let result =
+        document.getElementById("quizResult");
+
+
+    if (subject === "" || topic === "") {
+
+        result.innerHTML =
+            "⚠️ Please enter Subject and Study Topic.";
+
+        return;
+    }
+
+
+    let questions =
+        getQuestions(subject, topic);
+
 
     currentAssessment = questions;
 
+
     let html = `
+
         <div class="quiz-card">
 
             <h2>🧠 ${subject} Assessment</h2>
@@ -176,75 +281,99 @@ function generateQuiz() {
             </p>
 
             <hr>
+
     `;
+
 
     questions.forEach(function(q, index) {
 
         html += `
+
             <div class="question">
 
                 <h3>
                     ${index + 1}. ${q.question}
                 </h3>
 
+
                 <label>
+
                     <input
                         type="radio"
                         name="question${index}"
                         value="A"
                     >
+
                     A. ${q.options.A}
+
                 </label>
 
                 <br>
 
+
                 <label>
+
                     <input
                         type="radio"
                         name="question${index}"
                         value="B"
                     >
+
                     B. ${q.options.B}
+
                 </label>
 
                 <br>
 
+
                 <label>
+
                     <input
                         type="radio"
                         name="question${index}"
                         value="C"
                     >
+
                     C. ${q.options.C}
+
                 </label>
 
                 <br>
 
+
                 <label>
+
                     <input
                         type="radio"
                         name="question${index}"
                         value="D"
                     >
+
                     D. ${q.options.D}
+
                 </label>
 
             </div>
 
             <hr>
+
         `;
     });
 
+
     html += `
 
-        <button onclick="submitAssessment()">
-            ✅ Submit Assessment
-        </button>
+            <button onclick="submitAssessment()">
+                ✅ Submit Assessment
+            </button>
 
-        <div id="assessmentResult"></div>
+
+            <div id="assessmentResult"></div>
 
         </div>
+
     `;
+
 
     result.innerHTML = html;
 }
@@ -257,14 +386,14 @@ function getQuestions(subject, topic) {
     let questions = [];
 
 
-    // ENGLISH
+    /* ENGLISH */
 
     if (subject.includes("english")) {
 
         questions = [
 
             {
-                question: `What is a noun?`,
+                question: "What is a noun?",
                 options: {
                     A: "Action word",
                     B: "Name of a person, place or thing",
@@ -275,7 +404,7 @@ function getQuestions(subject, topic) {
             },
 
             {
-                question: `Which word is a verb?`,
+                question: "Which word is a verb?",
                 options: {
                     A: "Run",
                     B: "Beautiful",
@@ -286,7 +415,7 @@ function getQuestions(subject, topic) {
             },
 
             {
-                question: `Choose the correct article: ___ apple.`,
+                question: "Choose the correct article: ___ apple.",
                 options: {
                     A: "A",
                     B: "An",
@@ -297,7 +426,7 @@ function getQuestions(subject, topic) {
             },
 
             {
-                question: `What is the plural of "child"?`,
+                question: 'What is the plural of "child"?',
                 options: {
                     A: "Childs",
                     B: "Childes",
@@ -308,7 +437,7 @@ function getQuestions(subject, topic) {
             },
 
             {
-                question: `Which word is an adjective?`,
+                question: "Which word is an adjective?",
                 options: {
                     A: "Beautiful",
                     B: "Run",
@@ -322,7 +451,7 @@ function getQuestions(subject, topic) {
     }
 
 
-    // MATHS
+    /* MATHS */
 
     else if (
         subject.includes("math") ||
@@ -390,7 +519,7 @@ function getQuestions(subject, topic) {
     }
 
 
-    // PHYSICS
+    /* PHYSICS */
 
     else if (subject.includes("physics")) {
 
@@ -455,7 +584,7 @@ function getQuestions(subject, topic) {
     }
 
 
-    // BOTANY
+    /* BOTANY */
 
     else if (subject.includes("botany")) {
 
@@ -520,7 +649,7 @@ function getQuestions(subject, topic) {
     }
 
 
-    // ZOOLOGY
+    /* ZOOLOGY */
 
     else if (subject.includes("zoology")) {
 
@@ -585,7 +714,7 @@ function getQuestions(subject, topic) {
     }
 
 
-    // SCIENCE
+    /* SCIENCE */
 
     else if (subject.includes("science")) {
 
@@ -650,7 +779,7 @@ function getQuestions(subject, topic) {
     }
 
 
-    // TAMIL
+    /* TAMIL */
 
     else if (subject.includes("tamil")) {
 
@@ -715,7 +844,7 @@ function getQuestions(subject, topic) {
     }
 
 
-    // GENERAL FALLBACK
+    /* GENERAL FALLBACK */
 
     else {
 
@@ -780,9 +909,10 @@ function getQuestions(subject, topic) {
     }
 
 
-    // MAKE 25 QUESTIONS
+    /* MAKE 25 QUESTIONS */
 
     let finalQuestions = [];
+
 
     for (let i = 0; i < 25; i++) {
 
@@ -792,194 +922,18 @@ function getQuestions(subject, topic) {
 
     }
 
+
     return finalQuestions;
 }
 
+
+/* =========================
+   SUBMIT ASSESSMENT
+========================= */
 
 function submitAssessment() {
 
     let score = 0;
 
-    currentAssessment.forEach(function(q, index) {
 
-        let selected =
-            document.querySelector(
-                `input[name="question${index}"]:checked`
-            );
-
-        if (selected && selected.value === q.answer) {
-
-            score++;
-
-        }
-
-    });
-
-
-    let percentage =
-        (score / 25) * 100;
-
-
-    let grade;
-    let message;
-
-
-    if (percentage >= 90) {
-
-        grade = "A+";
-        message = "Excellent! 🌟";
-
-    }
-
-    else if (percentage >= 80) {
-
-        grade = "A";
-        message = "Very Good! 👏";
-
-    }
-
-    else if (percentage >= 70) {
-
-        grade = "B";
-        message = "Good Job! 👍";
-
-    }
-
-    else if (percentage >= 60) {
-
-        grade = "C";
-        message = "Keep Practicing! 📚";
-
-    }
-
-    else if (percentage >= 50) {
-
-        grade = "D";
-        message = "Need More Practice. 💪";
-
-    }
-
-    else {
-
-        grade = "F";
-        message = "Don't Give Up. Keep Learning! ❤️";
-
-    }
-
-
-    document.getElementById(
-        "assessmentResult"
-    ).innerHTML = `
-
-        <div class="result-card">
-
-            <h2>📊 Assessment Result</h2>
-
-            <h3>
-                Score: ${score} / 25
-            </h3>
-
-            <h3>
-                Percentage: ${percentage.toFixed(0)}%
-            </h3>
-
-            <h3>
-                Grade: ${grade}
-            </h3>
-
-            <p>
-                ${message}
-            </p>
-
-        </div>
-
-    `;
-
-}
-function generateAIHelp() {
-
-    let subject = document.getElementById("aiSubject").value.trim();
-    let topic = document.getElementById("aiTopic").value.trim();
-
-    if (subject === "" || topic === "") {
-
-        alert("Please enter Subject and Study Topic");
-
-        return;
-    }
-
-    document.getElementById("aiHelpResult").innerHTML = `
-        <div class="quiz-card">
-
-            <h2>🤖 AI Study Help</h2>
-
-            <p>
-                <strong>Subject:</strong> ${subject}
-            </p>
-
-            <p>
-                <strong>Topic:</strong> ${topic}
-            </p>
-
-            <ol>
-
-                <li>
-                    📚 Understand the basic concepts of ${topic}.
-                </li>
-
-                <li>
-                    📝 Make short notes for ${topic}.
-                </li>
-
-                <li>
-                    🔍 Learn important examples related to ${topic}.
-                </li>
-
-                <li>
-                    🧠 Revise the key points of ${topic}.
-                </li>
-
-                <li>
-                    ✅ Practice questions related to ${topic}.
-                </li>
-
-            </ol>
-
-            <p>
-                🎯 Keep learning and practice regularly!
-            </p>
-
-        </div>
-    `;
-}
-
-function solveDoubt() {
-
-    let doubt =
-    document.getElementById("doubtInput").value;
-
-    let result =
-    document.getElementById("doubtResult");
-
-    if(doubt.trim() === ""){
-        result.innerHTML =
-        "⚠️ Please enter your doubt.";
-        return;
-    }
-
-    result.innerHTML = `
-    <div class="quiz-card">
-        <h3>🤖 AI Answer</h3>
-        <p>
-        Your question:
-        <b>${doubt}</b>
-        </p>
-
-        <p>
-        This is a demo AI answer.
-        In future we can connect
-        real AI API for accurate answers.
-        </p>
-    </div>
-    `;
-}
+    
