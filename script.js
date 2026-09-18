@@ -306,6 +306,7 @@ function solveDoubt() {
 
 displayTasks();
 function toggleDarkMode() {
+    alert("Button Working");
 
     document.body.classList.toggle("dark-mode");
 
@@ -314,8 +315,4 @@ function toggleDarkMode() {
     } else {
         localStorage.setItem("darkMode", "off");
     }
-}
-
-if (localStorage.getItem("darkMode") === "on") {
-    document.body.classList.add("dark-mode");
 }
