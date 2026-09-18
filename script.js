@@ -66,7 +66,7 @@ function displayTasks() {
     document.getElementById("totalTasks").textContent = tasks.length;
     document.getElementById("pendingTasks").textContent = pending;
     document.getElementById("completedTasks").textContent = completed;
-}
+
 let progress = 0;
 
 if (tasks.length > 0) {
