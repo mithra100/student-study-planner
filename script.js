@@ -112,4 +112,4 @@ function checkAnswer(correct) {
             <p>Result : FAIL</p>
         `;
     }
-}
+} 
