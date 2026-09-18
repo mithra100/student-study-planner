@@ -262,20 +262,24 @@
 
 <section class="section-card" id="questionPattern">
 
-    <h2>❓ Question Pattern</h2>
+  <!-- QUESTION TYPE -->
+
+<section class="section-card" id="questionTypeSection">
+
+    <h2>❓ Add Question to Exam</h2>
 
     <p class="section-text">
-        Choose the type and marks of your questions.
+        Choose the question type and marks.
     </p>
 
-    <select id="questionType">
+    <select id="examQuestionType">
 
         <option value="">
             -- Select Question Type --
         </option>
 
         <option value="mcq">
-            MCQ - Multiple Choice
+            MCQ
         </option>
 
         <option value="short">
@@ -287,6 +291,27 @@
         </option>
 
     </select>
+
+    <select id="examQuestionMarks">
+
+        <option value="">
+            -- Select Marks --
+        </option>
+
+        <option value="1">1 Mark</option>
+        <option value="2">2 Marks</option>
+        <option value="5">5 Marks</option>
+        <option value="8">8 Marks</option>
+
+    </select>
+
+    <button onclick="chooseQuestionType()">
+        Continue
+    </button>
+
+    <div id="questionTypeResult"></div>
+
+</section>
 
     <select id="questionMarks">
 
