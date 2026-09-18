@@ -22,7 +22,6 @@ function generateAIHelp() {
     }
 
     result.innerHTML = `
-
         <div class="exam-card">
 
             <h3>🤖 AI Study Assistant</h3>
@@ -39,8 +38,7 @@ function generateAIHelp() {
             </p>
 
         </div>
-
-    ;
+    `;
 }
 
 
@@ -65,7 +63,6 @@ function generateQuiz() {
     }
 
     result.innerHTML = `
-
     <div class="exam-card">
 
         <h3>${subject} Exam</h3>
@@ -91,8 +88,7 @@ function generateQuiz() {
         <div id="quizScore"></div>
 
     </div>
-
-    ;
+    `;
 }
 
 function checkAnswer(correct) {
@@ -106,7 +102,7 @@ function checkAnswer(correct) {
             <h3>✅ Correct</h3>
             <p>Marks : 100</p>
             <p>Result : PASS</p>
-        ;
+        `;
 
     } else {
 
@@ -114,6 +110,6 @@ function checkAnswer(correct) {
             <h3>❌ Wrong</h3>
             <p>Marks : 0</p>
             <p>Result : FAIL</p>
-        ;
+        `;
     }
 }
