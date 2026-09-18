@@ -264,3 +264,41 @@ document.addEventListener(
 
     }
 );
+// ==========================================
+// SUBJECT SELECTION
+// ==========================================
+
+function selectSubject() {
+
+    const subject =
+        document.getElementById("subjectSelect").value;
+
+    const result =
+        document.getElementById("subjectResult");
+
+    if (subject === "") {
+
+        result.innerHTML = `
+            <div class="exam-card">
+                <h3>⚠️ Select a Subject</h3>
+                <p>Please choose a subject before starting.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    const subjectName =
+        document.getElementById("subjectSelect")
+        .options[
+            document.getElementById("subjectSelect").selectedIndex
+        ].text;
+
+    result.innerHTML = `
+        <div class="exam-card">
+            <h3>🎉 ${subjectName} Selected</h3>
+            <p>Your practice session is ready.</p>
+        </div>
+    `;
+
+}
