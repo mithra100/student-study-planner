@@ -205,3 +205,31 @@ li {
 #aiHelpResult,
 #doubtResult {
     margin-top: 20
+/* Dark Mode */
+
+.dark-mode {
+    background: #121212;
+    color: white;
+}
+
+.dark-mode .section-card,
+.dark-mode .stat-card,
+.dark-mode .exam-card {
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark-mode input,
+.dark-mode textarea {
+    background: #2a2a2a;
+    color: white;
+    border: 1px solid #555;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode p,
+.dark-mode li {
+    color: white;
+}
