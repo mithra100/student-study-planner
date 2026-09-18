@@ -19,7 +19,7 @@ body {
 }
 
 /* Header */
-
+ 
 .dashboard-header {
     background: linear-gradient(135deg, #4f46e5, #7c3aed, #9333ea);
     color: white;
@@ -218,6 +218,10 @@ li {
 .dark-mode .exam-card {
     background: #1e1e1e;
     color: white;
+}
+body.dark-mode {
+    background: #121212 !important;
+    color: white !important;
 }
 
 .dark-mode input,
