@@ -1,241 +1,296 @@
+// ===============================
+// STUDENT STUDY PLANNER
+// ===============================
+
+
+// Get saved tasks
 let tasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
 
-function saveTasks() {
-    localStorage.setItem("studyTasks", JSON.stringify(tasks));
+
+// ===============================
+// DISPLAY TASKS
+// ===============================
+
+function displayTasks() {
+
+    const taskList = document.getElementById("taskList");
+    const completedList = document.getElementById("completedList");
+
+    taskList.innerHTML = "";
+    completedList.innerHTML = "";
+
+    let pending = 0;
+    let completed = 0;
+
+    tasks.forEach((task, index) => {
+
+        const li = document.createElement("li");
+
+        if (task.completed) {
+
+            completed++;
+
+            li.innerHTML = `
+                <strong>📚 ${task.subject}</strong><br>
+                ${task.topic}<br>
+                📅 ${task.date}
+            `;
+
+            completedList.appendChild(li);
+
+        } else {
+
+            pending++;
+
+            li.innerHTML = `
+                <strong>📚 ${task.subject}</strong><br>
+                ${task.topic}<br>
+                📅 ${task.date}
+                <br><br>
+
+                <button onclick="completeTask(${index})">
+                    ✅ Complete
+                </button>
+
+                <button onclick="deleteTask(${index})">
+                    🗑️ Delete
+                </button>
+            `;
+
+            taskList.appendChild(li);
+        }
+
+    });
+
+
+    document.getElementById("totalTasks").textContent = tasks.length;
+    document.getElementById("pendingTasks").textContent = pending;
+    document.getElementById("completedTasks").textContent = completed;
 }
 
+
+// ===============================
+// ADD TASK
+// ===============================
+
 function addTask() {
+
     const subject = document.getElementById("subject").value.trim();
     const topic = document.getElementById("topic").value.trim();
     const date = document.getElementById("date").value;
 
     if (subject === "" || topic === "" || date === "") {
-        alert("Please enter Subject, Topic and Date.");
+
+        alert("Please fill all task details.");
+
         return;
     }
 
-    const task = {
-        id: Date.now(),
+
+    const newTask = {
+
         subject: subject,
         topic: topic,
         date: date,
         completed: false
+
     };
 
-    tasks.push(task);
-    saveTasks();
+
+    tasks.push(newTask);
+
+    localStorage.setItem(
+        "studyTasks",
+        JSON.stringify(tasks)
+    );
+
 
     document.getElementById("subject").value = "";
     document.getElementById("topic").value = "";
     document.getElementById("date").value = "";
 
+
     displayTasks();
 }
 
-function completeTask(id) {
-    const task = tasks.find(t => t.id === id);
 
-    if (task) {
-        task.completed = true;
-        saveTasks();
-        displayTasks();
-    }
-}
+// ===============================
+// COMPLETE TASK
+// ===============================
 
-function deleteTask(id) {
-    tasks = tasks.filter(t => t.id !== id);
+function completeTask(index) {
 
-    saveTasks();
+    tasks[index].completed = true;
+
+    localStorage.setItem(
+        "studyTasks",
+        JSON.stringify(tasks)
+    );
+
     displayTasks();
 }
 
-function displayTasks() {
-    const taskList = document.getElementById("taskList");
-    const completedList = document.getElementById("completedList");
 
-    if (!taskList || !completedList) {
-        return;
-    }
+// ===============================
+// DELETE TASK
+// ===============================
 
-    taskList.innerHTML = "";
-    completedList.innerHTML = "";
+function deleteTask(index) {
 
-    tasks.forEach(task => {
-        const li = document.createElement("li");
+    tasks.splice(index, 1);
 
-        li.innerHTML = `
-            <strong>${escapeHTML(task.subject)}</strong>
-            <br>
-            ${escapeHTML(task.topic)}
-            <br>
-            <small>📅 ${escapeHTML(task.date)}</small>
-            <br>
-            ${
-                task.completed
-                ? `<span>✅ Completed</span>
-                   <button onclick="deleteTask(${task.id})">🗑 Delete</button>`
-                : `<button onclick="completeTask(${task.id})">✅ Complete</button>
-                   <button onclick="deleteTask(${task.id})">🗑 Delete</button>`
-            }
-        `;
+    localStorage.setItem(
+        "studyTasks",
+        JSON.stringify(tasks)
+    );
 
-        if (task.completed) {
-            completedList.appendChild(li);
-        } else {
-            taskList.appendChild(li);
-        }
-    });
-
-    updateStatistics();
+    displayTasks();
 }
 
-function updateStatistics() {
-    const totalTasks = document.getElementById("totalTasks");
-    const pendingTasks = document.getElementById("pendingTasks");
-    const completedTasks = document.getElementById("completedTasks");
 
-    const total = tasks.length;
-    const completed = tasks.filter(t => t.completed).length;
-    const pending = total - completed;
-
-    if (totalTasks) {
-        totalTasks.textContent = total;
-    }
-
-    if (pendingTasks) {
-        pendingTasks.textContent = pending;
-    }
-
-    if (completedTasks) {
-        completedTasks.textContent = completed;
-    }
-}
-
-function generateStudyPlan() {
-    const subject = document.getElementById("aiSubject").value.trim();
-    const topic = document.getElementById("aiTopic").value.trim();
-    const result = document.getElementById("aiResult");
-
-    if (subject === "" || topic === "") {
-        alert("Please enter Subject and Study Topic.");
-        return;
-    }
-
-    result.innerHTML = `
-        <div class="ai-response">
-            <h3>📚 Study Plan</h3>
-            <p><strong>Subject:</strong> ${escapeHTML(subject)}</p>
-            <p><strong>Topic:</strong> ${escapeHTML(topic)}</p>
-
-            <ol>
-                <li>📖 Read the basic concepts - 20 minutes</li>
-                <li>📝 Make short notes - 15 minutes</li>
-                <li>💡 Practice examples - 20 minutes</li>
-                <li>🧠 Revise the topic - 10 minutes</li>
-                <li>✅ Take a small self-test - 10 minutes</li>
-            </ol>
-
-            <p>🎯 Total recommended time: <strong>75 minutes</strong></p>
-        </div>
-    `;
-}
+// ===============================
+// PRACTICE QUIZ
+// ===============================
 
 function generateQuiz() {
-    const subject = document.getElementById("quizSubject").value.trim();
-    const topic = document.getElementById("quizTopic").value.trim();
-    const result = document.getElementById("quizResult");
+
+    const subject =
+        document.getElementById("quizSubject").value.trim();
+
+    const topic =
+        document.getElementById("quizTopic").value.trim();
+
+    const result =
+        document.getElementById("quizResult");
+
 
     if (subject === "" || topic === "") {
-        alert("Please enter Subject and Study Topic.");
+
+        result.innerHTML =
+            "<p>Please enter subject and topic.</p>";
+
         return;
     }
 
+
     result.innerHTML = `
-        <div class="quiz-box">
-            <h3>🧠 Practice Quiz</h3>
 
-            <p><strong>Subject:</strong> ${escapeHTML(subject)}</p>
-            <p><strong>Topic:</strong> ${escapeHTML(topic)}</p>
+        <div class="exam-card">
 
-            <p>1. What is the main concept of this topic?</p>
+            <h3>🧠 Quiz Ready!</h3>
 
-            <button onclick="showQuizMessage()">
-                Show Practice Answer
-            </button>
+            <p>
+                Subject: <strong>${subject}</strong>
+            </p>
+
+            <p>
+                Topic: <strong>${topic}</strong>
+            </p>
+
+            <p>
+                Your quiz questions will appear here.
+            </p>
+
         </div>
+
     `;
 }
 
-function showQuizMessage() {
-    alert("Practice the topic carefully and review your notes before checking the answer.");
-}
+
+// ===============================
+// AI STUDY ASSISTANT
+// ===============================
 
 function generateAIHelp() {
-    const subject = document.getElementById("aiSubject").value.trim();
-    const topic = document.getElementById("aiTopic").value.trim();
-    const result = document.getElementById("aiHelpResult");
+
+    const subject =
+        document.getElementById("aiSubject").value.trim();
+
+    const topic =
+        document.getElementById("aiTopic").value.trim();
+
+    const result =
+        document.getElementById("aiHelpResult");
+
 
     if (subject === "" || topic === "") {
-        alert("Please enter Subject and Study Topic.");
+
+        result.innerHTML =
+            "<p>Please enter subject and topic.</p>";
+
         return;
     }
 
+
     result.innerHTML = `
-        <div class="ai-response">
+
+        <div class="exam-card">
+
             <h3>🤖 AI Study Assistant</h3>
 
             <p>
-                Let's study <strong>${escapeHTML(topic)}</strong>
-                from <strong>${escapeHTML(subject)}</strong>.
+                You are studying
+                <strong>${subject}</strong>
+                - <strong>${topic}</strong>.
             </p>
 
-            <p>💡 Start with the basic definition and understand the key concepts.</p>
+            <p>
+                📖 Start by understanding the basic concepts,
+                then practice with examples and questions.
+            </p>
 
-            <p>📝 Then practice 3-5 examples related to this topic.</p>
-
-            <p>🔄 Finally, revise the important points.</p>
         </div>
+
     `;
 }
 
+
+// ===============================
+// AI DOUBT SOLVER
+// ===============================
+
 function solveDoubt() {
-    const doubt = document.getElementById("doubtInput").value.trim();
-    const result = document.getElementById("doubtResult");
+
+    const doubt =
+        document.getElementById("doubtInput").value.trim();
+
+    const result =
+        document.getElementById("doubtResult");
+
 
     if (doubt === "") {
-        alert("Please enter your doubt.");
+
+        result.innerHTML =
+            "<p>Please type your doubt.</p>";
+
         return;
     }
 
+
     result.innerHTML = `
-        <div class="ai-response">
-            <h3>🤖 Doubt Solver</h3>
+
+        <div class="exam-card">
+
+            <h3>💡 Doubt Received</h3>
 
             <p>
-                Your doubt:
-                <strong>${escapeHTML(doubt)}</strong>
+                Your question:
+                <strong>${doubt}</strong>
             </p>
 
             <p>
-                📖 First, identify the main concept involved in the question.
-                Then break the problem into smaller steps and solve it one step
-                at a time.
+                📚 Think about the basic concept first
+                and try to break the question into smaller parts.
             </p>
 
-            <p>
-                💡 The real AI answer will be connected in the next step.
-            </p>
         </div>
+
     `;
 }
 
-function escapeHTML(text) {
-    const div = document.createElement("div");
-    div.textContent = text;
-    return div.innerHTML;
-}
 
-document.addEventListener("DOMContentLoaded", function () {
-    displayTasks();
-});
-    
+// ===============================
+// LOAD DATA WHEN PAGE OPENS
+// ===============================
+
+displayTasks();
