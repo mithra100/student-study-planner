@@ -316,3 +316,14 @@ function toggleDarkMode() {
         localStorage.setItem("darkMode", "off");
     }
 } 
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+.dark-mode .section-card,
+.dark-mode .stat-card,
+.dark-mode .exam-card {
+    background: #1e1e1e;
+    color: white;
+}
