@@ -173,6 +173,52 @@
             <p>📅 30 September 2026</p>
 
         </div>
+<!-- CREATE YOUR EXAM -->
+
+<section class="section-card" id="createExam">
+
+    <h2>📝 Create Your Exam</h2>
+
+    <p class="section-text">
+        Create an exam with your own subject, date and marks.
+    </p>
+
+    <input
+        type="text"
+        id="examName"
+        placeholder="Enter Exam Name"
+    >
+
+    <input
+        type="text"
+        id="examSubject"
+        placeholder="Enter Subject"
+    >
+
+    <input
+        type="date"
+        id="examDate"
+    >
+
+    <input
+        type="time"
+        id="examTime"
+    >
+
+    <input
+        type="number"
+        id="examMarks"
+        placeholder="Enter Total Marks"
+        min="1"
+    >
+
+    <button onclick="createExam()">
+        Create Exam
+    </button>
+
+    <div id="examResult"></div>
+
+</section>
 
     </section>
 <!-- STUDENT LEVEL -->
