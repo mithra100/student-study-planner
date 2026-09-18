@@ -368,3 +368,40 @@ function addQuestionPattern() {
         </div>
     `;
 }
+// ADD QUESTIONS
+
+let questions = [];
+
+function addQuestion() {
+
+    let questionText = document.getElementById("questionText").value;
+
+    if (questionText === "") {
+        alert("Please enter a question.");
+        return;
+    }
+
+    questions.push(questionText);
+
+    displayQuestions();
+
+    document.getElementById("questionText").value = "";
+}
+
+function displayQuestions() {
+
+    let questionList = document.getElementById("questionList");
+
+    questionList.innerHTML = "";
+
+    questions.forEach(function(question, index) {
+
+        questionList.innerHTML += `
+            <div class="exam-card">
+                <h3>Question ${index + 1}</h3>
+                <p>${question}</p>
+            </div>
+        `;
+
+    });
+}
