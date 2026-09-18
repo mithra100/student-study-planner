@@ -1,12 +1,12 @@
-// ==========================================
+// ================================
 // STUDENT SMART PLANNER
-// JavaScript
-// ==========================================
+// JAVASCRIPT
+// ================================
 
 
-// ==========================================
+// -------------------------------
 // DARK MODE
-// ==========================================
+// -------------------------------
 
 function toggleDarkMode() {
 
@@ -15,196 +15,631 @@ function toggleDarkMode() {
 }
 
 
-// ==========================================
-// AI STUDY ASSISTANT
-// ==========================================
+// -------------------------------
+// AI ASSISTANT
+// -------------------------------
 
 function askAI() {
 
-    const question =
-        document.getElementById("aiQuestion").value.trim();
-
-    const result =
-        document.getElementById("aiHelpResult");
-
+    let question = document.getElementById("aiQuestion").value.trim();
+    let result = document.getElementById("aiHelpResult");
 
     if (question === "") {
 
-        result.innerHTML = `
-            <div class="exam-card">
-                <h3>⚠️ Please enter a question</h3>
-                <p>Type your study question first.</p>
-            </div>
-        `;
+        result.innerHTML =
+            "<p>Please enter your question.</p>";
 
         return;
     }
 
-
-    // Simple frontend response
     result.innerHTML = `
         <div class="exam-card">
-
             <h3>🤖 AI Assistant</h3>
-
             <p>
-                <strong>Your Question:</strong>
-                ${question}
+                Your question: <b>${question}</b>
             </p>
-
             <p>
-                📚 Let's understand this topic step by step.
-                Keep practicing and learning!
+                This is a demo response. Real AI connection
+                can be added later.
             </p>
-
         </div>
     `;
-
 }
 
 
-// ==========================================
+// -------------------------------
 // DOUBT SOLVER
-// ==========================================
+// -------------------------------
 
 function solveDoubt() {
 
-    const doubt =
-        document.getElementById("doubtInput").value.trim();
-
-    const result =
-        document.getElementById("doubtResult");
-
+    let doubt = document.getElementById("doubtInput").value.trim();
+    let result = document.getElementById("doubtResult");
 
     if (doubt === "") {
 
-        result.innerHTML = `
-            <div class="exam-card">
-                <h3>⚠️ Enter your doubt</h3>
-                <p>Please type something first.</p>
-            </div>
-        `;
+        result.innerHTML =
+            "<p>Please enter your doubt.</p>";
 
         return;
     }
+
+    result.innerHTML = `
+        <div class="exam-card">
+            <h3>💡 Doubt Explanation</h3>
+            <p>
+                You asked: <b>${doubt}</b>
+            </p>
+            <p>
+                This is a demo explanation.
+                Real AI can answer this doubt later.
+            </p>
+        </div>
+    `;
+}
+
+
+// -------------------------------
+// GOALS
+// -------------------------------
+
+let goals = [];
+
+
+function addGoal() {
+
+    let input = document.getElementById("goalInput");
+    let goal = input.value.trim();
+
+    if (goal === "") {
+
+        alert("Please enter a goal.");
+
+        return;
+    }
+
+    goals.push(goal);
+
+    input.value = "";
+
+    displayGoals();
+
+    updateGoalCount();
+}
+
+
+function displayGoals() {
+
+    let list = document.getElementById("goalList");
+
+    list.innerHTML = "";
+
+    goals.forEach(function(goal, index) {
+
+        list.innerHTML += `
+            <li>
+                🎯 ${goal}
+                <button onclick="deleteGoal(${index})">
+                    Delete
+                </button>
+            </li>
+        `;
+
+    });
+}
+
+
+function deleteGoal(index) {
+
+    goals.splice(index, 1);
+
+    displayGoals();
+
+    updateGoalCount();
+}
+
+
+function updateGoalCount() {
+
+    document.getElementById("goalCount").textContent =
+        goals.length;
+
+}
+
+
+// -------------------------------
+// CREATE EXAM
+// -------------------------------
+
+let exams = [];
+
+
+function createExam() {
+
+    let name =
+        document.getElementById("examName").value.trim();
+
+    let subject =
+        document.getElementById("examSubject").value.trim();
+
+    let date =
+        document.getElementById("examDate").value;
+
+    let time =
+        document.getElementById("examTime").value;
+
+    let marks =
+        document.getElementById("examMarks").value;
+
+    let result =
+        document.getElementById("examResult");
+
+
+    if (
+        name === "" ||
+        subject === "" ||
+        date === "" ||
+        time === "" ||
+        marks === ""
+    ) {
+
+        result.innerHTML =
+            "<p>Please fill all exam details.</p>";
+
+        return;
+    }
+
+
+    let exam = {
+
+        name: name,
+        subject: subject,
+        date: date,
+        time: time,
+        marks: Number(marks),
+
+        questions: []
+
+    };
+
+
+    exams.push(exam);
 
 
     result.innerHTML = `
         <div class="exam-card">
 
-            <h3>💡 Doubt Received</h3>
+            <h3>✅ Exam Created</h3>
 
             <p>
-                <strong>Your Doubt:</strong>
-                ${doubt}
+                <b>Exam:</b> ${name}
             </p>
 
             <p>
-                🧑‍🎓 Your doubt has been received.
-                Let's learn the concept step by step.
+                <b>Subject:</b> ${subject}
+            </p>
+
+            <p>
+                <b>Date:</b> ${date}
+            </p>
+
+            <p>
+                <b>Time:</b> ${time}
+            </p>
+
+            <p>
+                <b>Total Marks:</b> ${marks}
+            </p>
+
+            <p>
+                🎉 Your exam is ready for questions.
             </p>
 
         </div>
     `;
 
+
+    document.getElementById("examCount").textContent =
+        exams.length;
+
 }
 
 
-// ==========================================
-// ADD STUDY GOAL
-// ==========================================
+// -------------------------------
+// SHOW / HIDE MCQ OPTIONS
+// -------------------------------
 
-function addGoal() {
+document.addEventListener("DOMContentLoaded", function () {
 
-    const input =
-        document.getElementById("goalInput");
+    let questionType =
+        document.getElementById("examQuestionType");
 
-    const list =
-        document.getElementById("goalList");
-
-    const count =
-        document.getElementById("goalCount");
+    let mcqOptions =
+        document.getElementById("mcqOptions");
 
 
-    const goal =
-        input.value.trim();
+    if (questionType && mcqOptions) {
+
+        questionType.addEventListener(
+            "change",
+            function () {
+
+                if (this.value === "mcq") {
+
+                    mcqOptions.style.display = "block";
+
+                }
+                else {
+
+                    mcqOptions.style.display = "none";
+
+                }
+
+            }
+        );
+
+    }
+
+});
 
 
-    if (goal === "") {
+// -------------------------------
+// EXAM QUESTIONS
+// -------------------------------
 
-        alert("Please enter a study goal.");
+let examQuestions = [];
+
+
+function addExamQuestion() {
+
+    let type =
+        document.getElementById("examQuestionType").value;
+
+    let marks =
+        document.getElementById("examQuestionMarks").value;
+
+    let question =
+        document.getElementById("examQuestionText").value.trim();
+
+
+    if (
+        type === "" ||
+        marks === "" ||
+        question === ""
+    ) {
+
+        alert("Please select type, marks and enter question.");
 
         return;
     }
 
 
-    const li =
-        document.createElement("li");
+    // ---------------------------
+    // MCQ
+    // ---------------------------
+
+    if (type === "mcq") {
+
+        let optionA =
+            document.getElementById("mcqOptionA").value.trim();
+
+        let optionB =
+            document.getElementById("mcqOptionB").value.trim();
+
+        let optionC =
+            document.getElementById("mcqOptionC").value.trim();
+
+        let optionD =
+            document.getElementById("mcqOptionD").value.trim();
+
+        let correct =
+            document.getElementById("correctOption").value;
 
 
-    li.innerHTML = `
-        🎯 ${goal}
-        <button
-            onclick="this.parentElement.remove(); updateGoalCount();"
-            style="float:right; padding:6px 10px;">
-            ✕
-        </button>
+        if (
+            optionA === "" ||
+            optionB === "" ||
+            optionC === "" ||
+            optionD === "" ||
+            correct === ""
+        ) {
+
+            alert("Please fill all MCQ options and select the correct answer.");
+
+            return;
+        }
+
+
+        examQuestions.push({
+
+            type: "MCQ",
+
+            marks: Number(marks),
+
+            question: question,
+
+            optionA: optionA,
+
+            optionB: optionB,
+
+            optionC: optionC,
+
+            optionD: optionD,
+
+            correct: correct
+
+        });
+
+    }
+
+
+    // ---------------------------
+    // SHORT ANSWER
+    // ---------------------------
+
+    else if (type === "short") {
+
+        examQuestions.push({
+
+            type: "Short Answer",
+
+            marks: Number(marks),
+
+            question: question
+
+        });
+
+    }
+
+
+    // ---------------------------
+    // LONG ANSWER
+    // ---------------------------
+
+    else if (type === "long") {
+
+        examQuestions.push({
+
+            type: "Long Answer",
+
+            marks: Number(marks),
+
+            question: question
+
+        });
+
+    }
+
+
+    displayExamQuestions();
+
+
+    // Clear question
+
+    document.getElementById("examQuestionText").value = "";
+
+    document.getElementById("mcqOptionA").value = "";
+
+    document.getElementById("mcqOptionB").value = "";
+
+    document.getElementById("mcqOptionC").value = "";
+
+    document.getElementById("mcqOptionD").value = "";
+
+    document.getElementById("correctOption").value = "";
+
+}
+
+
+// -------------------------------
+// DISPLAY QUESTIONS
+// -------------------------------
+
+function displayExamQuestions() {
+
+    let list =
+        document.getElementById("examQuestionList");
+
+
+    list.innerHTML = "";
+
+
+    examQuestions.forEach(function(q, index) {
+
+        let html = `
+
+            <div class="exam-card">
+
+                <h3>
+                    Question ${index + 1}
+                </h3>
+
+                <p>
+                    <b>Type:</b> ${q.type}
+                </p>
+
+                <p>
+                    <b>Marks:</b> ${q.marks}
+                </p>
+
+                <p>
+                    <b>Question:</b> ${q.question}
+                </p>
+
+        `;
+
+
+        if (q.type === "MCQ") {
+
+            html += `
+
+                <p>A) ${q.optionA}</p>
+
+                <p>B) ${q.optionB}</p>
+
+                <p>C) ${q.optionC}</p>
+
+                <p>D) ${q.optionD}</p>
+
+                <p>
+                    ✅ Correct Answer:
+                    Option ${q.correct}
+                </p>
+
+            `;
+
+        }
+
+
+        html += `
+
+            </div>
+
+        `;
+
+
+        list.innerHTML += html;
+
+    });
+
+}
+
+
+// -------------------------------
+// STUDENT LEVEL
+// -------------------------------
+
+function selectLevel() {
+
+    let level =
+        document.getElementById("levelSelect").value;
+
+    let result =
+        document.getElementById("levelResult");
+
+
+    if (level === "") {
+
+        result.innerHTML =
+            "<p>Please select your learning level.</p>";
+
+        return;
+    }
+
+
+    let levelName = "";
+
+
+    if (level === "school") {
+
+        levelName = "🏫 School Student";
+
+    }
+    else if (level === "college") {
+
+        levelName = "🎓 College Student";
+
+    }
+    else {
+
+        levelName = "📚 Other Learning";
+
+    }
+
+
+    result.innerHTML = `
+
+        <div class="exam-card">
+
+            <h3>✅ Level Selected</h3>
+
+            <p>
+                ${levelName}
+            </p>
+
+        </div>
+
     `;
 
+}
 
-    list.appendChild(li);
+
+// -------------------------------
+// SUBJECT
+// -------------------------------
+
+let subjects = [];
+
+
+function addSubject() {
+
+    let input =
+        document.getElementById("subjectInput");
+
+    let subject =
+        input.value.trim();
+
+
+    let result =
+        document.getElementById("subjectResult");
+
+
+    if (subject === "") {
+
+        result.innerHTML =
+            "<p>Please enter a subject.</p>";
+
+        return;
+    }
+
+
+    subjects.push(subject);
+
 
     input.value = "";
 
 
-    updateGoalCount();
+    result.innerHTML = `
+
+        <div class="exam-card">
+
+            <h3>📚 Subject Added</h3>
+
+            <p>
+                ${subject}
+            </p>
+
+        </div>
+
+    `;
+
+
+    document.getElementById("subjectCount").textContent =
+        subjects.length;
 
 }
 
 
-// ==========================================
-// UPDATE GOAL COUNT
-// ==========================================
-
-function updateGoalCount() {
-
-    const list =
-        document.getElementById("goalList");
-
-    const count =
-        document.getElementById("goalCount");
-
-
-    count.textContent =
-        list.children.length;
-
-}
-
-
-// ==========================================
-// QUIZ
-// ==========================================
+// -------------------------------
+// QUICK QUIZ
+// -------------------------------
 
 function checkQuiz() {
 
-    const answer =
-        document.getElementById("quizAnswer")
-        .value
+    let answer =
+        document.getElementById("quizAnswer").value
         .trim()
         .toLowerCase();
 
 
-    const result =
+    let result =
         document.getElementById("quizResult");
 
 
     if (answer === "") {
 
-        result.innerHTML = `
-            <div class="exam-card">
-                <h3>⚠️ Enter your answer</h3>
-            </div>
-        `;
+        result.innerHTML =
+            "<p>Please enter your answer.</p>";
 
         return;
     }
@@ -217,310 +652,21 @@ function checkQuiz() {
 
         result.innerHTML = `
             <div class="exam-card">
-
-                <h3>🎉 Correct Answer!</h3>
-
-                <p>
-                    HTML is used to create the structure
-                    of a webpage.
-                </p>
-
+                <h3>🎉 Correct!</h3>
+                <p>The answer is HTML.</p>
             </div>
         `;
 
-    } else {
+    }
+    else {
 
         result.innerHTML = `
             <div class="exam-card">
-
-                <h3>❌ Try Again</h3>
-
-                <p>
-                    The correct answer is
-                    <strong>HTML</strong>.
-                </p>
-
+                <h3>❌ Incorrect</h3>
+                <p>The correct answer is HTML.</p>
             </div>
         `;
 
     }
 
 }
-
-
-// ==========================================
-// PAGE LOADED
-// ==========================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        console.log(
-            "🎓 Student Smart Planner loaded successfully!"
-        );
-
-        updateGoalCount();
-
-    }
-);
-// ==========================================
-// SUBJECT SELECTION
-// ==========================================
-
-function selectSubject() {
-
-    const subject =
-        document.getElementById("subjectSelect").value;
-
-    const result =
-        document.getElementById("subjectResult");
-
-    if (subject === "") {
-
-        result.innerHTML = `
-            <div class="exam-card">
-                <h3>⚠️ Select a Subject</h3>
-                <p>Please choose a subject before starting.</p>
-            </div>
-        `;
-
-        return;
-    }
-
-    const subjectName =
-        document.getElementById("subjectSelect")
-        .options[
-            document.getElementById("subjectSelect").selectedIndex
-        ].text;
-
-    result.innerHTML = `
-        <div class="exam-card">
-            <h3>🎉 ${subjectName} Selected</h3>
-            <p>Your practice session is ready.</p>
-        </div>
-    `;
-
-}
-// CREATE EXAM
-
-function createExam() {
-
-    let examName = document.getElementById("examName").value;
-    let examSubject = document.getElementById("examSubject").value;
-    let examDate = document.getElementById("examDate").value;
-    let examTime = document.getElementById("examTime").value;
-    let examMarks = document.getElementById("examMarks").value;
-
-    if (
-        examName === "" ||
-        examSubject === "" ||
-        examDate === "" ||
-        examTime === "" ||
-        examMarks === ""
-    ) {
-        document.getElementById("examResult").innerHTML =
-            "<p>Please fill all exam details.</p>";
-        return;
-    }
-
-    document.getElementById("examResult").innerHTML = `
-        <div class="exam-card">
-            <h3>📚 ${examName}</h3>
-            <p><b>Subject:</b> ${examSubject}</p>
-            <p><b>Date:</b> ${examDate}</p>
-            <p><b>Time:</b> ${examTime}</p>
-            <p><b>Total Marks:</b> ${examMarks}</p>
-            <p>✅ Exam Created Successfully!</p>
-        </div>
-    `;
-}
-// ADD QUESTION PATTERN
-
-function addQuestionPattern() {
-
-    let type = document.getElementById("questionType").value;
-    let marks = document.getElementById("questionMarks").value;
-
-    if (type === "" || marks === "") {
-        document.getElementById("questionPatternResult").innerHTML =
-            "<p>Please select question type and marks.</p>";
-        return;
-    }
-
-    let typeName = "";
-
-    if (type === "mcq") {
-        typeName = "MCQ - Multiple Choice";
-    }
-    else if (type === "short") {
-        typeName = "Short Answer";
-    }
-    else if (type === "long") {
-        typeName = "Long Answer";
-    }
-
-    document.getElementById("questionPatternResult").innerHTML = `
-        <div class="exam-card">
-            <h3>Question Added ✅</h3>
-            <p><b>Type:</b> ${typeName}</p>
-            <p><b>Marks:</b> ${marks}</p>
-        </div>
-    `;
-}
-// ADD QUESTIONS
-
-let questions = [];
-
-function addQuestion() {
-
-    let questionText = document.getElementById("questionText").value;
-
-    if (questionText === "") {
-        alert("Please enter a question.");
-        return;
-    }
-
-    questions.push(questionText);
-
-    displayQuestions();
-
-    document.getElementById("questionText").value = "";
-}
-
-function displayQuestions() {
-
-    let questionList = document.getElementById("questionList");
-
-    questionList.innerHTML = "";
-
-    questions.forEach(function(question, index) {
-
-        questionList.innerHTML += `
-            <div class="exam-card">
-                <h3>Question ${index + 1}</h3>
-                <p>${question}</p>
-            </div>
-        `;
-
-    });
-}
-// ADD MCQ
-
-let mcqQuestions = [];
-
-function addMCQ() {
-
-    let question = document.getElementById("questionText").value;
-    let optionA = document.getElementById("optionA").value;
-    let optionB = document.getElementById("optionB").value;
-    let optionC = document.getElementById("optionC").value;
-    let optionD = document.getElementById("optionD").value;
-    let correct = document.getElementById("correctAnswer").value;
-
-    if (
-        question === "" ||
-        optionA === "" ||
-        optionB === "" ||
-        optionC === "" ||
-        optionD === "" ||
-        correct === ""
-    ) {
-        alert("Please fill all question details.");
-        return;
-    }
-
-    mcqQuestions.push({
-        question: question,
-        A: optionA,
-        B: optionB,
-        C: optionC,
-        D: optionD,
-        correct: correct
-    });
-
-    displayMCQ();
-
-    document.getElementById("questionText").value = "";
-    document.getElementById("optionA").value = "";
-    document.getElementById("optionB").value = "";
-    document.getElementById("optionC").value = "";
-    document.getElementById("optionD").value = "";
-    document.getElementById("correctAnswer").value = "";
-}
-
-
-function displayMCQ() {
-
-    let list = document.getElementById("mcqList");
-
-    list.innerHTML = "";
-
-    mcqQuestions.forEach(function(q, index) {
-
-        list.innerHTML += `
-            <div class="exam-card">
-
-                <h3>Question ${index + 1}</h3>
-
-                <p>${q.question}</p>
-
-                <p>A) ${q.A}</p>
-                <p>B) ${q.B}</p>
-                <p>C) ${q.C}</p>
-                <p>D) ${q.D}</p>
-
-                <p>✅ Correct Answer: Option ${q.correct}</p>
-
-            </div>
-        `;
-
-    });
-}
-// CHOOSE QUESTION TYPE
-
-function chooseQuestionType() {
-
-    let type = document.getElementById("examQuestionType").value;
-    let marks = document.getElementById("examQuestionMarks").value;
-
-    let result = document.getElementById("questionTypeResult");
-
-    if (type === "" || marks === "") {
-        result.innerHTML = "<p>Please select question type and marks.</p>";
-        return;
-    }
-
-    let typeName = "";
-
-    if (type === "mcq") {
-        typeName = "MCQ";
-    }
-    else if (type === "short") {
-        typeName = "Short Answer";
-    }
-    else if (type === "long") {
-        typeName = "Long Answer";
-    }
-
-    result.innerHTML = `
-        <div class="exam-card">
-            <h3>✅ Question Type Selected</h3>
-            <p><b>Type:</b> ${typeName}</p>
-            <p><b>Marks:</b> ${marks}</p>
-        </div>
-    `;
-}
-// SHOW MCQ OPTIONS
-
-document.getElementById("examQuestionType").addEventListener("change", function () {
-
-    let mcqOptions = document.getElementById("mcqOptions");
-
-    if (this.value === "mcq") {
-        mcqOptions.style.display = "block";
-    } else {
-        mcqOptions.style.display = "none";
-    }
-
-});
