@@ -405,3 +405,75 @@ function displayQuestions() {
 
     });
 }
+// ADD MCQ
+
+let mcqQuestions = [];
+
+function addMCQ() {
+
+    let question = document.getElementById("questionText").value;
+    let optionA = document.getElementById("optionA").value;
+    let optionB = document.getElementById("optionB").value;
+    let optionC = document.getElementById("optionC").value;
+    let optionD = document.getElementById("optionD").value;
+    let correct = document.getElementById("correctAnswer").value;
+
+    if (
+        question === "" ||
+        optionA === "" ||
+        optionB === "" ||
+        optionC === "" ||
+        optionD === "" ||
+        correct === ""
+    ) {
+        alert("Please fill all question details.");
+        return;
+    }
+
+    mcqQuestions.push({
+        question: question,
+        A: optionA,
+        B: optionB,
+        C: optionC,
+        D: optionD,
+        correct: correct
+    });
+
+    displayMCQ();
+
+    document.getElementById("questionText").value = "";
+    document.getElementById("optionA").value = "";
+    document.getElementById("optionB").value = "";
+    document.getElementById("optionC").value = "";
+    document.getElementById("optionD").value = "";
+    document.getElementById("correctAnswer").value = "";
+}
+
+
+function displayMCQ() {
+
+    let list = document.getElementById("mcqList");
+
+    list.innerHTML = "";
+
+    mcqQuestions.forEach(function(q, index) {
+
+        list.innerHTML += `
+            <div class="exam-card">
+
+                <h3>Question ${index + 1}</h3>
+
+                <p>${q.question}</p>
+
+                <p>A) ${q.A}</p>
+                <p>B) ${q.B}</p>
+                <p>C) ${q.C}</p>
+                <p>D) ${q.D}</p>
+
+                <p>✅ Correct Answer: Option ${q.correct}</p>
+
+            </div>
+        `;
+
+    });
+}
