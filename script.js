@@ -159,50 +159,6 @@ function deleteTask(index) {
 }
 
 
-// ===============================
-// PRACTICE QUIZ
-// ===============================
-
-function generateQuiz() {
-
-    const subject =
-        document.getElementById("quizSubject").value.trim();
-
-    const topic =
-        document.getElementById("quizTopic").value.trim();
-
-    const result =
-        document.getElementById("quizResult");
-
-
-    if (subject === "" || topic === "") {
-
-        result.innerHTML =
-            "<p>Please enter subject and topic.</p>";
-
-        return;
-    }
-
-
-    result.innerHTML = `
-
-        <div class="exam-card">
-
-            <h3>🧠 Quiz Ready!</h3>
-
-            <p>
-                Subject: <strong>${subject}</strong>
-            </p>
-
-            <p>
-                Topic: <strong>${topic}</strong>
-            </p>
-
-            <p>
-                Your quiz questions will appear here.
-            </p>
-
-        </div>
 
     `;
 }
@@ -252,6 +208,49 @@ function generateAIHelp() {
 
         </div>
 
+    function generateQuiz() {
+
+    const subject =
+        document.getElementById("quizSubject").value.trim();
+
+    const result =
+        document.getElementById("quizResult");
+
+    if (subject === "") {
+
+        result.innerHTML =
+            "<p>Please enter subject.</p>";
+
+        return;
+    }
+
+    result.innerHTML = `
+
+    <div class="exam-card">
+
+        <h3>${subject} Exam</h3>
+
+        <p><b>Q1.</b> What does HTML stand for?</p>
+
+        <button onclick="checkAnswer(true)">
+            Hyper Text Markup Language
+        </button><br><br>
+
+        <button onclick="checkAnswer(false)">
+            High Text Machine Language
+        </button><br><br>
+
+        <button onclick="checkAnswer(false)">
+            Home Tool Markup Language
+        </button><br><br>
+
+        <button onclick="checkAnswer(false)">
+            Hyper Tool Markup Language
+        </button>
+
+        <div id="quizScore"></div>
+
+    </div>
     `;
 }
 
