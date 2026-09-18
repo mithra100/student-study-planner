@@ -1,317 +1,272 @@
-body{
-font-family:Arial,sans-serif;
-background:#f4f7fc;
-margin:0;
-padding:15px;
+/* ================================
+   STUDENT STUDY PLANNER - CSS
+   ================================ */
+
+* {
+    box-sizing: border-box;
 }
 
-.header{
-background:linear-gradient(135deg,#4f46e5,#7c3aed);
-color:white;
-padding:25px;
-text-align:center;
-border-radius:15px;
-margin-bottom:20px;
-box-shadow:0 4px 15px rgba(0,0,0,0.15);
-}
-
-.section-card{
-background:white;
-padding:20px;
-margin-bottom:20px;
-border-radius:15px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-input{
-width:95%;
-padding:12px;
-border:1px solid #ddd;
-border-radius:8px;
-}
-
-button{
-background:#6d28d9;
-color:white;
-padding:12px 20px;
-border:none;
-border-radius:8px;
-font-weight:bold;
-}
-
-h2{
-color:#4f46e5;
-}
-
-ul{
-line-height:1.8;
-}body{
+body {
     font-family: Arial, sans-serif;
-    background:#eef2f7;
-    margin:0;
-    padding:20px;
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
 }
 
-h1{
-    text-align:center;
-    color:white;
-    background:linear-gradient(90deg,#3b5bdb,#7048e8);
-    padding:20px;
-    border-radius:15px;
-}
 
-h2{
-    color:#3b5bdb;
-}
+/* ================================
+   MAIN CONTAINER
+   ================================ */
 
-ul{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-
-input{
-    width:90%;
-    padding:12px;
-    margin:8px 0;
-    border:1px solid #ddd;
-    border-radius:8px;
-}
-
-button{
-    background:#5f3dc4;
-    color:white;
-    padding:12px 20px;
-    border:none;
-    border-radius:8px;
-}
-
-button:hover{
-    background:#4c2fb0;
-}
-.header{
-background:linear-gradient(90deg,#4f46e5,#7c3aed);
-color:white;
-padding:20px;
-text-align:center;
-border-radius:10px;
-margin-bottom:20px;
-}
-
-.stats-container{
-display:flex;
-flex-wrap:wrap;
-gap:15px;
-margin-bottom:20px;
-}
-
-.card{
-background:white;
-padding:20px;
-border-radius:15px;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-flex:1;
-min-width:150px;
-text-align:center;
-}
-
-.card p{
-font-size:28px;
-font-weight:bold;
-}
-.section-card{
-    background:white;
-    padding:20px;
-    margin:15px 0;
-    border-radius:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,0.1);
-}
-h2{
-    color:#4f46e5;
-    margin-bottom:15px;
-}
-
-input,select{
-    width:100%;
-    padding:12px;
-    margin-bottom:15px;
-    border:1px solid #ddd;
-    border-radius:10px;
-    box-sizing:border-box;
-}
-
-button{
-    background:#4f46e5;
-    color:white;
-    border:none;
-    padding:12px 20px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-}
-
-button:hover{
-    background:#4338ca;
-}
-
-ul{
-    background:white;
-    padding:15px 20px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.08);
-}
-
-li{
-    margin-bottom:8px;
-}
-
-.header h1{
-    margin:0;
-    font-size:30px;
-}
-
-.header p{
-    opacity:0.9;
-}
-.card:hover,
-.section-card:hover{
-    transform:translateY(-5px);
-    transition:0.3s;
-    box-shadow:0 8px 20px rgba(0,0,0,0.15);
-}
-
-.stats-container .card h3{
-    color:#4f46e5;
-    font-size:16px;
-}
-
-.stats-container .card p{
-    font-size:32px;
-    font-weight:bold;
-}
-
-body{
-    background:linear-gradient(135deg,#eef2ff,#f8fafc);
-}
-
-.header{
-    position:sticky;
-    top:10px;
-}
-
-button{
-    font-weight:bold;
-    letter-spacing:0.5px;
-}
-
-input:focus,
-select:focus{
-    outline:none;
-    border:2px solid #4f46e5;
-}
-.profile-card{
-    background:white;
-    text-align:center;
-    padding:20px;
-    border-radius:20px;
-    margin-bottom:20px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-.profile-card img{
-    width:100px;
-    height:100px;
-    border-radius:50%;
-    border:4px solid #7c3aed;
-}
-
-.profile-card h2{
-    margin:10px 0 5px;
-}
-
-.profile-card p{
-    color:gray;
-}
-#darkModeBtn{
-    background:#fff;
-    color:#7c3aed;
-    border:none;
-    padding:10px 15px;
-    border-radius:10px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.dark-mode{
-    background:#121212;
-    color:white;
-}
-
-.dark-mode .section-card,
-.dark-mode .card,
-.dark-mode .profile-card{
-    background:#1e1e1e;
-    color:white;
-}
-#darkModeBtn{
-    padding:10px 15px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    margin:10px 0;
-}
-
-.dark-mode{
-    background:#121212;
-    color:white;
-}
-
-.dark-mode .section-card,
-.dark-mode .card{
-    background:#1e1e1e;
-    color:white;
-}
-.dark-mode {
-    background: #121212;
-    color: white;
-}
-
-.dark-mode .section-card,
-.dark-mode .card {
-    background: #1e1e1e;
-    color: white;
-}
-
-.dark-mode input,
-.dark-mode select {
-    background: #333;
-    color: white;
-    border: 1px solid #555;
-}
-.container{
+.container {
     max-width: 1200px;
     margin: auto;
-    padding: 20px;
+    padding: 10px;
 }
 
-.stats-container{
+
+/* ================================
+   HEADER
+   ================================ */
+
+.header {
+    background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    border-radius: 18px;
+    margin-bottom: 20px;
+
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+    position: sticky;
+    top: 10px;
+    z-index: 10;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+.header p {
+    margin: 8px 0 0;
+    opacity: 0.9;
+}
+
+
+/* ================================
+   STATISTICS
+   ================================ */
+
+.stats-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(200px, 1fr));
+
     gap: 20px;
+
+    margin-bottom: 20px;
 }
 
-.section-card{
-    max-width: 100%;
+
+/* STAT CARD */
+
+.card {
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
 }
 
-@media (min-width: 768px){
-    .section-card{
-        padding: 30px;
-    }
+.card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.15);
 }
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:20px;
+
+.card h3 {
+    color: #4f46e5;
+
+    font-size: 16px;
+
+    margin-bottom: 10px;
 }
+
+.card p {
+    font-size: 32px;
+
+    font-weight: bold;
+
+    margin: 0;
+
+    color: #111827;
+}
+
+
+/* ================================
+   SECTION CARD
+   ================================ */
+
+.section-card {
+    background: white;
+
+    padding: 25px;
+
+    margin: 20px 0;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s;
+}
+
+.section-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+/* ================================
+   HEADINGS
+   ================================ */
+
+h1 {
+    margin-top: 0;
+}
+
+h2 {
+    color: #4f46e5;
+
+    margin-top: 0;
+
+    margin-bottom: 15px;
+}
+
+
+/* ================================
+   INPUT & SELECT
+   ================================ */
+
+input,
+select {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid #d1d5db;
+
+    border-radius: 12px;
+
+    background: #f9fafb;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+/* INPUT FOCUS */
+
+input:focus,
+select:focus {
+    border: 2px solid #4f46e5;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 3px rgba(79, 70, 229, 0.10);
+}
+
+
+/* ================================
+   BUTTON
+   ================================ */
+
+button {
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
+
+    color: white;
+
+    padding: 13px 22px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    letter-spacing: 0.3px;
+
+    transition: 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 7px 18px rgba(79, 70, 229, 0.25);
+}
+
+
+/* ================================
+   LIST
+   ================================ */
+
+ul {
+    background: #ffffff;
+
+    padding: 18px 25px;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.06);
+
+    line-height: 1.8;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+
+/* ================================
+   PROFILE CARD
+   ================================ */
+
+.profile-card {
+    background: white;
+
+    text-align: center;
+
+    padding: 25px;
+
+    border-radius
