@@ -36,7 +36,10 @@
         <a href="#goals">🎯 Goals</a>
         <a href="#exams">📝 Exams</a>
         <a href="#quiz">🧠 Quiz</a>
-        <a href="#" onclick="toggleDarkMode()">🌙 Dark Mode</a>
+
+        <a href="#" onclick="toggleDarkMode(); return false;">
+            🌙 Dark Mode
+        </a>
 
     </nav>
 
@@ -47,7 +50,7 @@
         <div class="stat-card">
             <span>📚</span>
             <h3>Subjects</h3>
-            <strong>6</strong>
+            <strong id="subjectCount">0</strong>
         </div>
 
         <div class="stat-card">
@@ -59,7 +62,7 @@
         <div class="stat-card">
             <span>📝</span>
             <h3>Exams</h3>
-            <strong>3</strong>
+            <strong id="examCount">0</strong>
         </div>
 
         <div class="stat-card">
@@ -135,8 +138,7 @@
             Add Goal
         </button>
 
-        <ul id="goalList" class="goal-list">
-        </ul>
+        <ul id="goalList" class="goal-list"></ul>
 
     </section>
 
@@ -144,348 +146,262 @@
     <!-- EXAMS -->
     <section class="section-card" id="exams">
 
-        <h2>📝 Upcoming Exams</h2>
+        <h2>📝 Create Your Exam</h2>
 
         <p class="section-text">
-            Keep track of your important exams.
+            Create any exam with your own details.
         </p>
 
-        <div class="exam-card">
 
-            <h3>HTML & CSS Test</h3>
+        <!-- EXAM NAME -->
+        <input
+            type="text"
+            id="examName"
+            placeholder="Enter Exam Name">
 
-            <p>📅 20 September 2026</p>
 
-        </div>
+        <!-- SUBJECT -->
+        <input
+            type="text"
+            id="examSubject"
+            placeholder="Enter Subject">
 
-        <div class="exam-card">
 
-            <h3>JavaScript Practice</h3>
+        <!-- DATE -->
+        <input
+            type="date"
+            id="examDate">
 
-            <p>📅 25 September 2026</p>
 
-        </div>
+        <!-- TIME -->
+        <input
+            type="time"
+            id="examTime">
 
-        <div class="exam-card">
 
-            <h3>Web Development Exam</h3>
+        <!-- TOTAL MARKS -->
+        <input
+            type="number"
+            id="examMarks"
+            placeholder="Enter Total Marks"
+            min="1">
 
-            <p>📅 30 September 2026</p>
 
-        </div>
-<!-- CREATE YOUR EXAM -->
+        <button onclick="createExam()">
+            Create Exam
+        </button>
 
-<section class="section-card" id="createExam">
 
-    <h2>📝 Create Your Exam</h2>
-
-    <p class="section-text">
-        Create an exam with your own subject, date and marks.
-    </p>
-
-    <input
-        type="text"
-        id="examName"
-        placeholder="Enter Exam Name"
-    >
-
-    <input
-        type="text"
-        id="examSubject"
-        placeholder="Enter Subject"
-    >
-
-    <input
-        type="date"
-        id="examDate"
-    >
-
-    <input
-        type="time"
-        id="examTime"
-    >
-
-    <input
-        type="number"
-        id="examMarks"
-        placeholder="Enter Total Marks"
-        min="1"
-    >
-
-    <button onclick="createExam()">
-        Create Exam
-    </button>
-
-    <div id="examResult"></div>
-
-</section>
+        <div id="examResult"></div>
 
     </section>
-<!-- STUDENT LEVEL -->
 
-<section class="section-card" id="studentLevel">
 
-    <h2>🎓 Choose Your Learning Level</h2>
+    <!-- QUESTION BUILDER -->
+    <section class="section-card" id="questionBuilder">
 
-    <p class="section-text">
-        Select your education level to continue.
-    </p>
+        <h2>❓ Add Questions</h2>
 
-    <select id="levelSelect">
+        <p class="section-text">
+            Add different types of questions to your exam.
+        </p>
 
-        <option value="">
-            -- Select Level --
-        </option>
 
-        <option value="school">
-            🏫 School Student
-        </option>
+        <!-- QUESTION TYPE -->
+        <select id="examQuestionType">
 
-        <option value="college">
-            🎓 College Student
-        </option>
+            <option value="">
+                -- Select Question Type --
+            </option>
 
-        <option value="other">
-            📚 Other Learning
-        </option>
+            <option value="mcq">
+                MCQ
+            </option>
 
-    </select>
+            <option value="short">
+                Short Answer
+            </option>
 
-    <button onclick="selectLevel()">
-        Continue
-    </button>
+            <option value="long">
+                Long Answer
+            </option>
 
-    <div id="levelResult"></div>
+        </select>
 
-</section>
-<!-- QUESTION PATTERN -->
 
-<section class="section-card" id="questionPattern">
+        <!-- QUESTION MARKS -->
+        <select id="examQuestionMarks">
 
-  <!-- QUESTION TYPE -->
+            <option value="">
+                -- Select Marks --
+            </option>
 
-<section class="section-card" id="questionTypeSection">
+            <option value="1">
+                1 Mark
+            </option>
 
-    <h2>❓ Add Question to Exam</h2>
+            <option value="2">
+                2 Marks
+            </option>
 
-    <p class="section-text">
-        Choose the question type and marks.
-    </p>
+            <option value="5">
+                5 Marks
+            </option>
 
-    <select id="examQuestionType">
+            <option value="8">
+                8 Marks
+            </option>
 
-        <option value="">
-            -- Select Question Type --
-        </option>
+        </select>
 
-        <option value="mcq">
-            MCQ
-        </option>
 
-        <option value="short">
-            Short Answer
-        </option>
+        <!-- QUESTION TEXT -->
+        <textarea
+            id="examQuestionText"
+            placeholder="Enter your question..."
+            rows="4">
+        </textarea>
 
-        <option value="long">
-            Long Answer
-        </option>
 
-    </select>
+        <!-- MCQ OPTIONS -->
+        <div id="mcqOptions" style="display: none;">
 
-    <select id="examQuestionMarks">
+            <input
+                type="text"
+                id="mcqOptionA"
+                placeholder="Option A">
 
-        <option value="">
-            -- Select Marks --
-        </option>
+            <input
+                type="text"
+                id="mcqOptionB"
+                placeholder="Option B">
 
-        <option value="1">1 Mark</option>
-        <option value="2">2 Marks</option>
-        <option value="5">5 Marks</option>
-        <option value="8">8 Marks</option>
+            <input
+                type="text"
+                id="mcqOptionC"
+                placeholder="Option C">
 
-    </select>
+            <input
+                type="text"
+                id="mcqOptionD"
+                placeholder="Option D">
 
-    <button onclick="chooseQuestionType()">
-        Continue
-    </button>
 
-    <div id="questionTypeResult"></div>
+            <!-- CORRECT ANSWER -->
+            <select id="correctOption">
 
-</section>
+                <option value="">
+                    -- Select Correct Answer --
+                </option>
 
-    <select id="questionMarks">
+                <option value="A">
+                    Option A
+                </option>
 
-        <option value="">
-            -- Select Marks --
-        </option>
+                <option value="B">
+                    Option B
+                </option>
 
-        <option value="1">
-            1 Mark
-        </option>
+                <option value="C">
+                    Option C
+                </option>
 
-        <option value="2">
-            2 Marks
-        </option>
+                <option value="D">
+                    Option D
+                </option>
 
-        <option value="5">
-            5 Marks
-        </option>
+            </select>
 
-        <option value="8">
-            8 Marks
-        </option>
+        </div>
 
-    </select>
 
-    <button onclick="addQuestionPattern()">
-        Add Question
-    </button>
+        <!-- ADD QUESTION BUTTON -->
+        <button onclick="addExamQuestion()">
+            ➕ Add Question
+        </button>
 
-    <div id="questionPatternResult"></div>
 
-<!-- QUESTION BANK -->
+        <!-- QUESTION LIST -->
+        <div id="examQuestionList"></div>
 
-<section class="section-card" id="questionBank">
+    </section>
 
-    <h2>📖 Add Question</h2>
 
-    <textarea
-        id="questionText"
-        placeholder="Enter your question..."
-        rows="4"
-    ></textarea>
+    <!-- STUDENT LEVEL -->
+    <section class="section-card">
 
-    <input
-        type="text"
-        id="optionA"
-        placeholder="Option A"
-    >
+        <h2>🎓 Choose Your Learning Level</h2>
 
-    <input
-        type="text"
-        id="optionB"
-        placeholder="Option B"
-    >
+        <p class="section-text">
+            Select your education level.
+        </p>
 
-    <input
-        type="text"
-        id="optionC"
-        placeholder="Option C"
-    >
+        <select id="levelSelect">
 
-    <input
-        type="text"
-        id="optionD"
-        placeholder="Option D"
-    >
+            <option value="">
+                -- Select Level --
+            </option>
 
-    <select id="correctAnswer">
+            <option value="school">
+                🏫 School Student
+            </option>
 
-        <option value="">
-            -- Select Correct Answer --
-        </option>
+            <option value="college">
+                🎓 College Student
+            </option>
 
-        <option value="A">Option A</option>
-        <option value="B">Option B</option>
-        <option value="C">Option C</option>
-        <option value="D">Option D</option>
+            <option value="other">
+                📚 Other Learning
+            </option>
 
-    </select>
+        </select>
 
-    <button onclick="addMCQ()">
-        Add MCQ
-    </button>
 
-    <div id="mcqList"></div>
+        <button onclick="selectLevel()">
+            Continue
+        </button>
 
-</section>
-<!-- SUBJECT SELECTION -->
-<section class="section-card" id="subjects">
 
-    <h2>📚 Choose Your Subject</h2>
+        <div id="levelResult"></div>
 
-    <p class="section-text">
-        Select a subject to start your practice.
-    </p>
+    </section>
 
-    <select id="subjectSelect">
 
-        <option value="">-- Select Subject --</option>
+    <!-- SUBJECT -->
+    <section class="section-card">
 
-        <option value="html">HTML</option>
+        <h2>📚 Choose Your Subject</h2>
 
-        <option value="css">CSS</option>
+        <p class="section-text">
+            Enter any subject you want to study.
+        </p>
 
-        <option value="javascript">JavaScript</option>
 
-        <option value="python">Python</option>
+        <input
+            type="text"
+            id="subjectInput"
+            placeholder="Example: Mathematics">
 
-        <option value="java">Java</option>
 
-    </select>
+        <button onclick="addSubject()">
+            Add Subject
+        </button>
 
-    <button onclick="selectSubject()">
-        Start Practice
-    </button>
 
-    <div id="subjectResult"></div>
+        <div id="subjectResult"></div>
 
-</section>
-<!-- EXAM TYPE & MARKS -->
-<section class="section-card" id="examSetup">
-
-    <h2>📝 Choose Your Exam</h2>
-
-    <p class="section-text">
-        Select the exam type and total marks.
-    </p>
-
-    <select id="examType">
-
-        <option value="">-- Select Exam Type --</option>
-
-        <option value="practice">Practice Test</option>
-
-        <option value="mock">Mock Exam</option>
-
-        <option value="final">Final Exam</option>
-
-    </select>
-
-
-    <select id="examMarks">
-
-        <option value="">-- Select Total Marks --</option>
-
-        <option value="15">15 Marks</option>
-
-        <option value="25">25 Marks</option>
-
-        <option value="50">50 Marks</option>
-
-        <option value="100">100 Marks</option>
-
-    </select>
-
-
-    <button onclick="startExam()">
-        Start Exam 🚀
-    </button>
-
-
-    <div id="examSetupResult"></div>
-
-</section>
+    </section>
 
 
     <!-- QUIZ -->
-    < class="section-card" id="quiz">
+    <section class="section-card" id="quiz">
 
         <h2>🧠 Quick Quiz</h2>
 
         <p class="section-text">
-            Test your basic web development knowledge.
+            Test your basic knowledge.
         </p>
+
 
         <div class="exam-card">
 
@@ -497,14 +413,17 @@
 
         </div>
 
+
         <input
             type="text"
             id="quizAnswer"
             placeholder="Enter your answer">
 
+
         <button onclick="checkQuiz()">
             Check Answer
         </button>
+
 
         <div id="quizResult"></div>
 
