@@ -75,6 +75,7 @@ if (tasks.length > 0) {
 
 document.getElementById("progressPercent").textContent =
     progress + "%";
+}
 
 // ===============================
 // ADD TASK
