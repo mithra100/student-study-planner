@@ -302,3 +302,36 @@ function selectSubject() {
     `;
 
 }
+// CREATE EXAM
+
+function createExam() {
+
+    let examName = document.getElementById("examName").value;
+    let examSubject = document.getElementById("examSubject").value;
+    let examDate = document.getElementById("examDate").value;
+    let examTime = document.getElementById("examTime").value;
+    let examMarks = document.getElementById("examMarks").value;
+
+    if (
+        examName === "" ||
+        examSubject === "" ||
+        examDate === "" ||
+        examTime === "" ||
+        examMarks === ""
+    ) {
+        document.getElementById("examResult").innerHTML =
+            "<p>Please fill all exam details.</p>";
+        return;
+    }
+
+    document.getElementById("examResult").innerHTML = `
+        <div class="exam-card">
+            <h3>📚 ${examName}</h3>
+            <p><b>Subject:</b> ${examSubject}</p>
+            <p><b>Date:</b> ${examDate}</p>
+            <p><b>Time:</b> ${examTime}</p>
+            <p><b>Total Marks:</b> ${examMarks}</p>
+            <p>✅ Exam Created Successfully!</p>
+        </div>
+    `;
+}
