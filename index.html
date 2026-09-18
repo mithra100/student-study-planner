@@ -318,16 +318,11 @@
 
     <div id="questionPatternResult"></div>
 
-</section>
 <!-- QUESTION BANK -->
 
 <section class="section-card" id="questionBank">
 
-    <h2>📖 Add Questions</h2>
-
-    <p class="section-text">
-        Enter your exam questions here.
-    </p>
+    <h2>📖 Add Question</h2>
 
     <textarea
         id="questionText"
@@ -335,11 +330,48 @@
         rows="4"
     ></textarea>
 
-    <button onclick="addQuestion()">
-        Add Question
+    <input
+        type="text"
+        id="optionA"
+        placeholder="Option A"
+    >
+
+    <input
+        type="text"
+        id="optionB"
+        placeholder="Option B"
+    >
+
+    <input
+        type="text"
+        id="optionC"
+        placeholder="Option C"
+    >
+
+    <input
+        type="text"
+        id="optionD"
+        placeholder="Option D"
+    >
+
+    <select id="correctAnswer">
+
+        <option value="">
+            -- Select Correct Answer --
+        </option>
+
+        <option value="A">Option A</option>
+        <option value="B">Option B</option>
+        <option value="C">Option C</option>
+        <option value="D">Option D</option>
+
+    </select>
+
+    <button onclick="addMCQ()">
+        Add MCQ
     </button>
 
-    <div id="questionList"></div>
+    <div id="mcqList"></div>
 
 </section>
 <!-- SUBJECT SELECTION -->
