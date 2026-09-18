@@ -3,578 +3,229 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Student Study Planner</title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
-    
-<style>
+    <title>Smart Student Study Planner</title>
 
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-
-    background:
-        radial-gradient(circle at top left, #ddd6fe, transparent 35%),
-        radial-gradient(circle at bottom right, #bfdbfe, transparent 35%),
-        #f8fafc;
-
-    min-height: 100vh;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 20px;
-}
-
-
-/* MAIN CARD */
-
-.container {
-    width: 420px;
-    max-width: 100%;
-
-    background: rgba(255, 255, 255, 0.95);
-
-    padding: 38px 32px;
-
-    border-radius: 30px;
-
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.12);
-
-    border: 1px solid rgba(255, 255, 255, 0.8);
-}
-
-
-/* LOGO */
-
-.logo {
-    width: 82px;
-    height: 82px;
-
-    margin: 0 auto 18px;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    background: linear-gradient(
-        135deg,
-        #4f46e5,
-        #7c3aed
-    );
-
-    color: white;
-
-    border-radius: 24px;
-
-    font-size: 40px;
-
-    box-shadow:
-        0 10px 25px rgba(79, 70, 229, 0.30);
-}
-
-
-/* MAIN HEADING */
-
-h1 {
-    text-align: center;
-
-    margin: 0;
-
-    color: #111827;
-
-    font-size: 30px;
-
-    font-weight: 800;
-}
-
-
-/* SUBTITLE */
-
-.subtitle {
-    text-align: center;
-
-    color: #6b7280;
-
-    font-size: 16px;
-
-    margin: 10px 0 30px;
-}
-
-
-/* LOGIN / SIGNUP HEADING */
-
-h2 {
-    color: #111827;
-
-    font-size: 24px;
-
-    margin-bottom: 22px;
-}
-
-
-/* LABEL */
-
-label {
-    display: block;
-
-    margin-top: 16px;
-    margin-bottom: 8px;
-
-    font-weight: 700;
-
-    color: #374151;
-
-    font-size: 15px;
-}
-
-
-/* INPUT */
-
-input {
-    width: 100%;
-
-    padding: 15px 16px;
-
-    border: 1.5px solid #e5e7eb;
-
-    border-radius: 14px;
-
-    background: #f9fafb;
-
-    font-size: 16px;
-
-    outline: none;
-
-    transition: 0.2s;
-}
-
-
-/* INPUT FOCUS */
-
-input:focus {
-    border-color: #6366f1;
-
-    background: white;
-
-    box-shadow:
-        0 0 0 4px rgba(99, 102, 241, 0.12);
-}
-
-
-/* BUTTON */
-
-button {
-    width: 100%;
-
-    padding: 15px;
-
-    margin-top: 25px;
-
-    border: none;
-
-    border-radius: 14px;
-
-    background: linear-gradient(
-        135deg,
-        #4f46e5,
-        #7c3aed
-    );
-
-    color: white;
-
-    font-size: 17px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 20px rgba(79, 70, 229, 0.25);
-
-    transition: 0.2s;
-}
-
-
-/* BUTTON HOVER */
-
-button:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 12px 25px rgba(79, 70, 229, 0.30);
-}
-
-
-/* MESSAGE */
-
-.message {
-    text-align: center;
-
-    margin-top: 14px;
-
-    font-size: 14px;
-
-    color: #ef4444;
-}
-
-
-/* SWITCH LOGIN / SIGNUP */
-
-.switch {
-    text-align: center;
-
-    margin-top: 24px;
-
-    color: #6b7280;
-
-    font-size: 15px;
-
-    line-height: 1.5;
-}
-
-
-.switch span {
-    color: #4f46e5;
-
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-
-.switch span:hover {
-    text-decoration: underline;
-}
-
-
-/* HIDDEN */
-
-.hidden {
-    display: none;
-}
-
-
-/* MOBILE */
-
-@media (max-width: 480px) {
-
-    body {
-        padding: 14px;
-    }
-
-    .container {
-        padding: 30px 22px;
-
-        border-radius: 26px;
-    }
-
-    .logo {
-        width: 72px;
-        height: 72px;
-
-        font-size: 34px;
-    }
-
-    h1 {
-        font-size: 27px;
-    }
-
-    h2 {
-        font-size: 22px;
-    }
-
-}
-
-</style>
-
-   
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 
 <body>
 
+    <!-- Main Container -->
     <div class="container">
 
-        <div class="logo">
-            📚
-        </div>
-
-        <h1>Student Study Planner</h1>
-
-        <p class="subtitle">
-            Plan smarter. Study better.
-        </p>
-
-
-        <!-- LOGIN -->
-
-        <div id="loginPage">
-
-            <h2>Welcome Back 👋</h2>
-
-            <label>Phone Number</label>
-
-            <input
-                type="tel"
-                id="loginPhone"
-                placeholder="Enter your phone number"
-            >
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div>
+                <p>WELCOME BACK 👋</p>
+                <h1>Smart Study Planner</h1>
+                <span>Plan • Learn • Practice • Achieve</span>
+            </div>
+        </header>
 
 
-            <label>Password</label>
+        <!-- Statistics -->
+        <section class="stats-section">
 
-            <input
-                type="password"
-                id="loginPassword"
-                placeholder="Enter your password"
-            >
-
-
-            <button onclick="login()">
-                Login
-            </button>
-
-
-            <p id="loginMsg" class="message"></p>
-
-
-            <div class="switch">
-
-                Don't have an account?
-
-                <span onclick="showSignup()">
-                    Create Account
-                </span>
-
+            <div class="stat-card">
+                <span>📚</span>
+                <h3>Total Tasks</h3>
+                <p id="totalTasks">0</p>
             </div>
 
-        </div>
+            <div class="stat-card">
+                <span>⏳</span>
+                <h3>Pending</h3>
+                <p id="pendingTasks">0</p>
+            </div>
+
+            <div class="stat-card">
+                <span>✅</span>
+                <h3>Completed</h3>
+                <p id="completedTasks">0</p>
+            </div>
+
+        </section>
 
 
+        <!-- Add New Task -->
+        <section class="section-card">
 
-        <!-- CREATE ACCOUNT -->
+            <h2>➕ Add New Task</h2>
 
-        <div id="signupPage" class="hidden">
-
-            <h2>Create Your Account ✨</h2>
-
-
-            <label>Full Name</label>
+            <p class="section-text">
+                Create your study task and keep your learning organized.
+            </p>
 
             <input
                 type="text"
-                id="signupName"
-                placeholder="Enter your full name"
+                id="subject"
+                placeholder="Enter Subject"
             >
-
-
-            <label>Phone Number</label>
 
             <input
-                type="tel"
-                id="signupPhone"
-                placeholder="Enter your phone number"
+                type="text"
+                id="topic"
+                placeholder="Enter Study Topic"
             >
-
-
-            <label>Password</label>
 
             <input
-                type="password"
-                id="signupPassword"
-                placeholder="Create a password"
+                type="date"
+                id="date"
             >
 
-
-            <button onclick="createAccount()">
-                Create Account
+            <button onclick="addTask()">
+                Add Task
             </button>
 
+        </section>
 
-            <p id="signupMsg" class="message"></p>
+
+        <!-- Task List -->
+        <section class="section-card">
+
+            <h2>📋 My Study Tasks</h2>
+
+            <ul id="taskList"></ul>
+
+        </section>
 
 
-            <div class="switch">
+        <!-- Completed Tasks -->
+        <section class="section-card">
 
-                Already have an account?
+            <h2>✅ Completed Tasks</h2>
 
-                <span onclick="showLogin()">
-                    Login
-                </span>
+            <ul id="completedList"></ul>
 
+        </section>
+
+
+        <!-- Upcoming Exams -->
+        <section class="section-card">
+
+            <h2>📅 Upcoming Exams</h2>
+
+            <div class="exam-card">
+                <strong>Mathematics Test</strong>
+                <span>25 Aug 2026</span>
             </div>
 
-        </div>
+            <div class="exam-card">
+                <strong>Science Exam</strong>
+                <span>30 Aug 2026</span>
+            </div>
+
+        </section>
+
+
+        <!-- Study Goals -->
+        <section class="section-card">
+
+            <h2>🎯 My Study Goals</h2>
+
+            <ul class="goal-list">
+
+                <li>Complete Maths Chapter 5</li>
+
+                <li>Revise Physics Notes</li>
+
+                <li>Practice English Grammar</li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- Practice Quiz -->
+        <section class="section-card">
+
+            <h2>🧠 Practice Quiz</h2>
+
+            <p class="section-text">
+                Test your knowledge and improve your score.
+            </p>
+
+            <input
+                type="text"
+                id="quizSubject"
+                placeholder="Enter Subject"
+            >
+
+            <input
+                type="text"
+                id="quizTopic"
+                placeholder="Enter Study Topic"
+            >
+
+            <button
+                type="button"
+                onclick="generateQuiz()">
+                🎯 Generate Quiz
+            </button>
+
+            <div id="quizResult"></div>
+
+        </section>
+
+
+        <!-- AI Assistant -->
+        <section class="section-card">
+
+            <h2>🤖 Ask AI Assistant</h2>
+
+            <p class="section-text">
+                Ask questions and get help with your studies.
+            </p>
+
+            <input
+                type="text"
+                id="aiSubject"
+                placeholder="Enter Subject"
+            >
+
+            <input
+                type="text"
+                id="aiTopic"
+                placeholder="Enter your question"
+            >
+
+            <button onclick="generateAIHelp()">
+                🤖 Ask AI
+            </button>
+
+            <div id="aiHelpResult"></div>
+
+        </section>
+
+
+        <!-- AI Doubt Solver -->
+        <section class="section-card">
+
+            <h2>💡 AI Doubt Solver</h2>
+
+            <textarea
+                id="doubtInput"
+                placeholder="Type your study doubt here...">
+            </textarea>
+
+            <button onclick="solveDoubt()">
+                Get Answer
+            </button>
+
+            <div id="doubtResult"></div>
+
+        </section>
 
     </div>
 
 
-
-    <script>
-
-        // SHOW CREATE ACCOUNT PAGE
-
-        function showSignup() {
-
-            document
-                .getElementById("loginPage")
-                .classList.add("hidden");
-
-            document
-                .getElementById("signupPage")
-                .classList.remove("hidden");
-
-        }
-
-
-
-        // SHOW LOGIN PAGE
-
-        function showLogin() {
-
-            document
-                .getElementById("signupPage")
-                .classList.add("hidden");
-
-            document
-                .getElementById("loginPage")
-                .classList.remove("hidden");
-
-        }
-
-
-
-        // CREATE ACCOUNT
-
-        function createAccount() {
-
-            let name =
-                document.getElementById("signupName").value.trim();
-
-            let phone =
-                document.getElementById("signupPhone").value.trim();
-
-            let password =
-                document.getElementById("signupPassword").value.trim();
-
-
-            if (name === "" || phone === "" || password === "") {
-
-                document.getElementById("signupMsg").innerHTML =
-                    "Please fill all the fields.";
-
-                return;
-            }
-
-
-            if (password.length < 6) {
-
-                document.getElementById("signupMsg").innerHTML =
-                    "Password must contain at least 6 characters.";
-
-                return;
-            }
-
-
-            let account = {
-
-                name: name,
-                phone: phone,
-                password: password
-
-            };
-
-
-            localStorage.setItem(
-                "studentAccount",
-                JSON.stringify(account)
-            );
-
-
-            document.getElementById("signupMsg").innerHTML =
-                "Account created successfully!";
-
-
-            setTimeout(function() {
-
-                showLogin();
-
-                document.getElementById("loginPhone").value =
-                    phone;
-
-            }, 1000);
-
-        }
-
-
-
-        // LOGIN
-
-        function login() {
-
-            let phone =
-                document.getElementById("loginPhone").value.trim();
-
-            let password =
-                document.getElementById("loginPassword").value.trim();
-
-
-            let savedAccount =
-                localStorage.getItem("studentAccount");
-
-
-            if (savedAccount === null) {
-
-                document.getElementById("loginMsg").innerHTML =
-                    "Please create an account first.";
-
-                return;
-            }
-
-
-            let account =
-                JSON.parse(savedAccount);
-
-
-            if (
-                phone === account.phone &&
-                password === account.password
-            ) {
-
-                localStorage.setItem(
-                    "loggedIn",
-                    "true"
-                );
-
-                localStorage.setItem(
-                    "studentName",
-                    account.name
-                );
-
-
-                window.location.href =
-                    "dashboard.html";
-
-            }
-
-            else {
-
-                document.getElementById("loginMsg").innerHTML =
-                    "Invalid phone number or password.";
-
-            }
-
-        }
-
-    </script>
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 
 </body>
 
