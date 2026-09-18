@@ -99,13 +99,9 @@
 
             <ul>
 
-                <li>
-                    Maths Test - 25 Aug 2026
-                </li>
+                <li>Maths Test - 25 Aug 2026</li>
 
-                <li>
-                    Science Exam - 30 Aug 2026
-                </li>
+                <li>Science Exam - 30 Aug 2026</li>
 
             </ul>
 
@@ -119,19 +115,84 @@
 
             <ul>
 
-                <li>
-                    Complete Maths Chapter 5
-                </li>
+                <li>Complete Maths Chapter 5</li>
 
-                <li>
-                    Revise Physics Notes
-                </li>
+                <li>Revise Physics Notes</li>
 
-                <li>
-                    Practice English Grammar
-                </li>
+                <li>Practice English Grammar</li>
 
             </ul>
+
+        </div>
+
+
+        <!-- Practice Quiz -->
+        <div class="section-card">
+
+            <h2>🧠 Practice Quiz</h2>
+
+            <input
+                type="text"
+                id="quizSubject"
+                placeholder="Enter Subject"
+            >
+
+            <input
+                type="text"
+                id="quizTopic"
+                placeholder="Enter Study Topic"
+            >
+
+            <button type="button" onclick="generateQuiz()">
+                🎯 Generate Quiz
+            </button>
+
+            <div id="quizResult"></div>
+
+        </div>
+
+
+        <!-- AI Study Assistant -->
+        <div class="section-card">
+
+            <h2>🤖 Ask AI Assistant</h2>
+
+            <input
+                type="text"
+                id="aiSubject"
+                placeholder="Enter Subject"
+            >
+
+            <input
+                type="text"
+                id="aiTopic"
+                placeholder="Enter Study Topic"
+            >
+
+            <button onclick="generateAIHelp()">
+                🤖 Ask AI Assistant
+            </button>
+
+            <div id="aiHelpResult"></div>
+
+        </div>
+
+
+        <!-- AI Doubt Solver -->
+        <div class="section-card">
+
+            <h2>🤖 AI Doubt Solver</h2>
+
+            <textarea
+                id="doubtInput"
+                placeholder="Ask your doubt..."
+            ></textarea>
+
+            <button onclick="solveDoubt()">
+                Get Answer
+            </button>
+
+            <div id="doubtResult"></div>
 
         </div>
 
@@ -139,65 +200,6 @@
 
 
     <!-- JavaScript -->
-<!-- Practice Quiz -->
-<div class="section-card">
-    <h2>🧠 Practice Quiz</h2>
-
-    <input
-        type="text"
-        id="quizSubject"
-        placeholder="Enter Subject"
-    >
-
-    <input
-        type="text"
-        id="quizTopic"
-        placeholder="Enter Study Topic"
-    >
-
-    <button type="button" onclick="generateQuiz()">
-        🎯 Generate Quiz
-    </button>
-
-    <div id="quizResult"></div>
-</div>
-<!-- AI Study Assistant -->
-<div class="section-card">
-    <!-- Ask AI Assistant -->
-<div class="section-card">
-    <h2>🤖 Ask AI Assistant</h2>
-
-    <input
-        type="text"
-        id="aiSubject"
-        placeholder="Enter Subject"
-    >
-
-    <input
-        type="text"
-        id="aiTopic"
-        placeholder="Enter Study Topic"
-    >
-
-    <button onclick="generateAIHelp()">
-        🤖 Ask AI Assistant
-    </button>
-
-    <div id="aiHelpResult"></div>
-</div>
-<div class="card">
-    <h2>🤖 AI Doubt Solver</h2>
-
-    <textarea id="doubtInput"
-    placeholder="Ask your doubt..."></textarea>
-
-    <button onclick="solveDoubt()">
-        Get Answer
-    </button>
-
-    <div id="doubtResult"></div>
-</div>
-  
     <script src="script.js"></script>
 
 </body>
