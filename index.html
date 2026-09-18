@@ -7,134 +7,295 @@
 
     <title>Student Study Planner</title>
 
-    <style>
+    
+<style>
 
-        * {
-            box-sizing: border-box;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #eef2ff, #f8fafc);
-            min-height: 100vh;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    background:
+        radial-gradient(circle at top left, #ddd6fe, transparent 35%),
+        radial-gradient(circle at bottom right, #bfdbfe, transparent 35%),
+        #f8fafc;
 
-        .container {
-            width: 380px;
-            max-width: 92%;
-            background: white;
-            padding: 30px;
-            border-radius: 22px;
+    min-height: 100vh;
 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-        }
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-        .logo {
-            width: 65px;
-            height: 65px;
-            margin: auto;
+    padding: 20px;
+}
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
 
-            background: #4f46e5;
-            color: white;
+/* MAIN CARD */
 
-            border-radius: 18px;
-            font-size: 30px;
-        }
+.container {
+    width: 420px;
+    max-width: 100%;
 
-        h1 {
-            text-align: center;
-            margin: 15px 0 5px;
-            color: #111827;
-        }
+    background: rgba(255, 255, 255, 0.95);
 
-        .subtitle {
-            text-align: center;
-            color: #6b7280;
-            margin-bottom: 25px;
-        }
+    padding: 38px 32px;
 
-        h2 {
-            color: #111827;
-            margin-bottom: 20px;
-        }
+    border-radius: 30px;
 
-        label {
-            display: block;
-            margin-top: 12px;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: #374151;
-        }
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.12);
 
-        input {
-            width: 100%;
-            padding: 13px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
 
-            border: 1px solid #d1d5db;
-            border-radius: 10px;
 
-            font-size: 15px;
-            outline: none;
-        }
+/* LOGO */
 
-        input:focus {
-            border-color: #4f46e5;
-            box-shadow: 0 0 0 3px rgba(79,70,229,0.12);
-        }
+.logo {
+    width: 82px;
+    height: 82px;
 
-        button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 20px;
+    margin: 0 auto 18px;
 
-            border: none;
-            border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-            background: #4f46e5;
-            color: white;
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
 
-            font-size: 16px;
-            font-weight: bold;
+    color: white;
 
-            cursor: pointer;
-        }
+    border-radius: 24px;
 
-        button:hover {
-            background: #3730a3;
-        }
+    font-size: 40px;
 
-        .switch {
-            text-align: center;
-            margin-top: 20px;
-            color: #6b7280;
-        }
+    box-shadow:
+        0 10px 25px rgba(79, 70, 229, 0.30);
+}
 
-        .switch span {
-            color: #4f46e5;
-            font-weight: bold;
-            cursor: pointer;
-        }
 
-        .message {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 14px;
-        }
+/* MAIN HEADING */
 
-        .hidden {
-            display: none;
-        }
+h1 {
+    text-align: center;
 
-    </style>
+    margin: 0;
+
+    color: #111827;
+
+    font-size: 30px;
+
+    font-weight: 800;
+}
+
+
+/* SUBTITLE */
+
+.subtitle {
+    text-align: center;
+
+    color: #6b7280;
+
+    font-size: 16px;
+
+    margin: 10px 0 30px;
+}
+
+
+/* LOGIN / SIGNUP HEADING */
+
+h2 {
+    color: #111827;
+
+    font-size: 24px;
+
+    margin-bottom: 22px;
+}
+
+
+/* LABEL */
+
+label {
+    display: block;
+
+    margin-top: 16px;
+    margin-bottom: 8px;
+
+    font-weight: 700;
+
+    color: #374151;
+
+    font-size: 15px;
+}
+
+
+/* INPUT */
+
+input {
+    width: 100%;
+
+    padding: 15px 16px;
+
+    border: 1.5px solid #e5e7eb;
+
+    border-radius: 14px;
+
+    background: #f9fafb;
+
+    font-size: 16px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+/* INPUT FOCUS */
+
+input:focus {
+    border-color: #6366f1;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+
+/* BUTTON */
+
+button {
+    width: 100%;
+
+    padding: 15px;
+
+    margin-top: 25px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed
+    );
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(79, 70, 229, 0.25);
+
+    transition: 0.2s;
+}
+
+
+/* BUTTON HOVER */
+
+button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(79, 70, 229, 0.30);
+}
+
+
+/* MESSAGE */
+
+.message {
+    text-align: center;
+
+    margin-top: 14px;
+
+    font-size: 14px;
+
+    color: #ef4444;
+}
+
+
+/* SWITCH LOGIN / SIGNUP */
+
+.switch {
+    text-align: center;
+
+    margin-top: 24px;
+
+    color: #6b7280;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+
+.switch span {
+    color: #4f46e5;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+
+.switch span:hover {
+    text-decoration: underline;
+}
+
+
+/* HIDDEN */
+
+.hidden {
+    display: none;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 14px;
+    }
+
+    .container {
+        padding: 30px 22px;
+
+        border-radius: 26px;
+    }
+
+    .logo {
+        width: 72px;
+        height: 72px;
+
+        font-size: 34px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+}
+
+</style>
+
+   
 </head>
 
 
