@@ -1,115 +1,266 @@
-// ===============================
+// ==========================================
+// STUDENT SMART PLANNER
+// JavaScript
+// ==========================================
+
+
+// ==========================================
+// DARK MODE
+// ==========================================
+
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+}
+
+
+// ==========================================
 // AI STUDY ASSISTANT
-// ===============================
+// ==========================================
 
-function generateAIHelp() {
+function askAI() {
 
-    const subject =
-        document.getElementById("aiSubject").value.trim();
-
-    const topic =
-        document.getElementById("aiTopic").value.trim();
+    const question =
+        document.getElementById("aiQuestion").value.trim();
 
     const result =
         document.getElementById("aiHelpResult");
 
-    if (subject === "" || topic === "") {
 
-        result.innerHTML =
-            "<p>Please enter subject and topic.</p>";
+    if (question === "") {
+
+        result.innerHTML = `
+            <div class="exam-card">
+                <h3>⚠️ Please enter a question</h3>
+                <p>Type your study question first.</p>
+            </div>
+        `;
 
         return;
     }
 
+
+    // Simple frontend response
     result.innerHTML = `
         <div class="exam-card">
 
-            <h3>🤖 AI Study Assistant</h3>
+            <h3>🤖 AI Assistant</h3>
 
             <p>
-                You are studying
-                <strong>${subject}</strong>
-                - <strong>${topic}</strong>.
+                <strong>Your Question:</strong>
+                ${question}
             </p>
 
             <p>
-                📖 Start by understanding the basic concepts,
-                then practice with examples and questions.
+                📚 Let's understand this topic step by step.
+                Keep practicing and learning!
             </p>
 
         </div>
     `;
+
 }
 
 
-// ===============================
-// PRACTICE QUIZ
-// ===============================
+// ==========================================
+// DOUBT SOLVER
+// ==========================================
 
-function generateQuiz() {
+function solveDoubt() {
 
-    const subject =
-        document.getElementById("quizSubject").value.trim();
+    const doubt =
+        document.getElementById("doubtInput").value.trim();
 
     const result =
-        document.getElementById("quizResult");
+        document.getElementById("doubtResult");
 
-    if (subject === "") {
 
-        result.innerHTML =
-            "<p>Please enter subject.</p>";
+    if (doubt === "") {
+
+        result.innerHTML = `
+            <div class="exam-card">
+                <h3>⚠️ Enter your doubt</h3>
+                <p>Please type something first.</p>
+            </div>
+        `;
 
         return;
     }
 
+
     result.innerHTML = `
-    <div class="exam-card">
+        <div class="exam-card">
 
-        <h3>${subject} Exam</h3>
+            <h3>💡 Doubt Received</h3>
 
-        <p><b>Q1.</b> What does HTML stand for?</p>
+            <p>
+                <strong>Your Doubt:</strong>
+                ${doubt}
+            </p>
 
-        <button onclick="checkAnswer(true)">
-            Hyper Text Markup Language
-        </button><br><br>
+            <p>
+                🧑‍🎓 Your doubt has been received.
+                Let's learn the concept step by step.
+            </p>
 
-        <button onclick="checkAnswer(false)">
-            High Text Machine Language
-        </button><br><br>
-
-        <button onclick="checkAnswer(false)">
-            Home Tool Markup Language
-        </button><br><br>
-
-        <button onclick="checkAnswer(false)">
-            Hyper Tool Markup Language
-        </button>
-
-        <div id="quizScore"></div>
-
-    </div>
+        </div>
     `;
+
 }
 
-function checkAnswer(correct) {
 
-    const score =
-        document.getElementById("quizScore");
+// ==========================================
+// ADD STUDY GOAL
+// ==========================================
 
-    if (correct) {
+function addGoal() {
 
-        score.innerHTML = `
-            <h3>✅ Correct</h3>
-            <p>Marks : 100</p>
-            <p>Result : PASS</p>
+    const input =
+        document.getElementById("goalInput");
+
+    const list =
+        document.getElementById("goalList");
+
+    const count =
+        document.getElementById("goalCount");
+
+
+    const goal =
+        input.value.trim();
+
+
+    if (goal === "") {
+
+        alert("Please enter a study goal.");
+
+        return;
+    }
+
+
+    const li =
+        document.createElement("li");
+
+
+    li.innerHTML = `
+        🎯 ${goal}
+        <button
+            onclick="this.parentElement.remove(); updateGoalCount();"
+            style="float:right; padding:6px 10px;">
+            ✕
+        </button>
+    `;
+
+
+    list.appendChild(li);
+
+    input.value = "";
+
+
+    updateGoalCount();
+
+}
+
+
+// ==========================================
+// UPDATE GOAL COUNT
+// ==========================================
+
+function updateGoalCount() {
+
+    const list =
+        document.getElementById("goalList");
+
+    const count =
+        document.getElementById("goalCount");
+
+
+    count.textContent =
+        list.children.length;
+
+}
+
+
+// ==========================================
+// QUIZ
+// ==========================================
+
+function checkQuiz() {
+
+    const answer =
+        document.getElementById("quizAnswer")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const result =
+        document.getElementById("quizResult");
+
+
+    if (answer === "") {
+
+        result.innerHTML = `
+            <div class="exam-card">
+                <h3>⚠️ Enter your answer</h3>
+            </div>
+        `;
+
+        return;
+    }
+
+
+    if (
+        answer === "html" ||
+        answer === "hypertext markup language"
+    ) {
+
+        result.innerHTML = `
+            <div class="exam-card">
+
+                <h3>🎉 Correct Answer!</h3>
+
+                <p>
+                    HTML is used to create the structure
+                    of a webpage.
+                </p>
+
+            </div>
         `;
 
     } else {
 
-        score.innerHTML = `
-            <h3>❌ Wrong</h3>
-            <p>Marks : 0</p>
-            <p>Result : FAIL</p>
+        result.innerHTML = `
+            <div class="exam-card">
+
+                <h3>❌ Try Again</h3>
+
+                <p>
+                    The correct answer is
+                    <strong>HTML</strong>.
+                </p>
+
+            </div>
         `;
+
     }
-} 
+
+}
+
+
+// ==========================================
+// PAGE LOADED
+// ==========================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        console.log(
+            "🎓 Student Smart Planner loaded successfully!"
+        );
+
+        updateGoalCount();
+
+    }
+);
