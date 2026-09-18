@@ -3,12 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+    <title>Student Study Planner</title>
 
-    <title>Study Tracker Dashboard</title>
-
+    <!-- CSS Connection -->
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,158 +15,174 @@
 
     <div class="container">
 
-        <!-- Dashboard Header -->
-        <h1>📚 Study Tracker Dashboard</h1>
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div>
+                <p class="welcome-text">Welcome back 👋</p>
+                <h1>📚 Student Study Planner</h1>
+                <p>Plan your studies. Track your progress. Learn smarter.</p>
+            </div>
+        </header>
 
 
         <!-- Statistics -->
-        <div class="section-card">
+        <section class="stats-section">
 
-            <h2>📊 Statistics</h2>
+            <div class="stat-card">
+                <span>📋</span>
+                <h3>Total Tasks</h3>
+                <strong id="totalTasks">0</strong>
+            </div>
 
-            <p>
-                Total Tasks:
-                <span id="totalTasks">0</span>
-            </p>
+            <div class="stat-card">
+                <span>⏳</span>
+                <h3>Pending Tasks</h3>
+                <strong id="pendingTasks">0</strong>
+            </div>
 
-            <p>
-                Pending Tasks:
-                <span id="pendingTasks">0</span>
-            </p>
+            <div class="stat-card">
+                <span>✅</span>
+                <h3>Completed</h3>
+                <strong id="completedTasks">0</strong>
+            </div>
 
-            <p>
-                Completed Tasks:
-                <span id="completedTasks">0</span>
-            </p>
-
-        </div>
+        </section>
 
 
         <!-- Add New Task -->
-        <div class="section-card">
+        <section class="section-card">
 
             <h2>➕ Add New Task</h2>
+
+            <p class="section-text">
+                Add your subject and study topic to create a task.
+            </p>
 
             <input
                 type="text"
                 id="subject"
-                placeholder="Subject Name"
-            >
+                placeholder="Enter Subject Name">
 
             <input
                 type="text"
                 id="topic"
-                placeholder="Study Topic"
-            >
+                placeholder="Enter Study Topic">
 
             <input
                 type="date"
-                id="date"
-            >
+                id="date">
 
             <button onclick="addTask()">
-                Add Task
+                ➕ Add Task
             </button>
 
-        </div>
+        </section>
 
 
         <!-- Task List -->
-        <div class="section-card">
+        <section class="section-card">
 
-            <h2>📋 Task List</h2>
+            <h2>📋 My Study Tasks</h2>
 
             <ul id="taskList"></ul>
 
-        </div>
+        </section>
 
 
         <!-- Completed Tasks -->
-        <div class="section-card">
+        <section class="section-card">
 
             <h2>✅ Completed Tasks</h2>
 
             <ul id="completedList"></ul>
 
-        </div>
+        </section>
 
 
         <!-- Upcoming Exams -->
-        <div class="section-card">
+        <section class="section-card">
 
             <h2>📅 Upcoming Exams</h2>
 
-            <ul>
+            <div class="exam-card">
+                <h3>🧮 Maths Test</h3>
+                <p>25 August 2026</p>
+            </div>
 
-                <li>Maths Test - 25 Aug 2026</li>
+            <div class="exam-card">
+                <h3>🔬 Science Exam</h3>
+                <p>30 August 2026</p>
+            </div>
 
-                <li>Science Exam - 30 Aug 2026</li>
-
-            </ul>
-
-        </div>
+        </section>
 
 
         <!-- Study Goals -->
-        <div class="section-card">
+        <section class="section-card">
 
             <h2>🎯 Study Goals</h2>
 
-            <ul>
+            <ul class="goal-list">
 
-                <li>Complete Maths Chapter 5</li>
+                <li>📘 Complete Maths Chapter 5</li>
 
-                <li>Revise Physics Notes</li>
+                <li>⚡ Revise Physics Notes</li>
 
-                <li>Practice English Grammar</li>
+                <li>📝 Practice English Grammar</li>
 
             </ul>
 
-        </div>
+        </section>
 
 
         <!-- Practice Quiz -->
-        <div class="section-card">
+        <section class="section-card">
 
             <h2>🧠 Practice Quiz</h2>
+
+            <p class="section-text">
+                Test your knowledge and improve your preparation.
+            </p>
 
             <input
                 type="text"
                 id="quizSubject"
-                placeholder="Enter Subject"
-            >
+                placeholder="Enter Subject">
 
             <input
                 type="text"
                 id="quizTopic"
-                placeholder="Enter Study Topic"
-            >
+                placeholder="Enter Study Topic">
 
-            <button type="button" onclick="generateQuiz()">
+            <button
+                type="button"
+                onclick="generateQuiz()">
                 🎯 Generate Quiz
             </button>
 
             <div id="quizResult"></div>
 
-        </div>
+        </section>
 
 
-        <!-- AI Study Assistant -->
-        <div class="section-card">
+        <!-- AI Assistant -->
+        <section class="section-card">
 
             <h2>🤖 Ask AI Assistant</h2>
+
+            <p class="section-text">
+                Get study guidance for your subject and topic.
+            </p>
 
             <input
                 type="text"
                 id="aiSubject"
-                placeholder="Enter Subject"
-            >
+                placeholder="Enter Subject">
 
             <input
                 type="text"
                 id="aiTopic"
-                placeholder="Enter Study Topic"
-            >
+                placeholder="Enter Study Topic">
 
             <button onclick="generateAIHelp()">
                 🤖 Ask AI Assistant
@@ -175,31 +190,49 @@
 
             <div id="aiHelpResult"></div>
 
-        </div>
+        </section>
 
 
         <!-- AI Doubt Solver -->
-        <div class="section-card">
+        <section class="section-card">
 
-            <h2>🤖 AI Doubt Solver</h2>
+            <h2>💡 AI Doubt Solver</h2>
+
+            <p class="section-text">
+                Type your study doubt and get help.
+            </p>
 
             <textarea
                 id="doubtInput"
-                placeholder="Ask your doubt..."
-            ></textarea>
+                placeholder="Ask your doubt here...">
+            </textarea>
 
             <button onclick="solveDoubt()">
-                Get Answer
+                💡 Get Answer
             </button>
 
             <div id="doubtResult"></div>
 
-        </div>
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+
+            <p>
+                🎓 Student Study Planner
+            </p>
+
+            <small>
+                Learn • Plan • Practice • Improve
+            </small>
+
+        </footer>
 
     </div>
 
 
-    <!-- JavaScript -->
+    <!-- JavaScript Connection -->
     <script src="script.js"></script>
 
 </body>
