@@ -12,6 +12,9 @@ let tasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
 // ===============================
 
 function displayTasks() {
+function toggleDarkMode() {
+
+    
 
     const taskList = document.getElementById("taskList");
     const completedList = document.getElementById("completedList");
@@ -302,3 +305,17 @@ function solveDoubt() {
 // ===============================
 
 displayTasks();
+function toggleDarkMode() {
+
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("darkMode", "on");
+    } else {
+        localStorage.setItem("darkMode", "off");
+    }
+}
+
+if (localStorage.getItem("darkMode") === "on") {
+    document.body.classList.add("dark-mode");
+}
