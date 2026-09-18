@@ -335,3 +335,36 @@ function createExam() {
         </div>
     `;
 }
+// ADD QUESTION PATTERN
+
+function addQuestionPattern() {
+
+    let type = document.getElementById("questionType").value;
+    let marks = document.getElementById("questionMarks").value;
+
+    if (type === "" || marks === "") {
+        document.getElementById("questionPatternResult").innerHTML =
+            "<p>Please select question type and marks.</p>";
+        return;
+    }
+
+    let typeName = "";
+
+    if (type === "mcq") {
+        typeName = "MCQ - Multiple Choice";
+    }
+    else if (type === "short") {
+        typeName = "Short Answer";
+    }
+    else if (type === "long") {
+        typeName = "Long Answer";
+    }
+
+    document.getElementById("questionPatternResult").innerHTML = `
+        <div class="exam-card">
+            <h3>Question Added ✅</h3>
+            <p><b>Type:</b> ${typeName}</p>
+            <p><b>Marks:</b> ${marks}</p>
+        </div>
+    `;
+}
