@@ -511,3 +511,16 @@ function chooseQuestionType() {
         </div>
     `;
 }
+// SHOW MCQ OPTIONS
+
+document.getElementById("examQuestionType").addEventListener("change", function () {
+
+    let mcqOptions = document.getElementById("mcqOptions");
+
+    if (this.value === "mcq") {
+        mcqOptions.style.display = "block";
+    } else {
+        mcqOptions.style.display = "none";
+    }
+
+});
