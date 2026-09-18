@@ -204,7 +204,8 @@ li {
 #quizResult,
 #aiHelpResult,
 #doubtResult {
-    margin-top: 20
+    margin-top: 20px;
+}
 /* Dark Mode */
 
 .dark-mode {
