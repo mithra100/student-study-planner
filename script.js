@@ -477,3 +477,37 @@ function displayMCQ() {
 
     });
 }
+// CHOOSE QUESTION TYPE
+
+function chooseQuestionType() {
+
+    let type = document.getElementById("examQuestionType").value;
+    let marks = document.getElementById("examQuestionMarks").value;
+
+    let result = document.getElementById("questionTypeResult");
+
+    if (type === "" || marks === "") {
+        result.innerHTML = "<p>Please select question type and marks.</p>";
+        return;
+    }
+
+    let typeName = "";
+
+    if (type === "mcq") {
+        typeName = "MCQ";
+    }
+    else if (type === "short") {
+        typeName = "Short Answer";
+    }
+    else if (type === "long") {
+        typeName = "Long Answer";
+    }
+
+    result.innerHTML = `
+        <div class="exam-card">
+            <h3>✅ Question Type Selected</h3>
+            <p><b>Type:</b> ${typeName}</p>
+            <p><b>Marks:</b> ${marks}</p>
+        </div>
+    `;
+}
