@@ -253,7 +253,28 @@ function generateAIHelp() {
     </div>
     `;
 }
+function checkAnswer(correct) {
 
+    const score =
+        document.getElementById("quizScore");
+
+    if (correct) {
+
+        score.innerHTML = `
+            <h3>✅ Correct</h3>
+            <p>Marks : 100</p>
+            <p>Result : PASS</p>
+        `;
+
+    } else {
+
+        score.innerHTML = `
+            <h3>❌ Wrong</h3>
+            <p>Marks : 0</p>
+            <p>Result : FAIL</p>
+        `;
+    }
+}
 
 // ===============================
 // AI DOUBT SOLVER
