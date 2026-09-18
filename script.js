@@ -12,7 +12,7 @@ let tasks = JSON.parse(localStorage.getItem("studyTasks")) || [];
 // ===============================
 
 function displayTasks() {
-function toggleDarkMode() {
+
 
     
 
