@@ -1,6 +1,6 @@
 /* ================================
    STUDENT SMART PLANNER
-   COLORFUL CSS DESIGN
+   CLEAN & PROFESSIONAL DESIGN
 ================================ */
 
 * {
@@ -11,7 +11,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #dbeafe, #ede9fe, #fce7f3);
+    background: #f5f7ff;
     color: #1e293b;
     min-height: 100vh;
 }
@@ -22,179 +22,140 @@ body {
     margin: auto;
 }
 
-
-/* ================================
-   HEADER
-================================ */
+/* HEADER */
 
 .dashboard-header {
     margin-top: 25px;
-    padding: 40px 20px;
+    padding: 35px 25px;
     text-align: center;
     color: white;
-    border-radius: 25px;
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #7c3aed,
-        #db2777
-    );
-    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.3);
+    border-radius: 22px;
+    background: linear-gradient(135deg, #2563eb, #6366f1);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.20);
 }
 
 .dashboard-header h1 {
-    margin: 14px 0;
-    font-size: 36px;
+    margin: 12px 0;
+    font-size: 34px;
 }
 
 .dashboard-header p {
-    font-size: 18px;
+    font-size: 17px;
 }
 
 .welcome-text {
-    font-size: 16px;
+    font-size: 15px;
 }
 
-
-/* ================================
-   NAVIGATION
-================================ */
+/* NAVIGATION */
 
 .top-nav {
-    margin: 20px 0;
-    padding: 15px;
+    margin: 18px 0;
+    padding: 12px;
     background: white;
-    border-radius: 18px;
+    border-radius: 16px;
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
 }
 
 .top-nav a {
     text-decoration: none;
-    color: #4f46e5;
+    color: #334155;
     font-weight: bold;
-    padding: 11px 16px;
-    border-radius: 12px;
+    padding: 10px 15px;
+    border-radius: 10px;
     transition: 0.3s;
 }
 
 .top-nav a:hover {
-    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    background: #2563eb;
     color: white;
-    transform: translateY(-3px);
 }
 
-
-/* ================================
-   STATISTICS
-================================ */
+/* STAT CARDS */
 
 .stats-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    gap: 15px;
     margin-bottom: 25px;
 }
 
 .stat-card {
     background: white;
-    padding: 25px 15px;
+    padding: 22px;
     text-align: center;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     transition: 0.3s;
 }
 
 .stat-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
 }
 
 .stat-card span {
-    font-size: 34px;
+    font-size: 30px;
 }
 
 .stat-card h3 {
-    margin: 10px 0;
+    margin: 8px 0;
     color: #475569;
 }
 
 .stat-card strong {
-    font-size: 26px;
-    color: #7c3aed;
+    font-size: 25px;
+    color: #2563eb;
 }
 
-
-/* ================================
-   ALL SECTION CARDS
-================================ */
+/* SECTION */
 
 .section-card {
-    position: relative;
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.95);
-    margin: 25px 0;
-    padding: 28px;
-    border-radius: 22px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(124, 58, 237, 0.12);
-}
-
-.section-card::before {
-    content: "";
-    display: block;
-    height: 5px;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: linear-gradient(
-        90deg,
-        #2563eb,
-        #7c3aed,
-        #db2777
-    );
+    background: white;
+    margin: 22px 0;
+    padding: 25px;
+    border-radius: 18px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
 }
 
 .section-card h2 {
     margin-bottom: 10px;
-    color: #4f46e5;
-    font-size: 25px;
+    color: #2563eb;
+    font-size: 24px;
 }
 
 .section-text {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     color: #64748b;
 }
 
-
-/* ================================
-   INPUTS
-================================ */
+/* INPUTS */
 
 input,
 textarea,
 select {
     width: 100%;
-    padding: 14px;
-    margin: 8px 0;
-    border: 2px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 16px;
+    padding: 13px;
+    margin: 7px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
     background: #f8fafc;
     color: #1e293b;
+    font-size: 16px;
     outline: none;
-    transition: 0.3s;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: #7c3aed;
+    border-color: #6366f1;
     background: white;
-    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.10);
 }
 
 textarea {
@@ -202,61 +163,42 @@ textarea {
     min-height: 100px;
 }
 
-
-/* ================================
-   BUTTONS
-================================ */
+/* BUTTON */
 
 button {
     border: none;
-    padding: 13px 22px;
-    margin: 9px 0;
-    border-radius: 12px;
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #7c3aed
-    );
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 10px;
+    background: #2563eb;
     color: white;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
-    box-shadow: 0 5px 12px rgba(79, 70, 229, 0.25);
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(79, 70, 229, 0.35);
+    background: #1d4ed8;
+    transform: translateY(-2px);
 }
 
-
-/* ================================
-   EXAM CARD
-================================ */
+/* EXAM CARD */
 
 .exam-card {
-    background: linear-gradient(
-        135deg,
-        #eff6ff,
-        #f5f3ff
-    );
-    padding: 20px;
-    margin: 14px 0;
-    border-left: 6px solid #7c3aed;
-    border-radius: 14px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    background: #f8fafc;
+    padding: 18px;
+    margin: 12px 0;
+    border-left: 4px solid #6366f1;
+    border-radius: 10px;
 }
 
 .exam-card h3 {
-    margin-bottom: 9px;
+    margin-bottom: 8px;
     color: #4f46e5;
 }
 
-
-/* ================================
-   GOALS
-================================ */
+/* GOALS */
 
 .goal-list {
     list-style: none;
@@ -264,51 +206,24 @@ button:hover {
 }
 
 .goal-list li {
-    background: linear-gradient(
-        135deg,
-        #ecfeff,
-        #eef2ff
-    );
-    margin: 10px 0;
-    padding: 14px;
-    border-radius: 12px;
-    border-left: 5px solid #06b6d4;
+    background: #f8fafc;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 10px;
+    border-left: 4px solid #22c55e;
 }
 
-
-/* ================================
-   MCQ OPTIONS
-================================ */
+/* MCQ */
 
 #mcqOptions {
-    margin-top: 12px;
-    padding: 18px;
-    background: linear-gradient(
-        135deg,
-        #f5f3ff,
-        #fdf2f8
-    );
-    border-radius: 15px;
-    border: 2px dashed #a78bfa;
+    margin-top: 10px;
+    padding: 15px;
+    background: #f8fafc;
+    border-radius: 12px;
+    border: 1px solid #cbd5e1;
 }
 
-#mcqOptions input {
-    background: white;
-}
-
-
-/* ================================
-   QUESTION LIST
-================================ */
-
-#examQuestionList .exam-card {
-    border-left-color: #2563eb;
-}
-
-
-/* ================================
-   RESULT BOXES
-================================ */
+/* RESULTS */
 
 #aiHelpResult,
 #doubtResult,
@@ -317,40 +232,24 @@ button:hover {
 #subjectResult,
 #examQuestionList,
 #quizResult {
-    margin-top: 18px;
+    margin-top: 15px;
 }
 
-
-/* ================================
-   FOOTER
-================================ */
+/* FOOTER */
 
 .dashboard-footer {
     margin: 30px 0;
-    padding: 25px;
+    padding: 20px;
     text-align: center;
-    background: linear-gradient(
-        135deg,
-        #1e293b,
-        #312e81
-    );
+    background: #172554;
     color: white;
-    border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
 }
 
-
-/* ================================
-   DARK MODE
-================================ */
+/* DARK MODE */
 
 body.dark-mode {
-    background: linear-gradient(
-        135deg,
-        #0f172a,
-        #1e1b4b,
-        #3b0764
-    );
+    background: #0f172a;
     color: white;
 }
 
@@ -359,14 +258,19 @@ body.dark-mode .section-card,
 body.dark-mode .stat-card {
     background: #1e293b;
     color: white;
+    border-color: #334155;
 }
 
-body.dark-mode .section-text {
-    color: #cbd5e1;
-}
-
+body.dark-mode .section-text,
 body.dark-mode .stat-card h3 {
     color: #cbd5e1;
+}
+
+body.dark-mode .exam-card,
+body.dark-mode .goal-list li,
+body.dark-mode #mcqOptions {
+    background: #334155;
+    color: white;
 }
 
 body.dark-mode input,
@@ -377,44 +281,11 @@ body.dark-mode select {
     border-color: #64748b;
 }
 
-body.dark-mode input:focus,
-body.dark-mode textarea:focus,
-body.dark-mode select:focus {
-    background: #334155;
-    border-color: #a78bfa;
-}
-
-body.dark-mode .exam-card {
-    background: linear-gradient(
-        135deg,
-        #263449,
-        #312e81
-    );
-    color: white;
-}
-
-body.dark-mode .exam-card h3 {
-    color: #c4b5fd;
-}
-
-body.dark-mode .goal-list li {
-    background: #334155;
-    color: white;
-}
-
-body.dark-mode #mcqOptions {
-    background: #312e81;
-    border-color: #a78bfa;
-}
-
 body.dark-mode .top-nav a {
-    color: #c4b5fd;
+    color: #cbd5e1;
 }
 
-
-/* ================================
-   MOBILE
-================================ */
+/* MOBILE */
 
 @media (max-width: 768px) {
 
@@ -423,7 +294,34 @@ body.dark-mode .top-nav a {
     }
 
     .dashboard-header h1 {
-        font-size: 28px;
+        font-size: 27px;
     }
 
-    .stats-section
+    .stats-section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .top-nav {
+        flex-direction: column;
+    }
+
+    .top-nav a {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .stats-section {
+        grid-template-columns: 1fr;
+    }
+
+    .section-card {
+        padding: 18px;
+    }
+
+    .dashboard-header {
+        padding: 25px 15px;
+    }
+}
