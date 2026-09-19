@@ -304,6 +304,8 @@ function loadStudentName() {
 window.onload = function () {
 
     renderTasks();
+    renderExams();
+
     updateTodayDate();
     loadQuote();
     loadStudentName();
