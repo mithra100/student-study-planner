@@ -1,672 +1,1012 @@
-// ================================
-// STUDENT SMART PLANNER
-// JAVASCRIPT
-// ================================
+/* =========================================
+   STUDENT SMART PLANNER
+   MAIN JAVASCRIPT
+   ========================================= */
 
 
-// -------------------------------
-// DARK MODE
-// -------------------------------
+/* =========================================
+   DATA
+   ========================================= */
 
-function toggleDarkMode() {
+const STORAGE_KEY = "studentSmartPlannerData";
 
-    document.body.classList.toggle("dark-mode");
+
+let data = {
+    goals: [],
+    exams: [],
+    subjects: [],
+    questions: [],
+    streak: 0,
+    quizScore: 0
+};
+
+
+/* =========================================
+   LOAD DATA
+   ========================================= */
+
+function loadData() {
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (saved) {
+
+        try {
+
+            const parsed = JSON.parse(saved);
+
+            data = {
+                ...data,
+                ...parsed
+            };
+
+        } catch (error) {
+
+            console.log("Could not load saved data.");
+
+        }
+    }
+}
+
+
+/* =========================================
+   SAVE DATA
+   ========================================= */
+
+function saveData() {
+
+    localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(data)
+    );
 
 }
 
 
-// -------------------------------
-// AI ASSISTANT
-// -------------------------------
+/* =========================================
+   HTML ESCAPE
+   ========================================= */
 
-function askAI() {
+function escapeHTML(value) {
 
-    let question = document.getElementById("aiQuestion").value.trim();
-    let result = document.getElementById("aiHelpResult");
-
-    if (question === "") {
-
-        result.innerHTML =
-            "<p>Please enter your question.</p>";
-
-        return;
+    if (value === undefined || value === null) {
+        return "";
     }
 
-    result.innerHTML = `
-        <div class="exam-card">
-            <h3>🤖 AI Assistant</h3>
-            <p>
-                Your question: <b>${question}</b>
-            </p>
-            <p>
-                This is a demo response. Real AI connection
-                can be added later.
-            </p>
-        </div>
-    `;
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 }
 
 
-// -------------------------------
-// DOUBT SOLVER
-// -------------------------------
+/* =========================================
+   PAGE NAVIGATION
+   ========================================= */
 
-function solveDoubt() {
+const pageNames = {
 
-    let doubt = document.getElementById("doubtInput").value.trim();
-    let result = document.getElementById("doubtResult");
+    dashboard: "Dashboard",
+    goals: "Goals",
+    exams: "Exams",
+    subjects: "Subjects",
+    quiz: "Quick Quiz",
+    ai: "AI Assistant"
 
-    if (doubt === "") {
-
-        result.innerHTML =
-            "<p>Please enter your doubt.</p>";
-
-        return;
-    }
-
-    result.innerHTML = `
-        <div class="exam-card">
-            <h3>💡 Doubt Explanation</h3>
-            <p>
-                You asked: <b>${doubt}</b>
-            </p>
-            <p>
-                This is a demo explanation.
-                Real AI can answer this doubt later.
-            </p>
-        </div>
-    `;
-}
+};
 
 
-// -------------------------------
-// GOALS
-// -------------------------------
+function showPage(page) {
 
-let goals = [];
+    const pages = document.querySelectorAll(".page");
 
+    pages.forEach(section => {
 
-function addGoal() {
-
-    let input = document.getElementById("goalInput");
-    let goal = input.value.trim();
-
-    if (goal === "") {
-
-        alert("Please enter a goal.");
-
-        return;
-    }
-
-    goals.push(goal);
-
-    input.value = "";
-
-    displayGoals();
-
-    updateGoalCount();
-}
-
-
-function displayGoals() {
-
-    let list = document.getElementById("goalList");
-
-    list.innerHTML = "";
-
-    goals.forEach(function(goal, index) {
-
-        list.innerHTML += `
-            <li>
-                🎯 ${goal}
-                <button onclick="deleteGoal(${index})">
-                    Delete
-                </button>
-            </li>
-        `;
+        section.style.display = "none";
 
     });
-}
 
 
-function deleteGoal(index) {
-
-    goals.splice(index, 1);
-
-    displayGoals();
-
-    updateGoalCount();
-}
+    const selectedPage =
+        document.getElementById(page + "Page");
 
 
-function updateGoalCount() {
+    if (selectedPage) {
 
-    document.getElementById("goalCount").textContent =
-        goals.length;
+        selectedPage.style.display = "block";
 
-}
-
-
-// -------------------------------
-// CREATE EXAM
-// -------------------------------
-
-let exams = [];
+    }
 
 
-function createExam() {
+    document.querySelectorAll("[data-page]").forEach(link => {
 
-    let name =
-        document.getElementById("examName").value.trim();
+        link.classList.remove("active");
 
-    let subject =
-        document.getElementById("examSubject").value.trim();
+        if (link.dataset.page === page) {
+            link.classList.add("active");
+        }
 
-    let date =
-        document.getElementById("examDate").value;
-
-    let time =
-        document.getElementById("examTime").value;
-
-    let marks =
-        document.getElementById("examMarks").value;
-
-    let result =
-        document.getElementById("examResult");
+    });
 
 
-    if (
-        name === "" ||
-        subject === "" ||
-        date === "" ||
-        time === "" ||
-        marks === ""
-    ) {
+    const title =
+        document.getElementById("pageTitle");
 
-        result.innerHTML =
-            "<p>Please fill all exam details.</p>";
+    if (title) {
 
-        return;
+        title.textContent =
+            pageNames[page] || "Student Smart Planner";
+
     }
 
 
-    let exam = {
-
-        name: name,
-        subject: subject,
-        date: date,
-        time: time,
-        marks: Number(marks),
-
-        questions: []
-
-    };
-
-
-    exams.push(exam);
-
-
-    result.innerHTML = `
-        <div class="exam-card">
-
-            <h3>✅ Exam Created</h3>
-
-            <p>
-                <b>Exam:</b> ${name}
-            </p>
-
-            <p>
-                <b>Subject:</b> ${subject}
-            </p>
-
-            <p>
-                <b>Date:</b> ${date}
-            </p>
-
-            <p>
-                <b>Time:</b> ${time}
-            </p>
-
-            <p>
-                <b>Total Marks:</b> ${marks}
-            </p>
-
-            <p>
-                🎉 Your exam is ready for questions.
-            </p>
-
-        </div>
-    `;
-
-
-    document.getElementById("examCount").textContent =
-        exams.length;
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 }
 
 
-// -------------------------------
-// SHOW / HIDE MCQ OPTIONS
-// -------------------------------
+/* =========================================
+   NAVIGATION EVENTS
+   ========================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.querySelectorAll("[data-page]").forEach(link => {
 
-    let questionType =
-        document.getElementById("examQuestionType");
+    link.addEventListener("click", function(event) {
 
-    let mcqOptions =
-        document.getElementById("mcqOptions");
+        event.preventDefault();
 
+        showPage(this.dataset.page);
 
-    if (questionType && mcqOptions) {
-
-        questionType.addEventListener(
-            "change",
-            function () {
-
-                if (this.value === "mcq") {
-
-                    mcqOptions.style.display = "block";
-
-                }
-                else {
-
-                    mcqOptions.style.display = "none";
-
-                }
-
-            }
-        );
-
-    }
+    });
 
 });
 
 
-// -------------------------------
-// EXAM QUESTIONS
-// -------------------------------
+/* =========================================
+   DATE
+   ========================================= */
 
-let examQuestions = [];
+function updateDate() {
 
+    const element =
+        document.getElementById("todayDate");
 
-function addExamQuestion() {
-
-    let type =
-        document.getElementById("examQuestionType").value;
-
-    let marks =
-        document.getElementById("examQuestionMarks").value;
-
-    let question =
-        document.getElementById("examQuestionText").value.trim();
+    if (!element) return;
 
 
-    if (
-        type === "" ||
-        marks === "" ||
-        question === ""
-    ) {
-
-        alert("Please select type, marks and enter question.");
-
-        return;
-    }
+    const now = new Date();
 
 
-    // ---------------------------
-    // MCQ
-    // ---------------------------
-
-    if (type === "mcq") {
-
-        let optionA =
-            document.getElementById("mcqOptionA").value.trim();
-
-        let optionB =
-            document.getElementById("mcqOptionB").value.trim();
-
-        let optionC =
-            document.getElementById("mcqOptionC").value.trim();
-
-        let optionD =
-            document.getElementById("mcqOptionD").value.trim();
-
-        let correct =
-            document.getElementById("correctOption").value;
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    };
 
 
-        if (
-            optionA === "" ||
-            optionB === "" ||
-            optionC === "" ||
-            optionD === "" ||
-            correct === ""
-        ) {
-
-            alert("Please fill all MCQ options and select the correct answer.");
-
-            return;
-        }
-
-
-        examQuestions.push({
-
-            type: "MCQ",
-
-            marks: Number(marks),
-
-            question: question,
-
-            optionA: optionA,
-
-            optionB: optionB,
-
-            optionC: optionC,
-
-            optionD: optionD,
-
-            correct: correct
-
-        });
-
-    }
-
-
-    // ---------------------------
-    // SHORT ANSWER
-    // ---------------------------
-
-    else if (type === "short") {
-
-        examQuestions.push({
-
-            type: "Short Answer",
-
-            marks: Number(marks),
-
-            question: question
-
-        });
-
-    }
-
-
-    // ---------------------------
-    // LONG ANSWER
-    // ---------------------------
-
-    else if (type === "long") {
-
-        examQuestions.push({
-
-            type: "Long Answer",
-
-            marks: Number(marks),
-
-            question: question
-
-        });
-
-    }
-
-
-    displayExamQuestions();
-
-
-    // Clear question
-
-    document.getElementById("examQuestionText").value = "";
-
-    document.getElementById("mcqOptionA").value = "";
-
-    document.getElementById("mcqOptionB").value = "";
-
-    document.getElementById("mcqOptionC").value = "";
-
-    document.getElementById("mcqOptionD").value = "";
-
-    document.getElementById("correctOption").value = "";
+    element.textContent =
+        now.toLocaleDateString(
+            "en-US",
+            options
+        );
 
 }
 
 
-// -------------------------------
-// DISPLAY QUESTIONS
-// -------------------------------
+/* =========================================
+   STATS
+   ========================================= */
 
-function displayExamQuestions() {
+function updateStats() {
 
-    let list =
-        document.getElementById("examQuestionList");
+    const subjectCount =
+        document.getElementById("subjectCount");
+
+    const goalCount =
+        document.getElementById("goalCount");
+
+    const examCount =
+        document.getElementById("examCount");
+
+    const streakCount =
+        document.getElementById("streakCount");
+
+    const sidebarStreak =
+        document.getElementById("sidebarStreak");
 
 
-    list.innerHTML = "";
+    if (subjectCount) {
+
+        subjectCount.textContent =
+            data.subjects.length;
+
+    }
 
 
-    examQuestions.forEach(function(q, index) {
+    if (goalCount) {
 
-        let html = `
+        goalCount.textContent =
+            data.goals.length;
 
-            <div class="exam-card">
+    }
 
-                <h3>
-                    Question ${index + 1}
-                </h3>
 
-                <p>
-                    <b>Type:</b> ${q.type}
-                </p>
+    if (examCount) {
 
-                <p>
-                    <b>Marks:</b> ${q.marks}
-                </p>
+        examCount.textContent =
+            data.exams.length;
 
-                <p>
-                    <b>Question:</b> ${q.question}
-                </p>
+    }
 
+
+    if (streakCount) {
+
+        streakCount.textContent =
+            data.streak;
+
+    }
+
+
+    if (sidebarStreak) {
+
+        sidebarStreak.textContent =
+            data.streak;
+
+    }
+
+}
+
+
+/* =========================================
+   GOALS
+   ========================================= */
+
+const goalForm =
+    document.getElementById("goalForm");
+
+
+if (goalForm) {
+
+    goalForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const input =
+                document.getElementById("goalInput");
+
+            const priority =
+                document.getElementById("goalPriority");
+
+
+            const title =
+                input.value.trim();
+
+
+            if (!title) return;
+
+
+            const goal = {
+
+                id: Date.now(),
+
+                title: title,
+
+                priority: priority.value,
+
+                completed: false,
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
+
+
+            data.goals.push(goal);
+
+
+            saveData();
+
+            input.value = "";
+
+            renderAll();
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   TOGGLE GOAL
+   ========================================= */
+
+function toggleGoal(id) {
+
+    const goal =
+        data.goals.find(item => item.id === id);
+
+
+    if (!goal) return;
+
+
+    goal.completed =
+        !goal.completed;
+
+
+    saveData();
+
+    renderAll();
+
+}
+
+
+/* =========================================
+   DELETE GOAL
+   ========================================= */
+
+function deleteGoal(id) {
+
+    data.goals =
+        data.goals.filter(
+            item => item.id !== id
+        );
+
+
+    saveData();
+
+    renderAll();
+
+}
+
+
+/* =========================================
+   RENDER GOALS
+   ========================================= */
+
+function renderGoals() {
+
+    const container =
+        document.getElementById("goalsList");
+
+    const dashboard =
+        document.getElementById("dashboardGoals");
+
+    const progressText =
+        document.getElementById("goalProgressText");
+
+
+    if (!container) return;
+
+
+    if (data.goals.length === 0) {
+
+        container.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:30px;
+                color:#64748b;
+            ">
+                🎯 No goals yet.<br>
+                Create your first study goal above.
+            </div>
         `;
 
+    } else {
 
-        if (q.type === "MCQ") {
+        container.innerHTML =
+            data.goals.map(goal => {
 
-            html += `
+                const priorityClass =
+                    goal.priority === "High"
+                        ? "🔴"
+                        : goal.priority === "Medium"
+                            ? "🟡"
+                            : "🟢";
 
-                <p>A) ${q.optionA}</p>
 
-                <p>B) ${q.optionB}</p>
+                return `
 
-                <p>C) ${q.optionC}</p>
+                    <div class="goal-item">
 
-                <p>D) ${q.optionD}</p>
+                        <input
+                            type="checkbox"
+                            ${goal.completed ? "checked" : ""}
+                            onchange="toggleGoal(${goal.id})"
+                        >
 
-                <p>
-                    ✅ Correct Answer:
-                    Option ${q.correct}
-                </p>
+                        <div style="flex:1;">
 
+                            <span
+                                style="
+                                    font-weight:600;
+                                    ${goal.completed
+                                        ? "text-decoration:line-through;"
+                                        : ""}
+                                "
+                            >
+                                ${escapeHTML(goal.title)}
+                            </span>
+
+                            <div style="
+                                font-size:11px;
+                                color:#64748b;
+                                margin-top:2px;
+                            ">
+                                ${priorityClass}
+                                ${escapeHTML(goal.priority)} priority
+                            </div>
+
+                        </div>
+
+                        <button
+                            onclick="deleteGoal(${goal.id})"
+                            style="
+                                background:rgba(239,68,68,.1);
+                                color:#f87171;
+                                box-shadow:none;
+                                padding:8px 10px;
+                            "
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+    }
+
+
+    const completed =
+        data.goals.filter(
+            goal => goal.completed
+        ).length;
+
+
+    if (progressText) {
+
+        progressText.textContent =
+            `${completed} / ${data.goals.length}`;
+
+    }
+
+
+    if (dashboard) {
+
+        if (data.goals.length === 0) {
+
+            dashboard.innerHTML = `
+                <div style="
+                    text-align:center;
+                    padding:25px 10px;
+                    color:#64748b;
+                ">
+                    No goals added yet.<br>
+                    Create your first study goal.
+                </div>
             `;
 
+        } else {
+
+            const latest =
+                data.goals.slice(-5).reverse();
+
+
+            dashboard.innerHTML =
+                latest.map(goal => {
+
+                    return `
+
+                        <div class="goal-item">
+
+                            <input
+                                type="checkbox"
+                                ${goal.completed ? "checked" : ""}
+                                onchange="toggleGoal(${goal.id})"
+                            >
+
+                            <div style="flex:1;">
+
+                                <span style="
+                                    font-weight:600;
+                                    ${goal.completed
+                                        ? "text-decoration:line-through;opacity:.5;"
+                                        : ""}
+                                ">
+                                    ${escapeHTML(goal.title)}
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }).join("");
+
         }
 
-
-        html += `
-
-            </div>
-
-        `;
+    }
 
 
-        list.innerHTML += html;
-
-    });
+    updateProgress();
 
 }
 
 
-// -------------------------------
-// STUDENT LEVEL
-// -------------------------------
+/* =========================================
+   PROGRESS
+   ========================================= */
 
-function selectLevel() {
+function updateProgress() {
 
-    let level =
-        document.getElementById("levelSelect").value;
+    const progressBar =
+        document.getElementById("progressBar");
 
-    let result =
-        document.getElementById("levelResult");
+    const progressText =
+        document.getElementById("progressText");
 
 
-    if (level === "") {
+    if (!progressBar || !progressText) return;
 
-        result.innerHTML =
-            "<p>Please select your learning level.</p>";
+
+    if (data.goals.length === 0) {
+
+        progressBar.style.width = "0%";
+
+        progressText.textContent = "0%";
 
         return;
-    }
-
-
-    let levelName = "";
-
-
-    if (level === "school") {
-
-        levelName = "🏫 School Student";
-
-    }
-    else if (level === "college") {
-
-        levelName = "🎓 College Student";
-
-    }
-    else {
-
-        levelName = "📚 Other Learning";
 
     }
 
 
-    result.innerHTML = `
+    const completed =
+        data.goals.filter(
+            goal => goal.completed
+        ).length;
 
-        <div class="exam-card">
 
-            <h3>✅ Level Selected</h3>
+    const percentage =
+        Math.round(
+            (completed / data.goals.length) * 100
+        );
 
-            <p>
-                ${levelName}
-            </p>
 
-        </div>
+    progressBar.style.width =
+        `${percentage}%`;
 
-    `;
+
+    progressText.textContent =
+        `${percentage}%`;
 
 }
 
 
-// -------------------------------
-// SUBJECT
-// -------------------------------
+/* =========================================
+   EXAMS
+   ========================================= */
 
-let subjects = [];
-
-
-function addSubject() {
-
-    let input =
-        document.getElementById("subjectInput");
-
-    let subject =
-        input.value.trim();
+const examForm =
+    document.getElementById("examForm");
 
 
-    let result =
-        document.getElementById("subjectResult");
+if (examForm) {
+
+    examForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
 
 
-    if (subject === "") {
-
-        result.innerHTML =
-            "<p>Please enter a subject.</p>";
-
-        return;
-    }
+            const name =
+                document
+                    .getElementById("examName")
+                    .value.trim();
 
 
-    subjects.push(subject);
+            const date =
+                document
+                    .getElementById("examDate")
+                    .value;
 
 
-    input.value = "";
+            const time =
+                document
+                    .getElementById("examTime")
+                    .value;
 
 
-    result.innerHTML = `
-
-        <div class="exam-card">
-
-            <h3>📚 Subject Added</h3>
-
-            <p>
-                ${subject}
-            </p>
-
-        </div>
-
-    `;
+            const subject =
+                document
+                    .getElementById("examSubject")
+                    .value.trim();
 
 
-    document.getElementById("subjectCount").textContent =
-        subjects.length;
+            if (!name || !date) return;
+
+
+            data.exams.push({
+
+                id: Date.now(),
+
+                name: name,
+
+                date: date,
+
+                time: time,
+
+                subject: subject
+
+            });
+
+
+            saveData();
+
+            examForm.reset();
+
+            renderAll();
+
+        }
+    );
 
 }
 
 
-// -------------------------------
-// QUICK QUIZ
-// -------------------------------
+/* =========================================
+   DELETE EXAM
+   ========================================= */
 
-function checkQuiz() {
+function deleteExam(id) {
 
-    let answer =
-        document.getElementById("quizAnswer").value
-        .trim()
-        .toLowerCase();
-
-
-    let result =
-        document.getElementById("quizResult");
+    data.exams =
+        data.exams.filter(
+            exam => exam.id !== id
+        );
 
 
-    if (answer === "") {
+    saveData();
 
-        result.innerHTML =
-            "<p>Please enter your answer.</p>";
+    renderAll();
 
-        return;
-    }
+}
 
 
-    if (
-        answer === "html" ||
-        answer === "hypertext markup language"
-    ) {
+/* =========================================
+   FORMAT DATE
+   ========================================= */
 
-        result.innerHTML = `
-            <div class="exam-card">
-                <h3>🎉 Correct!</h3>
-                <p>The answer is HTML.</p>
+function formatDate(dateString) {
+
+    if (!dateString) return "";
+
+
+    const date =
+        new Date(dateString + "T00:00:00");
+
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+            day: "numeric",
+            month: "short",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================
+   RENDER EXAMS
+   ========================================= */
+
+function renderExams() {
+
+    const container =
+        document.getElementById("examsList");
+
+    const dashboard =
+        document.getElementById("dashboardExams");
+
+
+    if (!container) return;
+
+
+    const sorted =
+        [...data.exams].sort(
+            (a, b) =>
+                new Date(a.date) -
+                new Date(b.date)
+        );
+
+
+    if (sorted.length === 0) {
+
+        container.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:30px;
+                color:#64748b;
+            ">
+                📅 No exams added yet.
             </div>
         `;
 
-    }
-    else {
+    } else {
 
-        result.innerHTML = `
-            <div class="exam-card">
-                <h3>❌ Incorrect</h3>
-                <p>The correct answer is HTML.</p>
-            </div>
-        `;
+        container.innerHTML =
+            sorted.map(exam => {
+
+                return `
+
+                    <div class="exam-card">
+
+                        <div style="
+                            display:flex;
+                            justify-content:space-between;
+                            gap:12px;
+                        ">
+
+                            <div>
+
+                                <div style="
+                                    font-size:16px;
+                                    font-weight:700;
+                                ">
+                                    ${escapeHTML(exam.name)}
+                                </div>
+
+                                <div style="
+                                    color:#94a3b8;
+                                    font-size:12px;
+                                    margin-top:4px;
+                                ">
+                                    ${escapeHTML(
+                                        exam.subject || "General"
+                                    )}
+                                </div>
+
+                            </div>
+
+                            <button
+                                onclick="deleteExam(${exam.id})"
+                                style="
+                                    background:rgba(239,68,68,.1);
+                                    color:#f87171;
+                                    box-shadow:none;
+                                    padding:7px 9px;
+                                "
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                        <div style="
+                            display:flex;
+                            gap:15px;
+                            flex-wrap:wrap;
+                            margin-top:13px;
+                            color:#cbd5e1;
+                            font-size:12px;
+                        ">
+
+                            <span>
+                                📅 ${formatDate(exam.date)}
+                            </span>
+
+                            ${
+                                exam.time
+                                ? `<span>⏰ ${escapeHTML(exam.time)}</span>`
+                                : ""
+                            }
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }).join("");
+
+    }
+
+
+    if (dashboard) {
+
+        const upcoming =
+            sorted.slice(0, 3);
+
+
+        if (upcoming.length === 0) {
+
+            dashboard.innerHTML = `
+                <div style="
+                    text-align:center;
+                    padding:25px 10px;
+                    color:#64748b;
+                ">
+                    No upcoming exams.
+                </div>
+            `;
+
+        } else {
+
+            dashboard.innerHTML =
+                upcoming.map(exam => {
+
+                    return `
+
+                        <div class="exam-card">
+
+                            <div style="
+                                font-weight:700;
+                            ">
+                                ${escapeHTML(exam.name)}
+                            </div>
+
+                            <div style="
+                                color:#94a3b8;
+                                font-size:12px;
+                                margin-top:5px;
+                            ">
+                                📅 ${formatDate(exam.date)}
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }).join("");
+
+        }
 
     }
 
 }
+
+
+/* =========================================
+   SUBJECTS
+   ========================================= */
+
+const subjectForm =
+    document.getElementById("subjectForm");
+
+
+if (subjectForm) {
+
+    subjectForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const input =
+                document.getElementById("subjectInput");
+
+
+            const name =
+                input.value.trim();
+
+
+            if (!name) return;
+
+
+            data.subjects.push({
+
+                id: Date.now(),
+
+                name: name
+
+            });
+
+
+            saveData();
+
+            input.value = "";
+
+            renderAll();
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   DELETE SUBJECT
+   ========================================= */
+
+function deleteSubject(id) {
+
+    data.subjects =
+        data.subjects.filter(
+            subject =>
+                subject.id !== id
+        );
+
+
+    saveData();
+
+    renderAll();
+
+}
+
+
+/* =========================================
+   RENDER SUBJECTS
+   ========================================= */
+
+function renderSubjects() {
+
+    const container =
+        document.getElementById("subjectsList");
+
+
+    if (!container) return;
+
+
+    if (data.subjects.length === 0) {
+
+        container.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:30px;
+                color:#64748b;
+            ">
+                📚 No subjects added yet.
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        data.subjects.map(
+            (subject, index) => {
+
+                const percentage =
+                    35 + ((index * 17) % 60);
+
+
+                return `
+
+                    <div class="card" style="
+                        padding:18px;
+                        background:rgba(15,23,42,.6);
+                    ">
+
+                        <div style="
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:center;
+                        ">
+
+                            <div style="
+                                font-weight:700;
+                            ">
+                                📚 ${escapeHTML(subject.name)}
+                            </div>
+
+                            <button
+                                onclick="deleteSubject(${subject.id})"
+                                style="
+ 
