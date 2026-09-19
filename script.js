@@ -404,3 +404,47 @@ window.onload = function () {
     }
 
 }
+/* Quick Actions */
+
+.quick-actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.action-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.action-card:hover{
+    transform:translateY(-5px);
+}
+
+.action-card span{
+    font-size:40px;
+    display:block;
+    margin-bottom:10px;
+}
+
+.action-card h3{
+    color:#4f46e5;
+    font-size:18px;
+}
+
+/* Dark Mode Support */
+
+.dark-mode .action-card{
+    background:#1f2937;
+    color:white;
+}
+
+.dark-mode .action-card h3{
+    color:#a78bfa;
+}
