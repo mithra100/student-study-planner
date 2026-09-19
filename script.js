@@ -299,3 +299,32 @@ window.onload = function () {
     loadStudentName();
 
 };
+function checkQuiz() {
+
+    let score = 0;
+
+    const q1 =
+    document.querySelector(
+    'input[name="q1"]:checked'
+    );
+
+    const q2 =
+    document.querySelector(
+    'input[name="q2"]:checked'
+    );
+
+    if(q1 && q1.value === "a"){
+        score++;
+    }
+
+    if(q2 && q2.value === "a"){
+        score++;
+    }
+
+    document.getElementById(
+    "quizScore"
+    ).innerHTML =
+    "<h3>🎉 Your Score: "
+    + score +
+    "/2</h3>";
+}
