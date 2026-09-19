@@ -194,3 +194,40 @@ window.onload = function () {
     }
 
 };
+function updateProgressBar(){
+
+    const total =
+        document.querySelectorAll(
+            "#taskList li"
+        ).length +
+        document.querySelectorAll(
+            "#completedList li"
+        ).length;
+
+    const completed =
+        document.querySelectorAll(
+            "#completedList li"
+        ).length;
+
+    let percent = 0;
+
+    if(total > 0){
+
+        percent =
+            Math.round(
+                (completed / total) * 100
+            );
+
+    }
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
+        percent + "%";
+
+    document.getElementById(
+        "progressText"
+    ).innerText =
+        percent + "%";
+
+}
