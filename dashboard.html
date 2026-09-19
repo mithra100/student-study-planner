@@ -10,103 +10,93 @@
 
 <div class="container">
 
+    <!-- Header -->
     <header class="dashboard-header">
 
-    <div class="header-left">
+        <div class="header-left">
 
-        <div class="app-icon">
-            📚
+            <div class="app-icon">
+                📚
+            </div>
+
+            <div>
+                <h1>Student Study Planner</h1>
+                <p>Plan • Learn • Practice • Improve</p>
+                <p id="welcomeUser">👋 Welcome Student</p>
+            </div>
+
         </div>
 
-        <div>
-            <h1>Student Study Planner</h1>
-            <p>Plan • Learn • Practice • Improve</p>
-<p id="welcomeUser">👋 Welcome Student</p>
+        <div class="header-right">
+
+            <div class="student-badge">
+                🎓 Student
+            </div>
+
+            <button
+                id="darkModeBtn"
+                onclick="toggleDarkMode()">
+                🌙
+            </button>
+
         </div>
 
-    </div>
+    </header>
 
-    <div class="header-right">
+    <!-- Welcome Banner -->
 
-        <div class="student-badge">
-            👋 Welcome
-        </div>
+    <section class="welcome-banner">
 
-        <button id="darkModeBtn" onclick="toggleDarkMode()">
-            🌙
-        </button>
-
-    </div>
-
-</header>
-<section class="welcome-banner">
-
-    <div>
         <h2>🚀 Stay Focused, Keep Learning</h2>
+
         <p>
             Complete your tasks, prepare for exams,
             and achieve your study goals.
         </p>
-    </div>
 
-</section>
-<!-- Welcome Banner -->
+    </section>
 
-<section class="welcome-banner">
+    <!-- Date -->
 
-    <h2 id="welcomeUser">
-        👋 Welcome Student
-    </h2>
+    <section class="section-card">
 
-    <p>
-        Stay focused, complete your tasks,
-        and achieve your goals.
-    </p>
+        <h2>📅 Today's Date</h2>
 
-</section>
+        <p id="todayDate"></p>
 
-<!-- Today's Date -->
+    </section>
 
-<section class="section-card">
+    <!-- Motivation -->
 
-    <h2>📅 Today's Date</h2>
+    <section class="section-card">
 
-    <p id="todayDate"></p>
+        <h2>🔥 Daily Motivation</h2>
 
-</section>
+        <p id="dailyQuote"></p>
 
-<!-- Daily Motivation -->
+    </section>
 
-<section class="section-card">
+    <!-- Progress -->
 
-    <h2>🔥 Daily Motivation</h2>
+    <section class="section-card">
 
-    <p id="dailyQuote"></p>
+        <h2>📈 Overall Progress</h2>
 
-</section>
+        <div class="progress-container">
 
-<!-- Progress Bar -->
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
 
-<section class="section-card">
-
-    <h2>📈 Overall Progress</h2>
-
-    <div class="progress-container">
-
-        <div
-            class="progress-bar"
-            id="progressBar">
         </div>
 
-    </div>
+        <p id="progressText">0%</p>
 
-    <p id="progressText">
-        0%
-    </p>
-
-</section>
+    </section>
 
     <!-- Statistics -->
+
     <section class="stats-section">
 
         <div class="stat-card">
@@ -129,52 +119,35 @@
             <strong id="progressPercent">0%</strong>
         </div>
 
-   
-
-    <p id="progressText">0%</p>
-<div class="stat-card">
-    <h3>📅 Today</h3>
-    <strong id="todayDate">Loading...</strong>
-</div>
-<section class="section-card">
-
-    <h2>💡 Daily Motivation</h2>
-
-    <p id="dailyQuote">
-        Success starts with self-discipline.
-    </p>
-
-</section>
-<section class="section-card">
-
-    <h2>💡 Daily Motivation</h2>
-
-    <p id="dailyQuote">
-        Success starts with self-discipline.
-    </p>
-
-</section>
-
-</section>
+    </section>
 
     <!-- Add Task -->
+
     <section class="section-card">
 
         <h2>➕ Add New Task</h2>
 
-        <input type="text" id="subject" placeholder="Subject Name">
+        <input
+            type="text"
+            id="subject"
+            placeholder="Subject Name">
 
-        <input type="text" id="topic" placeholder="Study Topic">
+        <input
+            type="text"
+            id="topic"
+            placeholder="Study Topic">
 
-        <input type="date" id="date">
+        <input
+            type="date"
+            id="date">
 
         <button onclick="addTask()">
             Add Task
         </button>
 
     </section>
-
     <!-- Task List -->
+
     <section class="section-card">
 
         <h2>📋 My Tasks</h2>
@@ -184,6 +157,7 @@
     </section>
 
     <!-- Completed Tasks -->
+
     <section class="section-card">
 
         <h2>✅ Completed Tasks</h2>
@@ -193,41 +167,57 @@
     </section>
 
     <!-- Upcoming Exams -->
+
     <section class="section-card">
 
         <h2>📅 Upcoming Exams</h2>
 
         <div class="exam-card">
+
             <h3>🧮 Maths Test</h3>
+
             <p>25 October 2026</p>
+
         </div>
 
         <div class="exam-card">
+
             <h3>🔬 Science Exam</h3>
+
             <p>30 October 2026</p>
+
         </div>
 
     </section>
 
     <!-- Study Goals -->
+
     <section class="section-card">
 
         <h2>🎯 Study Goals</h2>
 
         <ul class="goal-list">
+
             <li>📘 Complete Maths Chapter</li>
+
             <li>⚡ Revise Physics Notes</li>
+
             <li>📝 Practice English Grammar</li>
+
         </ul>
 
     </section>
 
     <!-- Quiz -->
+
     <section class="section-card">
 
         <h2>🧠 Practice Quiz</h2>
 
-        <input type="text" id="quizSubject" placeholder="Enter Subject">
+        <input
+            type="text"
+            id="quizSubject"
+            placeholder="Enter Subject">
 
         <button onclick="generateQuiz()">
             Generate Quiz
@@ -238,11 +228,15 @@
     </section>
 
     <!-- AI Assistant -->
+
     <section class="section-card">
 
         <h2>🤖 AI Assistant</h2>
 
-        <input type="text" id="doubtInput" placeholder="Ask your doubt">
+        <input
+            type="text"
+            id="doubtInput"
+            placeholder="Ask your doubt">
 
         <button onclick="solveDoubt()">
             Get Answer
@@ -253,6 +247,7 @@
     </section>
 
     <!-- Footer -->
+
     <footer class="dashboard-footer">
 
         <p>🎓 Student Study Planner</p>
