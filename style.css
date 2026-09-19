@@ -288,3 +288,11 @@ button:hover{
     opacity:0.9;
     line-height:1.6;
 }
+#dailyQuote{
+    font-size:18px;
+    font-weight:600;
+    text-align:center;
+    padding:15px;
+    color:#4f46e5;
+    line-height:1.7;
+}
