@@ -119,10 +119,15 @@ body{
 
 .section-card{
     background:white;
-    padding:20px;
-    border-radius:15px;
+    padding:25px;
+    border-radius:25px;
     margin-bottom:25px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.1);
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.section-card:hover{
+    transform:translateY(-3px);
 }
 
 .section-card h2{
