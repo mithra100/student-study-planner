@@ -25,12 +25,11 @@ function addTask() {
     });
 
     saveTasks();
+    renderTasks();
 
     document.getElementById("subject").value = "";
     document.getElementById("topic").value = "";
     document.getElementById("date").value = "";
-
-    renderTasks();
 }
 
 /* Complete Task */
@@ -39,7 +38,6 @@ function completeTask(index) {
     tasks[index].completed = true;
 
     saveTasks();
-
     renderTasks();
 }
 
@@ -49,7 +47,6 @@ function deleteTask(index) {
     tasks.splice(index, 1);
 
     saveTasks();
-
     renderTasks();
 }
 
@@ -103,6 +100,7 @@ function renderTasks() {
 
             taskList.appendChild(li);
         }
+
     });
 
     updateStats(completed);
@@ -121,10 +119,15 @@ function updateStats(completed) {
         progress = Math.round((completed / total) * 100);
     }
 
-    document.getElementById("totalTasks").textContent = total;
-    document.getElementById("pendingTasks").textContent = pending;
-    document.getElementById("completedTasks").textContent = completed;
-    document.getElementById("progressPercent").textContent = progress + "%";
+    const totalTasks = document.getElementById("totalTasks");
+    const pendingTasks = document.getElementById("pendingTasks");
+    const completedTasks = document.getElementById("completedTasks");
+    const progressPercent = document.getElementById("progressPercent");
+
+    if (totalTasks) totalTasks.textContent = total;
+    if (pendingTasks) pendingTasks.textContent = pending;
+    if (completedTasks) completedTasks.textContent = completed;
+    if (progressPercent) progressPercent.textContent = progress + "%";
 }
 
 /* Progress Bar */
@@ -167,6 +170,8 @@ function generateQuiz() {
     const quizResult =
         document.getElementById("quizResult");
 
+    if (!quizResult) return;
+
     if (!subject) {
 
         quizResult.innerHTML =
@@ -191,6 +196,8 @@ function solveDoubt() {
 
     const result =
         document.getElementById("doubtResult");
+
+    if (!result) return;
 
     if (doubt.includes("html")) {
 
@@ -287,10 +294,8 @@ function loadStudentName() {
 window.onload = function () {
 
     renderTasks();
-
     updateTodayDate();
-
     loadQuote();
-
     loadStudentName();
+
 };
