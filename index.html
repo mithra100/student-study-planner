@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Student Study Planner Login</title>
+<title>Student Study Planner</title>
 
 <style>
 
@@ -12,7 +12,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial,sans-serif;
+    font-family:'Segoe UI',sans-serif;
 }
 
 body{
@@ -20,62 +20,98 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    background:linear-gradient(135deg,#eef2ff,#dbeafe);
+    padding:20px;
 }
 
 .login-container{
-    width:90%;
-    max-width:420px;
+    width:100%;
+    max-width:400px;
     background:white;
+    border-radius:35px;
     padding:35px;
-    border-radius:20px;
-    text-align:center;
-    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    box-shadow:0 15px 40px rgba(0,0,0,0.12);
 }
 
 .logo{
-    font-size:70px;
-    margin-bottom:10px;
+    text-align:center;
+    font-size:80px;
+    margin-bottom:15px;
 }
 
 h1{
-    color:#4f46e5;
+    text-align:center;
+    color:#111827;
+    font-size:34px;
     margin-bottom:10px;
+    font-weight:800;
 }
 
 .subtitle{
-    color:#666;
-    margin-bottom:25px;
+    text-align:center;
+    color:#6b7280;
+    line-height:1.6;
+    margin-bottom:30px;
 }
 
-input{
-    width:100%;
-    padding:12px;
-    margin-bottom:15px;
-    border:1px solid #ccc;
-    border-radius:10px;
-    font-size:15px;
+.input-box{
+    margin-bottom:18px;
 }
 
-button{
+.input-box input{
     width:100%;
-    padding:12px;
+    padding:16px;
     border:none;
-    border-radius:10px;
-    background:#4f46e5;
-    color:white;
+    border-radius:16px;
+    background:#f3f4f6;
     font-size:16px;
+    outline:none;
+}
+
+.input-box input:focus{
+    border:2px solid #7c3aed;
+}
+
+.login-btn{
+    width:100%;
+    padding:16px;
+    border:none;
+    border-radius:16px;
+    background:linear-gradient(135deg,#7c3aed,#4f46e5);
+    color:white;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+}
+
+.divider{
+    text-align:center;
+    margin:20px 0;
+    color:#9ca3af;
+}
+
+.guest-btn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:16px;
+    background:#eef2ff;
+    color:#4f46e5;
+    font-weight:700;
     cursor:pointer;
 }
 
-button:hover{
-    background:#3730a3;
-}
-
 .quote{
-    margin-top:20px;
-    color:#777;
+    text-align:center;
+    margin-top:25px;
+    color:#6b7280;
     font-size:14px;
+    line-height:1.5;
 }
 
 </style>
@@ -87,22 +123,42 @@ button:hover{
 
     <div class="logo">📚</div>
 
-    <h1>Welcome Back, Student!</h1>
+    <h1>Welcome Back 👋</h1>
 
     <p class="subtitle">
-        Track Goals, Manage Tasks & Crack Exams
+        Student Smart Planner<br>
+        Plan • Learn • Practice • Achieve
     </p>
 
-    <input type="text" id="username" placeholder="Enter Username">
+    <div class="input-box">
+        <input type="text"
+        id="username"
+        placeholder="Student Name">
+    </div>
 
-    <input type="password" id="password" placeholder="Enter Password">
+    <div class="input-box">
+        <input type="password"
+        id="password"
+        placeholder="Password">
+    </div>
 
-    <button onclick="login()">
-        🚀 Login
+    <button class="login-btn"
+    onclick="login()">
+        Continue Learning 🚀
+    </button>
+
+    <div class="divider">
+        ─── OR ───
+    </div>
+
+    <button class="guest-btn"
+    onclick="guestLogin()">
+        Continue as Guest
     </button>
 
     <p class="quote">
-        "Success is the sum of small efforts repeated every day."
+        Small progress every day<br>
+        adds up to big results.
     </p>
 
 </div>
@@ -112,15 +168,14 @@ button:hover{
 function login(){
 
     const username =
-        document.getElementById("username").value;
+    document.getElementById("username").value;
 
     const password =
-        document.getElementById("password").value;
+    document.getElementById("password").value;
 
-    if(username === "" || password === ""){
+    if(username==="" || password===""){
 
-        alert("Please enter Username and Password");
-
+        alert("Enter Username and Password");
         return;
     }
 
@@ -130,7 +185,18 @@ function login(){
     );
 
     window.location.href =
-        "dashboard.html";
+    "dashboard.html";
+}
+
+function guestLogin(){
+
+    localStorage.setItem(
+        "studentName",
+        "Guest Student"
+    );
+
+    window.location.href =
+    "dashboard.html";
 }
 
 </script>
