@@ -164,25 +164,35 @@ function toggleDarkMode() {
 /* Quiz */
 function generateQuiz() {
 
-    const subject =
-        document.getElementById("quizSubject").value;
-
     const quizResult =
-        document.getElementById("quizResult");
-
-    if (!quizResult) return;
-
-    if (!subject) {
-
-        quizResult.innerHTML =
-            "Please enter a subject.";
-
-        return;
-    }
+    document.getElementById("quizResult");
 
     quizResult.innerHTML = `
-        <h3>${subject} Quiz</h3>
-        <p>1. What is the basic concept of ${subject}?</p>
+
+    <h3>HTML Quiz</h3>
+
+    <p>1. HTML stands for?</p>
+
+    <input type="radio" name="q1" value="a">
+    Hyper Text Markup Language<br>
+
+    <input type="radio" name="q1" value="b">
+    High Text Machine Language<br><br>
+
+    <p>2. CSS is used for?</p>
+
+    <input type="radio" name="q2" value="a">
+    Styling Web Pages<br>
+
+    <input type="radio" name="q2" value="b">
+    Database<br><br>
+
+    <button onclick="checkQuiz()">
+        Submit Quiz
+    </button>
+
+    <div id="quizScore"></div>
+
     `;
 }
 
