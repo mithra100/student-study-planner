@@ -338,3 +338,99 @@ function checkQuiz() {
     + score +
     "/2</h3>";
 }
+/* Exams */
+
+let exams =
+JSON.parse(
+localStorage.getItem("exams")
+) || [];
+
+function saveExams(){
+
+    localStorage.setItem(
+        "exams",
+        JSON.stringify(exams)
+    );
+}
+
+function addExam(){
+
+    const examName =
+    document.getElementById(
+        "examName"
+    ).value;
+
+    const examDate =
+    document.getElementById(
+        "examDate"
+    ).value;
+
+    if(
+        examName === "" ||
+        examDate === ""
+    ){
+        alert(
+        "Enter Exam Name and Date"
+        );
+        return;
+    }
+
+    exams.push({
+        name: examName,
+        date: examDate
+    });
+
+    saveExams();
+
+    renderExams();
+
+    document.getElementById(
+        "examName"
+    ).value = "";
+
+    document.getElementById(
+        "examDate"
+    ).value = "";
+}
+
+function deleteExam(index){
+
+    exams.splice(index,1);
+
+    saveExams();
+
+    renderExams();
+}
+
+function renderExams(){
+
+    const examList =
+    document.getElementById(
+        "examList"
+    );
+
+    if(!examList) return;
+
+    examList.innerHTML = "";
+
+    exams.forEach(
+    (exam,index)=>{
+
+        const li =
+        document.createElement("li");
+
+        li.innerHTML = `
+        <strong>${exam.name}</strong>
+        <br>
+        📅 ${exam.date}
+        <br><br>
+        <button onclick="deleteExam(${index})">
+        Delete
+        </button>
+        `;
+
+        examList.appendChild(li);
+
+    });
+
+}
