@@ -1,866 +1,187 @@
-/* =========================================
-   STUDENT SMART PLANNER
-   DARK PREMIUM UI
-   ========================================= */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
-:root {
-    --bg: #070b14;
-    --bg-soft: #0d1322;
-    --card: rgba(17, 24, 39, 0.82);
-    --card-hover: rgba(25, 34, 55, 0.95);
-
-    --text: #f8fafc;
-    --muted: #94a3b8;
-
-    --primary: #6366f1;
-    --primary-light: #818cf8;
-    --blue: #38bdf8;
-
-    --border: rgba(148, 163, 184, 0.14);
-
-    --success: #22c55e;
-    --danger: #ef4444;
-
-    --shadow:
-        0 20px 60px rgba(0, 0, 0, 0.35);
-
-    --glow:
-        0 0 30px rgba(99, 102, 241, 0.18);
-
-    --radius: 20px;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
 
-/* RESET */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+body{
+    background:#f4f7fc;
+    color:#333;
 }
 
-html {
-    scroll-behavior: smooth;
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    padding:20px;
 }
 
-body {
-    font-family: "Inter", sans-serif;
-    background:
-        radial-gradient(
-            circle at 15% 10%,
-            rgba(99, 102, 241, 0.12),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(56, 189, 248, 0.08),
-            transparent 25%
-        ),
-        var(--bg);
+/* Header */
 
-    color: var(--text);
-    min-height: 100vh;
-    line-height: 1.6;
+.dashboard-header{
+    background:linear-gradient(135deg,#4f46e5,#7c3aed);
+    color:white;
+    padding:30px;
+    border-radius:20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
 }
 
-/* SCROLLBAR */
-
-::-webkit-scrollbar {
-    width: 7px;
+.dashboard-header h1{
+    margin-bottom:8px;
 }
 
-::-webkit-scrollbar-track {
-    background: var(--bg);
+#darkModeBtn{
+    border:none;
+    padding:12px 18px;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #273449;
-    border-radius: 20px;
+/* Stats */
+
+.stats-section{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-bottom:25px;
 }
 
-/* LINKS */
-
-a {
-    color: inherit;
-    text-decoration: none;
+.stat-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
 }
 
-/* =========================================
-   SIDEBAR
-   ========================================= */
-
-.sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-
-    width: 250px;
-    height: 100vh;
-
-    padding: 26px 18px;
-
-    background: rgba(8, 13, 25, 0.88);
-    backdrop-filter: blur(20px);
-
-    border-right: 1px solid var(--border);
-
-    z-index: 100;
+.stat-card h3{
+    margin-bottom:10px;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    padding: 10px 12px;
-    margin-bottom: 35px;
-
-    font-size: 19px;
-    font-weight: 800;
+.stat-card strong{
+    font-size:28px;
+    color:#4f46e5;
 }
 
-.logo-icon {
-    width: 40px;
-    height: 40px;
+/* Cards */
 
-    display: grid;
-    place-items: center;
-
-    border-radius: 13px;
-
-    background: linear-gradient(
-        135deg,
-        var(--primary),
-        var(--blue)
-    );
-
-    box-shadow:
-        0 0 25px rgba(99, 102, 241, 0.4);
+.section-card{
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:25px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.1);
 }
 
-.nav {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
+.section-card h2{
+    margin-bottom:15px;
 }
 
-.nav a {
-    display: flex;
-    align-items: center;
-    gap: 13px;
+/* Inputs */
 
-    padding: 13px 14px;
-
-    color: var(--muted);
-
-    border-radius: 13px;
-
-    transition: 0.25s ease;
+input{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #ccc;
+    border-radius:10px;
 }
 
-.nav a:hover,
-.nav a.active {
-    color: white;
+/* Buttons */
 
-    background:
-        linear-gradient(
-            90deg,
-            rgba(99, 102, 241, 0.18),
-            rgba(56, 189, 248, 0.08)
-        );
-
-    box-shadow: inset 3px 0 var(--primary);
+button{
+    background:#4f46e5;
+    color:white;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
+    cursor:pointer;
 }
 
-/* =========================================
-   MAIN
-   ========================================= */
-
-.main {
-    margin-left: 250px;
-    min-height: 100vh;
-    padding: 28px 34px;
+button:hover{
+    background:#3730a3;
 }
 
-/* =========================================
-   TOPBAR
-   ========================================= */
+/* Task List */
 
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 30px;
+#taskList li,
+#completedList li{
+    background:#f8fafc;
+    padding:12px;
+    margin-bottom:10px;
+    border-radius:10px;
+    list-style:none;
 }
 
-.page-title {
-    font-size: 25px;
-    font-weight: 800;
+/* Exam Cards */
+
+.exam-card{
+    background:#eef2ff;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:10px;
 }
 
-.page-subtitle {
-    color: var(--muted);
-    font-size: 14px;
-    margin-top: 3px;
+/* Goal List */
+
+.goal-list{
+    padding-left:20px;
 }
 
-/* =========================================
-   HERO
-   ========================================= */
-
-.hero {
-    position: relative;
-    overflow: hidden;
-
-    padding: 35px;
-
-    border-radius: 28px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(99, 102, 241, 0.28),
-            rgba(56, 189, 248, 0.10)
-        );
-
-    border: 1px solid rgba(129, 140, 248, 0.18);
-
-    box-shadow: var(--shadow);
+.goal-list li{
+    margin-bottom:8px;
 }
 
-.hero::before {
-    content: "";
+/* Quiz */
 
-    position: absolute;
-
-    width: 250px;
-    height: 250px;
-
-    right: -80px;
-    top: -100px;
-
-    background: rgba(99, 102, 241, 0.18);
-
-    border-radius: 50%;
-
-    filter: blur(40px);
+#quizResult{
+    margin-top:15px;
+    font-weight:bold;
 }
 
-.hero h1 {
-    position: relative;
+/* AI */
 
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800;
-
-    letter-spacing: -1.5px;
-
-    margin-bottom: 8px;
+#doubtResult{
+    margin-top:15px;
+    padding:15px;
+    background:#eef2ff;
+    border-radius:10px;
 }
 
-.hero p {
-    position: relative;
+/* Footer */
 
-    max-width: 600px;
-
-    color: #cbd5e1;
+.dashboard-footer{
+    text-align:center;
+    padding:20px;
+    margin-top:20px;
 }
 
-/* =========================================
-   BUTTONS
-   ========================================= */
+/* Dark Mode */
 
-button,
-.btn {
-    border: none;
-    cursor: pointer;
-
-    font-family: inherit;
-    font-weight: 600;
-
-    border-radius: 12px;
-
-    padding: 11px 17px;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            var(--primary),
-            #4f46e5
-        );
-
-    box-shadow:
-        0 8px 25px rgba(79, 70, 229, 0.25);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease,
-        filter 0.2s ease;
+.dark-mode{
+    background:#111827;
+    color:white;
 }
 
-button:hover,
-.btn:hover {
-    transform: translateY(-2px);
-
-    box-shadow:
-        0 12px 35px rgba(79, 70, 229, 0.38);
-
-    filter: brightness(1.08);
+.dark-mode .section-card,
+.dark-mode .stat-card{
+    background:#1f2937;
+    color:white;
 }
 
-button:active,
-.btn:active {
-    transform: scale(0.97);
+.dark-mode input{
+    background:#374151;
+    color:white;
+    border:1px solid #555;
 }
 
-/* =========================================
-   STATS
-   ========================================= */
-
-.stats-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, 1fr);
-
-    gap: 16px;
-
-    margin: 22px 0;
-}
-
-.stat-card {
-    position: relative;
-    overflow: hidden;
-
-    padding: 22px;
-
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius);
-
-    box-shadow: var(--shadow);
-
-    backdrop-filter: blur(15px);
-
-    transition: 0.25s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-5px);
-
-    background: var(--card-hover);
-
-    border-color: rgba(129, 140, 248, 0.25);
-
-    box-shadow:
-        var(--shadow),
-        var(--glow);
-}
-
-.stat-card h3 {
-    color: var(--muted);
-
-    font-size: 13px;
-    font-weight: 600;
-
-    margin-bottom: 8px;
-}
-
-.stat-card .number {
-    font-size: 30px;
-    font-weight: 800;
-}
-
-.stat-card .icon {
-    float: right;
-
-    font-size: 23px;
-
-    opacity: 0.9;
-}
-
-/* =========================================
-   CONTENT GRID
-   ========================================= */
-
-.dashboard-grid {
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 1.5fr)
-        minmax(280px, 1fr);
-
-    gap: 20px;
-
-    margin-top: 20px;
-}
-
-/* =========================================
-   CARDS
-   ========================================= */
-
-.card {
-    background: var(--card);
-
-    border: 1px solid var(--border);
-
-    border-radius: var(--radius);
-
-    padding: 24px;
-
-    box-shadow: var(--shadow);
-
-    backdrop-filter: blur(16px);
-
-    transition: 0.25s ease;
-}
-
-.card:hover {
-    border-color: rgba(129, 140, 248, 0.2);
-}
-
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: 18px;
-}
-
-.card-title {
-    font-size: 17px;
-    font-weight: 700;
-}
-
-.card-description {
-    color: var(--muted);
-    font-size: 13px;
-}
-
-/* =========================================
-   FORM INPUTS
-   ========================================= */
-
-input,
-textarea,
-select {
-    width: 100%;
-
-    padding: 13px 14px;
-
-    margin-bottom: 13px;
-
-    color: white;
-
-    background: #0b1220;
-
-    border: 1px solid var(--border);
-
-    border-radius: 12px;
-
-    outline: none;
-
-    font-family: inherit;
-
-    transition: 0.2s ease;
-}
-
-input::placeholder,
-textarea::placeholder {
-    color: #64748b;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: var(--primary);
-
-    box-shadow:
-        0 0 0 3px rgba(99, 102, 241, 0.12);
-}
-
-textarea {
-    min-height: 110px;
-    resize: vertical;
-}
-
-/* =========================================
-   GOALS
-   ========================================= */
-
-.goal-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-
-    padding: 14px 0;
-
-    border-bottom: 1px solid var(--border);
-}
-
-.goal-item:last-child {
-    border-bottom: none;
-}
-
-.goal-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-
-    margin: 0;
-
-    accent-color: var(--primary);
-}
-
-.goal-item.completed {
-    opacity: 0.55;
-}
-
-.goal-item.completed span {
-    text-decoration: line-through;
-}
-
-/* =========================================
-   PROGRESS
-   ========================================= */
-
-.progress {
-    width: 100%;
-    height: 8px;
-
-    overflow: hidden;
-
-    background: #172033;
-
-    border-radius: 20px;
-
-    margin-top: 10px;
-}
-
-.progress-bar {
-    height: 100%;
-
-    border-radius: inherit;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--primary),
-            var(--blue)
-        );
-
-    box-shadow:
-        0 0 15px rgba(56, 189, 248, 0.35);
-
-    transition: width 0.8s ease;
-}
-
-/* =========================================
-   EXAM CARDS
-   ========================================= */
-
-.exam-card {
-    padding: 17px;
-
-    border: 1px solid var(--border);
-
-    border-radius: 15px;
-
-    background: rgba(15, 23, 42, 0.65);
-
-    margin-bottom: 12px;
-
-    transition: 0.25s ease;
-}
-
-.exam-card:hover {
-    transform: translateX(4px);
-
-    border-color: rgba(99, 102, 241, 0.35);
-}
-
-/* =========================================
-   QUIZ
-   ========================================= */
-
-.quiz-option {
-    display: block;
-
-    width: 100%;
-
-    padding: 13px 15px;
-
-    margin: 9px 0;
-
-    text-align: left;
-
-    background: #0b1220;
-
-    border: 1px solid var(--border);
-
-    color: #e2e8f0;
-
-    border-radius: 12px;
-
-    transition: 0.2s ease;
-}
-
-.quiz-option:hover {
-    border-color: var(--primary);
-
-    background: rgba(99, 102, 241, 0.10);
-}
-
-/* =========================================
-   AI ASSISTANT
-   ========================================= */
-
-.ai-card {
-    position: relative;
-    overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(99, 102, 241, 0.13),
-            rgba(56, 189, 248, 0.05)
-        );
-}
-
-.ai-card::after {
-    content: "✦";
-
-    position: absolute;
-
-    right: 25px;
-    top: 18px;
-
-    font-size: 35px;
-
-    color: var(--primary-light);
-
-    opacity: 0.25;
-
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-8px);
-    }
-}
-
-/* =========================================
-   MOBILE BOTTOM NAV
-   ========================================= */
-
-.mobile-nav {
-    display: none;
-}
-
-/* =========================================
-   ANIMATION
-   ========================================= */
-
-.card,
-.stat-card,
-.hero {
-    animation: fadeUp 0.5s ease both;
-}
-
-@keyframes fadeUp {
-
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* =========================================
-   TABLET
-   ========================================= */
-
-@media (max-width: 1000px) {
-
-    .sidebar {
-        width: 210px;
-    }
-
-    .main {
-        margin-left: 210px;
-        padding: 24px;
-    }
-
-    .stats-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* =========================================
-   MOBILE
-   ========================================= */
-
-@media (max-width: 700px) {
-
-    body {
-        padding-bottom: 75px;
-    }
-
-    .sidebar {
-        display: none;
-    }
-
-    .main {
-        margin-left: 0;
-
-        padding: 17px;
-    }
-
-    .topbar {
-        margin-bottom: 18px;
-    }
-
-    .page-title {
-        font-size: 21px;
-    }
-
-    .hero {
-        padding: 25px 21px;
-
-        border-radius: 22px;
-    }
-
-    .hero h1 {
-        font-size: 28px;
-    }
-
-    .stats-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap: 10px;
-
-        margin: 14px 0;
-    }
-
-    .stat-card {
-        padding: 17px;
-
-        border-radius: 16px;
-    }
-
-    .stat-card .number {
-        font-size: 25px;
-    }
-
-    .card {
-        padding: 18px;
-
-        border-radius: 17px;
-    }
-
-    .dashboard-grid {
-        gap: 14px;
-    }
-
-    .mobile-nav {
-        position: fixed;
-
-        display: flex;
-
-        left: 10px;
-        right: 10px;
-        bottom: 10px;
-
-        height: 62px;
-
-        align-items: center;
-        justify-content: space-around;
-
-        background:
-            rgba(12, 18, 31, 0.92);
-
-        border: 1px solid var(--border);
-
-        border-radius: 18px;
-
-        backdrop-filter: blur(20px);
-
-        box-shadow:
-            0 15px 40px rgba(0, 0, 0, 0.45);
-
-        z-index: 999;
-    }
-
-    .mobile-nav a {
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        gap: 2px;
-
-        color: #64748b;
-
-        font-size: 10px;
-
-        padding: 7px 10px;
-
-        border-radius: 10px;
-    }
-
-    .mobile-nav a.active {
-        color: var(--primary-light);
-
-        background:
-            rgba(99, 102, 241, 0.10);
-    }
-}
-
-/* =========================================
-   SMALL MOBILE
-   ========================================= */
-
-@media (max-width: 400px) {
-
-    .main {
-        padding: 13px;
-    }
-
-    .stats-grid {
-        gap: 8px;
-    }
-
-    .stat-card {
-        padding: 14px;
-    }
-
-    .stat-card .number {
-        font-size: 22px;
-    }
-
-    .hero h1 {
-        font-size: 25px;
-    }
+.dark-mode .exam-card{
+    background:#374151;
 }
