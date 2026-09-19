@@ -169,26 +169,40 @@ function generateQuiz() {
 
     quizResult.innerHTML = `
 
-    <h3>HTML Quiz</h3>
+    <h3>HTML & CSS Quiz</h3>
 
     <p>1. HTML stands for?</p>
-
     <input type="radio" name="q1" value="a">
     Hyper Text Markup Language<br>
-
     <input type="radio" name="q1" value="b">
     High Text Machine Language<br><br>
 
     <p>2. CSS is used for?</p>
-
     <input type="radio" name="q2" value="a">
     Styling Web Pages<br>
-
     <input type="radio" name="q2" value="b">
     Database<br><br>
 
+    <p>3. Which tag is used for image?</p>
+    <input type="radio" name="q3" value="a">
+    img<br>
+    <input type="radio" name="q3" value="b">
+    image<br><br>
+
+    <p>4. Which symbol is used for ID selector?</p>
+    <input type="radio" name="q4" value="a">
+    #<br>
+    <input type="radio" name="q4" value="b">
+    .<br><br>
+
+    <p>5. JavaScript is used for?</p>
+    <input type="radio" name="q5" value="a">
+    Interactivity<br>
+    <input type="radio" name="q5" value="b">
+    Database Storage<br><br>
+
     <button onclick="checkQuiz()">
-        Submit Quiz
+    Submit Quiz
     </button>
 
     <div id="quizScore"></div>
