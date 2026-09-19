@@ -294,3 +294,37 @@ function loadQuote(){
     }
 
 }
+const quotes = [
+
+    "Success starts with self-discipline.",
+
+    "Small progress is still progress.",
+
+    "Study hard today, shine tomorrow.",
+
+    "Dream big and work hard.",
+
+    "Consistency beats motivation."
+
+];
+
+function loadQuote(){
+
+    const randomIndex =
+        Math.floor(
+            Math.random() * quotes.length
+        );
+
+    const quoteElement =
+        document.getElementById(
+            "dailyQuote"
+        );
+
+    if(quoteElement){
+
+        quoteElement.innerText =
+            quotes[randomIndex];
+
+    }
+
+}
