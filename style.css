@@ -104,7 +104,7 @@ body{
 .stat-card:hover{
     transform:translateY(-5px);
 }
-
+    
 .stat-card h3{
     font-size:20px;
     margin-bottom:15px;
