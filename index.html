@@ -87,4 +87,808 @@
     ">
 
         <div style="font-size:12px;color:#64748b;">
-            STUD
+            STUDY STREAK
+        </div>
+
+        <div style="
+            font-size:24px;
+            font-weight:800;
+            margin-top:4px;
+        ">
+            🔥 <span id="sidebarStreak">0</span>
+        </div>
+
+        <div style="
+            font-size:11px;
+            color:#64748b;
+            margin-top:2px;
+        ">
+            days in a row
+        </div>
+
+    </div>
+
+</aside>
+
+
+<!-- =========================================
+     MAIN
+     ========================================= -->
+
+<main class="main">
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div>
+            <div class="page-title" id="pageTitle">
+                Dashboard
+            </div>
+
+            <div class="page-subtitle" id="todayDate">
+                Welcome back 👋
+            </div>
+        </div>
+
+        <div style="display:flex;gap:10px;align-items:center;">
+
+            <button
+                id="themeBtn"
+                type="button"
+                title="Toggle theme"
+                style="
+                    width:44px;
+                    height:44px;
+                    padding:0;
+                    border-radius:13px;
+                    background:#111827;
+                "
+            >
+                🌙
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         DASHBOARD PAGE
+         ========================================= -->
+
+    <section id="dashboardPage" class="page">
+
+        <!-- HERO -->
+
+        <div class="hero">
+
+            <div style="position:relative;z-index:2;">
+
+                <div style="
+                    font-size:13px;
+                    color:#a5b4fc;
+                    font-weight:700;
+                    margin-bottom:8px;
+                ">
+                    YOUR STUDY SPACE
+                </div>
+
+                <h1>
+                    Learn smarter.<br>
+                    Plan better.
+                </h1>
+
+                <p>
+                    Organize your goals, exams and subjects
+                    in one simple student workspace.
+                </p>
+
+                <div style="
+                    display:flex;
+                    gap:10px;
+                    flex-wrap:wrap;
+                    margin-top:22px;
+                ">
+
+                    <button onclick="showPage('goals')">
+                        + Add Goal
+                    </button>
+
+                    <button
+                        onclick="showPage('ai')"
+                        style="
+                            background:rgba(255,255,255,.08);
+                            border:1px solid rgba(255,255,255,.15);
+                            box-shadow:none;
+                        "
+                    >
+                        🤖 Ask AI
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <span class="icon">📚</span>
+
+                <h3>SUBJECTS</h3>
+
+                <div class="number" id="subjectCount">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="icon">🎯</span>
+
+                <h3>GOALS</h3>
+
+                <div class="number" id="goalCount">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="icon">📝</span>
+
+                <h3>EXAMS</h3>
+
+                <div class="number" id="examCount">
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <span class="icon">🔥</span>
+
+                <h3>STREAK</h3>
+
+                <div class="number" id="streakCount">
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DASHBOARD GRID -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- TODAY'S STUDY -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <div class="card-title">
+                            ⚡ Today's Focus
+                        </div>
+
+                        <div class="card-description">
+                            Keep your study day productive
+                        </div>
+                    </div>
+
+                    <button
+                        onclick="showPage('goals')"
+                        style="
+                            padding:8px 12px;
+                            font-size:12px;
+                        "
+                    >
+                        View Goals
+                    </button>
+
+                </div>
+
+
+                <div id="dashboardGoals">
+
+                    <div style="
+                        text-align:center;
+                        padding:25px 10px;
+                        color:#64748b;
+                    ">
+                        No goals added yet.<br>
+                        Create your first study goal.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- UPCOMING EXAMS -->
+
+            <div class="card">
+
+                <div class="card-header">
+
+                    <div>
+                        <div class="card-title">
+                            📅 Upcoming Exams
+                        </div>
+
+                        <div class="card-description">
+                            Stay prepared
+                        </div>
+                    </div>
+
+                    <button
+                        onclick="showPage('exams')"
+                        style="
+                            padding:8px 12px;
+                            font-size:12px;
+                        "
+                    >
+                        View All
+                    </button>
+
+                </div>
+
+
+                <div id="dashboardExams">
+
+                    <div style="
+                        text-align:center;
+                        padding:25px 10px;
+                        color:#64748b;
+                    ">
+                        No upcoming exams.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="card" style="margin-top:20px;">
+
+            <div class="card-header">
+
+                <div>
+                    <div class="card-title">
+                        📊 Study Progress
+                    </div>
+
+                    <div class="card-description">
+                        Your overall goal completion
+                    </div>
+                </div>
+
+                <strong id="progressText">
+                    0%
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                    style="width:0%"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================================
+         GOALS PAGE
+         ========================================= -->
+
+    <section id="goalsPage" class="page" style="display:none;">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+                    <div class="card-title">
+                        🎯 Study Goals
+                    </div>
+
+                    <div class="card-description">
+                        Create small goals and complete them step by step.
+                    </div>
+                </div>
+
+                <div id="goalProgressText">
+                    0 / 0
+                </div>
+
+            </div>
+
+
+            <form id="goalForm">
+
+                <input
+                    type="text"
+                    id="goalInput"
+                    placeholder="Example: Complete JavaScript arrays"
+                    required
+                >
+
+                <select id="goalPriority">
+
+                    <option value="High">
+                        High Priority
+                    </option>
+
+                    <option value="Medium" selected>
+                        Medium Priority
+                    </option>
+
+                    <option value="Low">
+                        Low Priority
+                    </option>
+
+                </select>
+
+                <button type="submit">
+                    + Create Goal
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div
+            class="card"
+            style="margin-top:20px;"
+        >
+
+            <div class="card-header">
+
+                <div class="card-title">
+                    Your Goals
+                </div>
+
+            </div>
+
+            <div id="goalsList"></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         EXAMS PAGE
+         ========================================= -->
+
+    <section id="examsPage" class="page" style="display:none;">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+                    <div class="card-title">
+                        📝 Exam Planner
+                    </div>
+
+                    <div class="card-description">
+                        Keep your upcoming exams organized.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <form id="examForm">
+
+                <input
+                    type="text"
+                    id="examName"
+                    placeholder="Exam name"
+                    required
+                >
+
+                <input
+                    type="date"
+                    id="examDate"
+                    required
+                >
+
+                <input
+                    type="time"
+                    id="examTime"
+                >
+
+                <input
+                    type="text"
+                    id="examSubject"
+                    placeholder="Subject"
+                >
+
+                <button type="submit">
+                    + Add Exam
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div
+            class="card"
+            style="margin-top:20px;"
+        >
+
+            <div class="card-header">
+
+                <div class="card-title">
+                    Upcoming Exams
+                </div>
+
+            </div>
+
+            <div id="examsList"></div>
+
+        </div>
+
+
+        <!-- QUESTION BUILDER -->
+
+        <div
+            class="card"
+            style="margin-top:20px;"
+        >
+
+            <div class="card-header">
+
+                <div>
+
+                    <div class="card-title">
+                        🧩 Question Builder
+                    </div>
+
+                    <div class="card-description">
+                        Create practice questions for revision.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <select id="questionType">
+
+                <option value="MCQ">
+                    Multiple Choice
+                </option>
+
+                <option value="Short">
+                    Short Answer
+                </option>
+
+                <option value="Long">
+                    Long Answer
+                </option>
+
+            </select>
+
+
+            <input
+                type="text"
+                id="questionText"
+                placeholder="Enter your question"
+            >
+
+
+            <div id="mcqFields">
+
+                <input
+                    type="text"
+                    id="optionA"
+                    placeholder="Option A"
+                >
+
+                <input
+                    type="text"
+                    id="optionB"
+                    placeholder="Option B"
+                >
+
+                <input
+                    type="text"
+                    id="optionC"
+                    placeholder="Option C"
+                >
+
+                <input
+                    type="text"
+                    id="optionD"
+                    placeholder="Option D"
+                >
+
+                <select id="correctAnswer">
+
+                    <option value="A">
+                        Correct Answer: A
+                    </option>
+
+                    <option value="B">
+                        Correct Answer: B
+                    </option>
+
+                    <option value="C">
+                        Correct Answer: C
+                    </option>
+
+                    <option value="D">
+                        Correct Answer: D
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <button id="addQuestionBtn" type="button">
+                + Add Question
+            </button>
+
+
+            <div
+                id="questionsList"
+                style="margin-top:20px;"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         SUBJECTS PAGE
+         ========================================= -->
+
+    <section id="subjectsPage" class="page" style="display:none;">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <div class="card-title">
+                        📚 My Subjects
+                    </div>
+
+                    <div class="card-description">
+                        Add the subjects you are currently studying.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <form id="subjectForm">
+
+                <input
+                    type="text"
+                    id="subjectInput"
+                    placeholder="Example: JavaScript"
+                    required
+                >
+
+                <button type="submit">
+                    + Add Subject
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div
+            class="card"
+            style="margin-top:20px;"
+        >
+
+            <div class="card-header">
+
+                <div class="card-title">
+                    Your Subjects
+                </div>
+
+            </div>
+
+            <div
+                id="subjectsList"
+                style="
+                    display:grid;
+                    grid-template-columns:
+                    repeat(auto-fit,minmax(220px,1fr));
+                    gap:14px;
+                "
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         QUIZ PAGE
+         ========================================= -->
+
+    <section id="quizPage" class="page" style="display:none;">
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <div class="card-title">
+                        🧠 Quick Quiz
+                    </div>
+
+                    <div class="card-description">
+                        Test your knowledge.
+                    </div>
+
+                </div>
+
+                <div id="quizScore">
+                    Score: 0
+                </div>
+
+            </div>
+
+
+            <div id="quizArea">
+
+                <h3 style="margin-bottom:16px;">
+                    What does HTML stand for?
+                </h3>
+
+
+                <button
+                    class="quiz-option"
+                    onclick="checkQuiz('wrong')"
+                >
+                    A. High Text Machine Language
+                </button>
+
+
+                <button
+                    class="quiz-option"
+                    onclick="checkQuiz('correct')"
+                >
+                    B. HyperText Markup Language
+                </button>
+
+
+                <button
+                    class="quiz-option"
+                    onclick="checkQuiz('wrong')"
+                >
+                    C. Hyper Tool Multi Language
+                </button>
+
+
+                <button
+                    class="quiz-option"
+                    onclick="checkQuiz('wrong')"
+                >
+                    D. Home Text Markup Language
+                </button>
+
+
+                <div
+                    id="quizResult"
+                    style="
+                        margin-top:18px;
+                        font-weight:700;
+                    "
+                ></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         AI PAGE
+         ========================================= -->
+
+    <section id="aiPage" class="page" style="display:none;">
+
+        <div class="card ai-card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <div class="card-title">
+                        🤖 AI Study Assistant
+                    </div>
+
+                    <div class="card-description">
+                        Ask a question, get an explanation or generate study ideas.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <textarea
+                id="aiInput"
+                placeholder="Example: Explain JavaScript functions in simple words..."
+            ></textarea>
+
+
+            <div style="
+                display:flex;
+                gap:9px;
+                flex-wrap:wrap;
+            ">
+
+                <button onclick="askAI()">
+                    ✨ Ask AI
+                </button>
+
+                <button
+                    onclick="aiExample('Explain this topic in simple words')"
+                    style="
+                        background:#111827;
+                        box-shadow:none;
+                    "
+                >
+                    Explain
+                </button>
+
+                <button
+                    onclick="aiExample('Give me 5 quiz questions')"
+                    style="
+                        background:#111827;
+                        box-shadow:none;
+                    "
+                >
+                    Quiz Me
+                </button>
+
+                <button
+                    onclick="aiExample('Give
