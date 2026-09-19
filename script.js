@@ -231,3 +231,31 @@ function updateProgressBar(){
         percent + "%";
 
 }
+function updateTodayDate(){
+
+    const today =
+        new Date();
+
+    const formattedDate =
+        today.toLocaleDateString(
+            "en-IN",
+            {
+                day:"2-digit",
+                month:"short",
+                year:"numeric"
+            }
+        );
+
+    const dateElement =
+        document.getElementById(
+            "todayDate"
+        );
+
+    if(dateElement){
+
+        dateElement.innerText =
+            formattedDate;
+
+    }
+
+}
