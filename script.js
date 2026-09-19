@@ -375,3 +375,32 @@ window.onload = function () {
     loadStudentName();
 
 };
+/* Mobile Fix */
+
+@media (max-width:768px){
+
+    .dashboard-header{
+        flex-direction:column;
+        text-align:center;
+        gap:20px;
+    }
+
+    .header-left{
+        flex-direction:column;
+    }
+
+    .header-right{
+        width:100%;
+        justify-content:center;
+    }
+
+    .student-badge{
+        font-size:14px;
+        padding:10px 15px;
+    }
+
+    .welcome-banner h2{
+        font-size:32px;
+    }
+
+}
