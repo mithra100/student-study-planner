@@ -1,248 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Student Study Planner</title>
-
-    <!-- CSS Connection -->
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <!-- Header -->
-        <header class="dashboard-header">
-<button id="darkModeBtn" onclick="toggleDarkMode()">
-    🌙 Dark Mode
-</button>
-            <div>
-                <p class="welcome-text">Welcome back 👋</p>
-                <h1>📚 Student Study Planner</h1>
-                <p>Plan your studies. Track your progress. Learn smarter.</p>
-            </div>
-        </header>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div>
+            <h1>📚 Student Study Planner</h1>
+            <p>Plan • Learn • Practice • Improve</p>
+        </div>
 
+        <button id="darkModeBtn" onclick="toggleDarkMode()">
+            🌙 Dark Mode
+        </button>
+    </header>
 
-        <!-- Statistics -->
-        <section class="stats-section">
+    <!-- Statistics -->
+    <section class="stats-section">
 
-            <div class="stat-card">
-                <span>📋</span>
-                <h3>Total Tasks</h3>
-                <strong id="totalTasks">0</strong>
-            </div>
+        <div class="stat-card">
+            <h3>📋 Total Tasks</h3>
+            <strong id="totalTasks">0</strong>
+        </div>
 
-            <div class="stat-card">
-                <span>⏳</span>
-                <h3>Pending Tasks</h3>
-                <strong id="pendingTasks">0</strong>
-            </div>
+        <div class="stat-card">
+            <h3>⏳ Pending</h3>
+            <strong id="pendingTasks">0</strong>
+        </div>
 
-            <div class="stat-card">
-                <span>✅</span>
-                <h3>Completed</h3>
-                <strong id="completedTasks">0</strong>
-            </div>
-<div class="stat-card">
-    <span>📈</span>
-    <h3>Progress</h3>
-    <strong id="progressPercent">0%</strong>
+        <div class="stat-card">
+            <h3>✅ Completed</h3>
+            <strong id="completedTasks">0</strong>
+        </div>
+
+        <div class="stat-card">
+            <h3>📈 Progress</h3>
+            <strong id="progressPercent">0%</strong>
+        </div>
+
+    </section>
+
+    <!-- Add Task -->
+    <section class="section-card">
+
+        <h2>➕ Add New Task</h2>
+
+        <input type="text" id="subject" placeholder="Subject Name">
+
+        <input type="text" id="topic" placeholder="Study Topic">
+
+        <input type="date" id="date">
+
+        <button onclick="addTask()">
+            Add Task
+        </button>
+
+    </section>
+
+    <!-- Task List -->
+    <section class="section-card">
+
+        <h2>📋 My Tasks</h2>
+
+        <ul id="taskList"></ul>
+
+    </section>
+
+    <!-- Completed Tasks -->
+    <section class="section-card">
+
+        <h2>✅ Completed Tasks</h2>
+
+        <ul id="completedList"></ul>
+
+    </section>
+
+    <!-- Upcoming Exams -->
+    <section class="section-card">
+
+        <h2>📅 Upcoming Exams</h2>
+
+        <div class="exam-card">
+            <h3>🧮 Maths Test</h3>
+            <p>25 October 2026</p>
+        </div>
+
+        <div class="exam-card">
+            <h3>🔬 Science Exam</h3>
+            <p>30 October 2026</p>
+        </div>
+
+    </section>
+
+    <!-- Study Goals -->
+    <section class="section-card">
+
+        <h2>🎯 Study Goals</h2>
+
+        <ul class="goal-list">
+            <li>📘 Complete Maths Chapter</li>
+            <li>⚡ Revise Physics Notes</li>
+            <li>📝 Practice English Grammar</li>
+        </ul>
+
+    </section>
+
+    <!-- Quiz -->
+    <section class="section-card">
+
+        <h2>🧠 Practice Quiz</h2>
+
+        <input type="text" id="quizSubject" placeholder="Enter Subject">
+
+        <button onclick="generateQuiz()">
+            Generate Quiz
+        </button>
+
+        <div id="quizResult"></div>
+
+    </section>
+
+    <!-- AI Assistant -->
+    <section class="section-card">
+
+        <h2>🤖 AI Assistant</h2>
+
+        <input type="text" id="doubtInput" placeholder="Ask your doubt">
+
+        <button onclick="solveDoubt()">
+            Get Answer
+        </button>
+
+        <div id="doubtResult"></div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+
+        <p>🎓 Student Study Planner</p>
+
+    </footer>
+
 </div>
 
-        </section>
-
-
-        <!-- Add New Task -->
-        <section class="section-card">
-
-            <h2>➕ Add New Task</h2>
-
-            <p class="section-text">
-                Add your subject and study topic to create a task.
-            </p>
-
-            <input
-                type="text"
-                id="subject"
-                placeholder="Enter Subject Name">
-
-            <input
-                type="text"
-                id="topic"
-                placeholder="Enter Study Topic">
-
-            <input
-                type="date"
-                id="date">
-
-            <button onclick="addTask()">
-                ➕ Add Task
-            </button>
-
-        </section>
-
-
-        <!-- Task List -->
-        <section class="section-card">
-
-            <h2>📋 My Study Tasks</h2>
-
-            <ul id="taskList"></ul>
-
-        </section>
-
-
-        <!-- Completed Tasks -->
-        <section class="section-card">
-
-            <h2>✅ Completed Tasks</h2>
-
-            <ul id="completedList"></ul>
-
-        </section>
-
-
-        <!-- Upcoming Exams -->
-        <section class="section-card">
-
-            <h2>📅 Upcoming Exams</h2>
-
-            <div class="exam-card">
-                <h3>🧮 Maths Test</h3>
-                <p>25 August 2026</p>
-            </div>
-
-            <div class="exam-card">
-                <h3>🔬 Science Exam</h3>
-                <p>30 August 2026</p>
-            </div>
-
-        </section>
-
-
-        <!-- Study Goals -->
-        <section class="section-card">
-
-            <h2>🎯 Study Goals</h2>
-
-            <ul class="goal-list">
-
-                <li>📘 Complete Maths Chapter 5</li>
-
-                <li>⚡ Revise Physics Notes</li>
-
-                <li>📝 Practice English Grammar</li>
-
-            </ul>
-
-        </section>
-
-
-        <!-- Practice Quiz -->
-        <section class="section-card">
-
-            <h2>🧠 Practice Quiz</h2>
-
-            <p class="section-text">
-                Test your knowledge and improve your preparation.
-            </p>
-
-            <input
-                type="text"
-                id="quizSubject"
-                placeholder="Enter Subject">
-
-            <input
-                type="text"
-                id="quizTopic"
-                placeholder="Enter Study Topic">
-
-            <button
-                type="button"
-                onclick="generateQuiz()">
-                🎯 Generate Quiz
-            </button>
-
-            <div id="quizResult"></div>
-
-        </section>
-
-
-        <!-- AI Assistant -->
-        <section class="section-card">
-
-            <h2>🤖 Ask AI Assistant</h2>
-
-            <p class="section-text">
-                Get study guidance for your subject and topic.
-            </p>
-
-            <input
-                type="text"
-                id="aiSubject"
-                placeholder="Enter Subject">
-
-            <input
-                type="text"
-                id="aiTopic"
-                placeholder="Enter Study Topic">
-
-            <button onclick="generateAIHelp()">
-                🤖 Ask AI Assistant
-            </button>
-
-            <div id="aiHelpResult"></div>
-
-        </section>
-
-
-        <!-- AI Doubt Solver -->
-        <section class="section-card">
-
-            <h2>💡 AI Doubt Solver</h2>
-
-            <p class="section-text">
-                Type your study doubt and get help.
-            </p>
-
-            <textarea
-                id="doubtInput"
-                placeholder="Ask your doubt here...">
-            </textarea>
-
-            <button onclick="solveDoubt()">
-                💡 Get Answer
-            </button>
-
-            <div id="doubtResult"></div>
-
-        </section>
-
-
-        <!-- Footer -->
-        <footer class="dashboard-footer">
-
-            <p>
-                🎓 Student Study Planner
-            </p>
-
-            <small>
-                Learn • Plan • Practice • Improve
-            </small>
-
-        </footer>
-
-    </div>
-
-
-    <!-- JavaScript Connection -->
-    <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
-
 </html>
