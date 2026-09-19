@@ -1,449 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Student Smart Planner</title>
 
+    <meta
+        name="description"
+        content="Student Smart Planner - Plan, Learn and Track your studies."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
+<!-- =========================================
+     SIDEBAR
+     ========================================= -->
 
-    <!-- HEADER -->
-    <header class="dashboard-header">
+<aside class="sidebar">
 
-        <div class="welcome-text">
-            👋 Welcome to your learning space
+    <div class="logo">
+        <div class="logo-icon">🎓</div>
+
+        <div>
+            <div>Smart Planner</div>
+            <small style="color:#64748b;font-weight:500;">
+                Student Workspace
+            </small>
         </div>
+    </div>
 
-        <h1>🎓 Student Smart Planner</h1>
+    <nav class="nav">
 
-        <p>Learn • Plan • Practice • Improve</p>
+        <a href="#" class="active" data-page="dashboard">
+            🏠
+            <span>Dashboard</span>
+        </a>
 
-    </header>
+        <a href="#" data-page="goals">
+            🎯
+            <span>Goals</span>
+        </a>
 
+        <a href="#" data-page="exams">
+            📝
+            <span>Exams</span>
+        </a>
 
-    <!-- NAVIGATION -->
-    <nav class="top-nav">
+        <a href="#" data-page="subjects">
+            📚
+            <span>Subjects</span>
+        </a>
 
-        <a href="#dashboard">🏠 Dashboard</a>
-        <a href="#ai">🤖 AI Assistant</a>
-        <a href="#goals">🎯 Goals</a>
-        <a href="#exams">📝 Exams</a>
-        <a href="#quiz">🧠 Quiz</a>
+        <a href="#" data-page="quiz">
+            🧠
+            <span>Quick Quiz</span>
+        </a>
 
-        <a href="#" onclick="toggleDarkMode(); return false;">
-            🌙 Dark Mode
+        <a href="#" data-page="ai">
+            🤖
+            <span>AI Assistant</span>
         </a>
 
     </nav>
 
-
-    <!-- STATISTICS -->
-    <section class="stats-section" id="dashboard">
-
-        <div class="stat-card">
-            <span>📚</span>
-            <h3>Subjects</h3>
-            <strong id="subjectCount">0</strong>
-        </div>
-
-        <div class="stat-card">
-            <span>🎯</span>
-            <h3>Goals</h3>
-            <strong id="goalCount">0</strong>
-        </div>
-
-        <div class="stat-card">
-            <span>📝</span>
-            <h3>Exams</h3>
-            <strong id="examCount">0</strong>
-        </div>
-
-        <div class="stat-card">
-            <span>🔥</span>
-            <h3>Study Streak</h3>
-            <strong>7 Days</strong>
-        </div>
-
-    </section>
-
-
-    <!-- AI ASSISTANT -->
-    <section class="section-card" id="ai">
-
-        <h2>🤖 AI Study Assistant</h2>
-
-        <p class="section-text">
-            Ask your study question or any doubt.
-        </p>
-
-        <textarea
-            id="aiQuestion"
-            placeholder="Example: Explain HTML in simple words...">
-        </textarea>
-
-        <button onclick="askAI()">
-            Ask Assistant
-        </button>
-
-        <div id="aiHelpResult"></div>
-
-    </section>
-
-
-    <!-- DOUBT SOLVER -->
-    <section class="section-card">
-
-        <h2>💡 Doubt Solver</h2>
-
-        <p class="section-text">
-            Write your doubt and get a simple explanation.
-        </p>
-
-        <textarea
-            id="doubtInput"
-            placeholder="Type your doubt here...">
-        </textarea>
-
-        <button onclick="solveDoubt()">
-            Solve My Doubt
-        </button>
-
-        <div id="doubtResult"></div>
-
-    </section>
-
-
-    <!-- GOALS -->
-    <section class="section-card" id="goals">
-
-        <h2>🎯 My Study Goals</h2>
-
-        <p class="section-text">
-            Add your daily learning goals.
-        </p>
-
-        <input
-            type="text"
-            id="goalInput"
-            placeholder="Example: Complete HTML practice">
-
-        <button onclick="addGoal()">
-            Add Goal
-        </button>
-
-        <ul id="goalList" class="goal-list"></ul>
-
-    </section>
-
-
-    <!-- EXAMS -->
-    <section class="section-card" id="exams">
-
-        <h2>📝 Create Your Exam</h2>
-
-        <p class="section-text">
-            Create any exam with your own details.
-        </p>
-
-
-        <!-- EXAM NAME -->
-        <input
-            type="text"
-            id="examName"
-            placeholder="Enter Exam Name">
-
-
-        <!-- SUBJECT -->
-        <input
-            type="text"
-            id="examSubject"
-            placeholder="Enter Subject">
-
-
-        <!-- DATE -->
-        <input
-            type="date"
-            id="examDate">
-
-
-        <!-- TIME -->
-        <input
-            type="time"
-            id="examTime">
-
-
-        <!-- TOTAL MARKS -->
-        <input
-            type="number"
-            id="examMarks"
-            placeholder="Enter Total Marks"
-            min="1">
-
-
-        <button onclick="createExam()">
-            Create Exam
-        </button>
-
-
-        <div id="examResult"></div>
-
-    </section>
-
-
-    <!-- QUESTION BUILDER -->
-    <section class="section-card" id="questionBuilder">
-
-        <h2>❓ Add Questions</h2>
-
-        <p class="section-text">
-            Add different types of questions to your exam.
-        </p>
-
-
-        <!-- QUESTION TYPE -->
-        <select id="examQuestionType">
-
-            <option value="">
-                -- Select Question Type --
-            </option>
-
-            <option value="mcq">
-                MCQ
-            </option>
-
-            <option value="short">
-                Short Answer
-            </option>
-
-            <option value="long">
-                Long Answer
-            </option>
-
-        </select>
-
-
-        <!-- QUESTION MARKS -->
-        <select id="examQuestionMarks">
-
-            <option value="">
-                -- Select Marks --
-            </option>
-
-            <option value="1">
-                1 Mark
-            </option>
-
-            <option value="2">
-                2 Marks
-            </option>
-
-            <option value="5">
-                5 Marks
-            </option>
-
-            <option value="8">
-                8 Marks
-            </option>
-
-        </select>
-
-
-        <!-- QUESTION TEXT -->
-        <textarea
-            id="examQuestionText"
-            placeholder="Enter your question..."
-            rows="4">
-        </textarea>
-
-
-        <!-- MCQ OPTIONS -->
-        <div id="mcqOptions" style="display: none;">
-
-            <input
-                type="text"
-                id="mcqOptionA"
-                placeholder="Option A">
-
-            <input
-                type="text"
-                id="mcqOptionB"
-                placeholder="Option B">
-
-            <input
-                type="text"
-                id="mcqOptionC"
-                placeholder="Option C">
-
-            <input
-                type="text"
-                id="mcqOptionD"
-                placeholder="Option D">
-
-
-            <!-- CORRECT ANSWER -->
-            <select id="correctOption">
-
-                <option value="">
-                    -- Select Correct Answer --
-                </option>
-
-                <option value="A">
-                    Option A
-                </option>
-
-                <option value="B">
-                    Option B
-                </option>
-
-                <option value="C">
-                    Option C
-                </option>
-
-                <option value="D">
-                    Option D
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- ADD QUESTION BUTTON -->
-        <button onclick="addExamQuestion()">
-            ➕ Add Question
-        </button>
-
-
-        <!-- QUESTION LIST -->
-        <div id="examQuestionList"></div>
-
-    </section>
-
-
-    <!-- STUDENT LEVEL -->
-    <section class="section-card">
-
-        <h2>🎓 Choose Your Learning Level</h2>
-
-        <p class="section-text">
-            Select your education level.
-        </p>
-
-        <select id="levelSelect">
-
-            <option value="">
-                -- Select Level --
-            </option>
-
-            <option value="school">
-                🏫 School Student
-            </option>
-
-            <option value="college">
-                🎓 College Student
-            </option>
-
-            <option value="other">
-                📚 Other Learning
-            </option>
-
-        </select>
-
-
-        <button onclick="selectLevel()">
-            Continue
-        </button>
-
-
-        <div id="levelResult"></div>
-
-    </section>
-
-
-    <!-- SUBJECT -->
-    <section class="section-card">
-
-        <h2>📚 Choose Your Subject</h2>
-
-        <p class="section-text">
-            Enter any subject you want to study.
-        </p>
-
-
-        <input
-            type="text"
-            id="subjectInput"
-            placeholder="Example: Mathematics">
-
-
-        <button onclick="addSubject()">
-            Add Subject
-        </button>
-
-
-        <div id="subjectResult"></div>
-
-    </section>
-
-
-    <!-- QUIZ -->
-    <section class="section-card" id="quiz">
-
-        <h2>🧠 Quick Quiz</h2>
-
-        <p class="section-text">
-            Test your basic knowledge.
-        </p>
-
-
-        <div class="exam-card">
-
-            <h3>Question</h3>
-
-            <p>
-                Which language is used to create the structure of a webpage?
-            </p>
-
-        </div>
-
-
-        <input
-            type="text"
-            id="quizAnswer"
-            placeholder="Enter your answer">
-
-
-        <button onclick="checkQuiz()">
-            Check Answer
-        </button>
-
-
-        <div id="quizResult"></div>
-
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer class="dashboard-footer">
-
-        <p>
-            🎓 Student Smart Planner | Learn smarter every day 🚀
-        </p>
-
-    </footer>
-
-</div>
-
-
-<!-- JAVASCRIPT -->
-<script src="script.js"></script>
-
-</body>
-</html>
+    <div style="
+        position:absolute;
+        bottom:25px;
+        left:18px;
+        right:18px;
+        padding:15px;
+        border:1px solid rgba(148,163,184,.12);
+        border-radius:15px;
+        background:rgba(15,23,42,.5);
+    ">
+
+        <div style="font-size:12px;color:#64748b;">
+            STUD
