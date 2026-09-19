@@ -265,3 +265,26 @@ button:hover{
     font-weight:bold;
     font-size:18px;
 }
+.welcome-banner{
+    background:linear-gradient(
+        135deg,
+        #4f46e5,
+        #7c3aed,
+        #9333ea
+    );
+    color:white;
+    padding:30px;
+    border-radius:25px;
+    margin-bottom:25px;
+    box-shadow:0 10px 25px rgba(79,70,229,0.25);
+}
+
+.welcome-banner h2{
+    margin-bottom:10px;
+    font-size:28px;
+}
+
+.welcome-banner p{
+    opacity:0.9;
+    line-height:1.6;
+}
