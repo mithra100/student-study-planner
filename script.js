@@ -178,3 +178,19 @@ function solveDoubt() {
 }
 
 renderTasks();
+window.onload = function () {
+
+    const studentName =
+        localStorage.getItem("studentName");
+
+    const welcome =
+        document.getElementById("welcomeUser");
+
+    if (studentName && welcome) {
+
+        welcome.innerHTML =
+            "👋 Welcome, " + studentName;
+
+    }
+
+};
