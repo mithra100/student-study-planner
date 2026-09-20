@@ -197,26 +197,21 @@
 
     <!-- Upcoming Exams -->
 
-<section class="section-card">
+<input type="text"
+id="examName"
+placeholder="Exam Name">
 
-    <h2>📅 Upcoming Exams</h2>
+<input type="date"
+id="examDate">
 
-    <input
-        type="text"
-        id="examName"
-        placeholder="Exam Name">
+<button onclick="addExam()">
+Add Exam
+</button>
 
-    <input
-        type="date"
-        id="examDate">
+<br><br>
 
-    <button onclick="addExam()">
-        Add Exam
-    </button>
+<ul id="examList"></ul>
 
-    <ul id="examList"></ul>
-
-</section>
 
     <!-- Study Goals -->
 
