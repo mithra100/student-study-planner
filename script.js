@@ -277,6 +277,59 @@ function generateQuiz() {
         <div id="quizScore"></div>
         `;
     }
+else if(subject === "maths"){
+
+    quizResult.innerHTML = `
+    <h3>Maths Quiz</h3>
+
+    <p>1. 5 + 5 = ?</p>
+
+    <input type="radio" name="q1" value="a"> 10<br>
+    <input type="radio" name="q1" value="b"> 15<br>
+    <input type="radio" name="q1" value="c"> 20<br>
+    <input type="radio" name="q1" value="d"> 25<br><br>
+
+    <p>2. 10 × 2 = ?</p>
+
+    <input type="radio" name="q2" value="a"> 15<br>
+    <input type="radio" name="q2" value="b"> 20<br>
+    <input type="radio" name="q2" value="c"> 25<br>
+    <input type="radio" name="q2" value="d"> 30<br><br>
+
+    <button onclick="checkMathsQuiz()">
+    Submit Quiz
+    </button>
+
+    <div id="quizScore"></div>
+    `;
+}
+
+else if(subject === "science"){
+
+    quizResult.innerHTML = `
+    <h3>Science Quiz</h3>
+
+    <p>1. Plants prepare food by?</p>
+
+    <input type="radio" name="q1" value="a"> Photosynthesis<br>
+    <input type="radio" name="q1" value="b"> Respiration<br>
+    <input type="radio" name="q1" value="c"> Digestion<br>
+    <input type="radio" name="q1" value="d"> Evaporation<br><br>
+
+    <p>2. Water formula is?</p>
+
+    <input type="radio" name="q2" value="a"> CO2<br>
+    <input type="radio" name="q2" value="b"> O2<br>
+    <input type="radio" name="q2" value="c"> H2O<br>
+    <input type="radio" name="q2" value="d"> N2<br><br>
+
+    <button onclick="checkScienceQuiz()">
+    Submit Quiz
+    </button>
+
+    <div id="quizScore"></div>
+    `;
+}
 
     else{
 
@@ -487,6 +540,32 @@ function checkEnglishQuiz(){
     if(q1 && q1.value === "a") score++;
 
     if(q2 && q2.value === "a") score++;
+
+    document.getElementById("quizScore").innerHTML =
+    "🎉 Score : " + score + "/2";
+}function checkMathsQuiz(){
+
+    let score = 0;
+
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = document.querySelector('input[name="q2"]:checked');
+
+    if(q1 && q1.value === "a") score++;
+    if(q2 && q2.value === "b") score++;
+
+    document.getElementById("quizScore").innerHTML =
+    "🎉 Score : " + score + "/2";
+}
+
+function checkScienceQuiz(){
+
+    let score = 0;
+
+    const q1 = document.querySelector('input[name="q1"]:checked');
+    const q2 = document.querySelector('input[name="q2"]:checked');
+
+    if(q1 && q1.value === "a") score++;
+    if(q2 && q2.value === "c") score++;
 
     document.getElementById("quizScore").innerHTML =
     "🎉 Score : " + score + "/2";
