@@ -162,53 +162,6 @@ function toggleDarkMode() {
 }
 
 /* Quiz */
-function generateQuiz() {
-
-    const quizResult =
-    document.getElementById("quizResult");
-
-    quizResult.innerHTML = `
-
-    <h3>HTML & CSS Quiz</h3>
-
-    <p>1. HTML stands for?</p>
-    <input type="radio" name="q1" value="a">
-    Hyper Text Markup Language<br>
-    <input type="radio" name="q1" value="b">
-    High Text Machine Language<br><br>
-
-    <p>2. CSS is used for?</p>
-    <input type="radio" name="q2" value="a">
-    Styling Web Pages<br>
-    <input type="radio" name="q2" value="b">
-    Database<br><br>
-
-    <p>3. Which tag is used for image?</p>
-    <input type="radio" name="q3" value="a">
-    img<br>
-    <input type="radio" name="q3" value="b">
-    image<br><br>
-
-    <p>4. Which symbol is used for ID selector?</p>
-    <input type="radio" name="q4" value="a">
-    #<br>
-    <input type="radio" name="q4" value="b">
-    .<br><br>
-
-    <p>5. JavaScript is used for?</p>
-    <input type="radio" name="q5" value="a">
-    Interactivity<br>
-    <input type="radio" name="q5" value="b">
-    Database Storage<br><br>
-
-    <button onclick="checkQuiz()">
-    Submit Quiz
-    </button>
-
-    <div id="quizScore"></div>
-
-    `;
-}
 
 /* AI Assistant */
 function solveDoubt() {
@@ -252,6 +205,86 @@ function solveDoubt() {
             "I understand your question. More AI features can be added later.";
     }
 }
+function generateQuiz() {
+
+    const subject =
+    document.getElementById("quizSubject")
+    .value
+    .toLowerCase();
+
+    const quizResult =
+    document.getElementById("quizResult");
+
+    if(subject === ""){
+
+        quizResult.innerHTML =
+        "Please enter a subject";
+
+        return;
+    }
+
+    if(subject === "tamil"){
+
+        quizResult.innerHTML = `
+        <h3>Tamil Quiz</h3>
+
+        <p>1. தமிழ் மொழி எதற்காக பயன்படுகிறது?</p>
+
+        <input type="radio" name="q1" value="a"> தொடர்பாடல்<br>
+        <input type="radio" name="q1" value="b"> கணக்கு<br>
+        <input type="radio" name="q1" value="c"> வேதியல்<br>
+        <input type="radio" name="q1" value="d"> இயற்பியல்<br><br>
+
+        <p>2. திருக்குறளை எழுதியவர்?</p>
+
+        <input type="radio" name="q2" value="a"> பாரதி<br>
+        <input type="radio" name="q2" value="b"> திருவள்ளுவர்<br>
+        <input type="radio" name="q2" value="c"> கம்பர்<br>
+        <input type="radio" name="q2" value="d"> அவ்வையார்<br><br>
+
+        <button onclick="checkTamilQuiz()">
+        Submit Quiz
+        </button>
+
+        <div id="quizScore"></div>
+        `;
+
+    }
+
+    else if(subject === "english"){
+
+        quizResult.innerHTML = `
+        <h3>English Quiz</h3>
+
+        <p>1. What is a noun?</p>
+
+        <input type="radio" name="q1" value="a"> Person Place Thing<br>
+        <input type="radio" name="q1" value="b"> Action Word<br>
+        <input type="radio" name="q1" value="c"> Adjective<br>
+        <input type="radio" name="q1" value="d"> Pronoun<br><br>
+
+        <p>2. Which is a verb?</p>
+
+        <input type="radio" name="q2" value="a"> Run<br>
+        <input type="radio" name="q2" value="b"> Table<br>
+        <input type="radio" name="q2" value="c"> Chair<br>
+        <input type="radio" name="q2" value="d"> School<br><br>
+
+        <button onclick="checkEnglishQuiz()">
+        Submit Quiz
+        </button>
+
+        <div id="quizScore"></div>
+        `;
+    }
+
+    else{
+
+        quizResult.innerHTML =
+        "<h3>Subject Not Added Yet</h3>";
+    }
+}
+
 
 /* Date */
 function updateTodayDate() {
@@ -439,4 +472,39 @@ function renderExams(){
 
     });
 
+}
+function checkTamilQuiz(){
+
+    let score = 0;
+
+    const q1 =
+    document.querySelector('input[name="q1"]:checked');
+
+    const q2 =
+    document.querySelector('input[name="q2"]:checked');
+
+    if(q1 && q1.value === "a") score++;
+
+    if(q2 && q2.value === "b") score++;
+
+    document.getElementById("quizScore").innerHTML =
+    "🎉 Score : " + score + "/2";
+}
+
+function checkEnglishQuiz(){
+
+    let score = 0;
+
+    const q1 =
+    document.querySelector('input[name="q1"]:checked');
+
+    const q2 =
+    document.querySelector('input[name="q2"]:checked');
+
+    if(q1 && q1.value === "a") score++;
+
+    if(q2 && q2.value === "a") score++;
+
+    document.getElementById("quizScore").innerHTML =
+    "🎉 Score : " + score + "/2";
 }
