@@ -2,124 +2,227 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Study Planner</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+
+    <title>Student OS</title>
+
+    <link rel="stylesheet"
+    href="style.css">
 </head>
+
 <body>
+
+<div class="sidebar">
+
+    <div class="sidebar-logo">
+        📚 Student OS
+    </div>
+
+    <ul class="sidebar-menu">
+
+        <li>
+            <a href="#dashboard">
+                📊 Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a href="#tasks">
+                📋 Tasks
+            </a>
+        </li>
+
+        <li>
+            <a href="#exams">
+                📅 Exams
+            </a>
+        </li>
+
+        <li>
+            <a href="#quiz">
+                🧠 Quiz
+            </a>
+        </li>
+
+        <li>
+            <a href="#ai">
+                🤖 AI Assistant
+            </a>
+        </li>
+
+        <li>
+            <a href="#goals">
+                🎯 Goals
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<div class="main-content">
 
 <div class="container">
 
-    <!-- Header -->
-    <header class="dashboard-header">
+<header
+class="dashboard-header"
+id="dashboard">
 
-        <div class="header-left">
+    <div class="header-left">
 
-            <div class="app-icon">
-                📚
-            </div>
+        <div class="app-icon">
+            📚
+        </div>
 
-            <div>
-                <h1>Student Study Planner</h1>
-                <p>Plan • Learn • Practice • Improve</p>
-                <p id="welcomeUser">👋 Welcome Student</p>
-            </div>
+        <div>
+
+            <h1>
+                Student Study Planner
+            </h1>
+
+            <p>
+                Plan • Learn • Practice
+                • Improve
+            </p>
+
+            <p id="welcomeUser">
+                👋 Welcome Student
+            </p>
 
         </div>
 
-        <div class="header-right">
+    </div>
 
-            <div class="student-badge">
-                🎓 Student
-            </div>
+    <div class="header-right">
 
-            <button
-                id="darkModeBtn"
-                onclick="toggleDarkMode()">
-                🌙
-            </button>
-
+        <div class="student-badge">
+            🎓 Student
         </div>
 
-    </header>
+        <button
+        id="darkModeBtn"
+        onclick="toggleDarkMode()">
 
-    <!-- Welcome Banner -->
+            🌙
 
-    <section class="welcome-banner">
+        </button>
 
-        <h2>🚀 Stay Focused, Keep Learning</h2>
+    </div>
 
-        <p>
-            Complete your tasks, prepare for exams,
-            and achieve your study goals.
-        </p>
+</header>
 
-    </section>
+<section class="welcome-banner">
 
-    <!-- Date -->
+    <h2>
+        🚀 Stay Focused,
+        Keep Learning
+    </h2>
 
-    <section class="section-card">
+    <p>
+        Complete your tasks,
+        prepare for exams,
+        and achieve your goals.
+    </p>
 
-        <h2>📅 Today's Date</h2>
+</section>
 
-        <p id="todayDate"></p>
+<section class="section-card">
 
-    </section>
+    <h2>
+        📅 Today's Date
+    </h2>
 
-    <!-- Motivation -->
+    <p id="todayDate"></p>
 
-    <section class="section-card">
+</section>
 
-        <h2>🔥 Daily Motivation</h2>
+<section class="section-card">
 
-        <p id="dailyQuote"></p>
+    <h2>
+        🔥 Daily Motivation
+    </h2>
 
-    </section>
+    <p id="dailyQuote"></p>
 
-    <!-- Progress -->
+</section>
 
-    <section class="section-card">
+<section class="section-card">
 
-        <h2>📈 Overall Progress</h2>
+    <h2>
+        📈 Overall Progress
+    </h2>
 
-        <div class="progress-container">
+    <div class="progress-container">
 
-            <div
-                class="progress-bar"
-                id="progressBar">
-            </div>
-
+        <div
+        class="progress-bar"
+        id="progressBar">
         </div>
 
-        <p id="progressText">0%</p>
+    </div>
 
-    </section>
+    <p id="progressText">
+        0%
+    </p>
 
-    <!-- Statistics -->
+</section>
 
-    <section class="stats-section">
+<section class="stats-section">
 
-        <div class="stat-card">
-            <h3>📋 Total Tasks</h3>
-            <strong id="totalTasks">0</strong>
-        </div>
+    <div class="stat-card">
 
-        <div class="stat-card">
-            <h3>⏳ Pending</h3>
-            <strong id="pendingTasks">0</strong>
-        </div>
+        <h3>
+            📋 Total Tasks
+        </h3>
 
-        <div class="stat-card">
-            <h3>✅ Completed</h3>
-            <strong id="completedTasks">0</strong>
-        </div>
+        <strong
+        id="totalTasks">
+        0
+        </strong>
 
-        <div class="stat-card">
-            <h3>📈 Progress</h3>
-            <strong id="progressPercent">0%</strong>
-        </div>
+    </div>
 
-    </section>
+    <div class="stat-card">
+
+        <h3>
+            ⏳ Pending
+        </h3>
+
+        <strong
+        id="pendingTasks">
+        0
+        </strong>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>
+            ✅ Completed
+        </h3>
+
+        <strong
+        id="completedTasks">
+        0
+        </strong>
+
+    </div>
+
+    <div class="stat-card">
+
+        <h3>
+            📈 Progress
+        </h3>
+
+        <strong
+        id="progressPercent">
+        0%
+        </strong>
+
+    </div>
+
+</section>
 <!-- Quick Actions -->
 
 <section class="quick-actions">
@@ -150,131 +253,223 @@
 
 </section>
 
-    <!-- Add Task -->
+<!-- Add Task -->
 
-    <section class="section-card">
+<section
+class="section-card"
+id="tasks">
 
-        <h2>➕ Add New Task</h2>
+    <h2>
+        ➕ Add New Task
+    </h2>
 
-        <input
-            type="text"
-            id="subject"
-            placeholder="Subject Name">
+    <input
+    type="text"
+    id="subject"
+    placeholder="Subject Name">
 
-        <input
-            type="text"
-            id="topic"
-            placeholder="Study Topic">
+    <input
+    type="text"
+    id="topic"
+    placeholder="Study Topic">
 
-        <input
-            type="date"
-            id="date">
+    <input
+    type="date"
+    id="date">
 
-        <button onclick="addTask()">
-            Add Task
-        </button>
+    <button
+    onclick="addTask()">
 
-    </section>
-    <!-- Task List -->
+        Add Task
 
-    <section class="section-card">
+    </button>
 
-        <h2>📋 My Tasks</h2>
+</section>
 
-        <ul id="taskList"></ul>
+<!-- Task List -->
 
-    </section>
+<section class="section-card">
 
-    <!-- Completed Tasks -->
+    <h2>
+        📋 My Tasks
+    </h2>
 
-    <section class="section-card">
+    <ul id="taskList">
+    </ul>
 
-        <h2>✅ Completed Tasks</h2>
+</section>
 
-        <ul id="completedList"></ul>
+<!-- Completed Tasks -->
 
-    </section>
+<section class="section-card">
 
-    <!-- Upcoming Exams -->
+    <h2>
+        ✅ Completed Tasks
+    </h2>
 
-<input type="text"
-id="examName"
-placeholder="Exam Name">
+    <ul id="completedList">
+    </ul>
 
-<input type="date"
-id="examDate">
+</section>
 
-<button onclick="addExam()">
-Add Exam
-</button>
+<!-- Exams -->
 
-<ul id="examList"></ul>
+<section
+class="section-card"
+id="exams">
 
+    <h2>
+        📝 Upcoming Exams
+    </h2>
 
-    <!-- Study Goals -->
+    <input
+    type="text"
+    id="examName"
+    placeholder="Exam Name">
 
-    <section class="section-card">
+    <input
+    type="date"
+    id="examDate">
 
-        <h2>🎯 Study Goals</h2>
+    <button
+    onclick="addExam()">
 
-        <ul class="goal-list">
+        Add Exam
 
-            <li>📘 Complete Maths Chapter</li>
+    </button>
 
-            <li>⚡ Revise Physics Notes</li>
+    <ul id="examList">
+    </ul>
 
-            <li>📝 Practice English Grammar</li>
+</section>
 
-        </ul>
+<!-- Study Goals -->
 
-    </section>
+<section
+class="section-card"
+id="goals">
 
-    <!-- Quiz -->
+    <h2>
+        🎯 Study Goals
+    </h2>
 
-    <section class="section-card">
+    <ul class="goal-list">
 
-        <h2>🧠 Practice Quiz</h2>
+        <li>
+            📘 Complete Maths Chapter
+        </li>
 
-        <input
-            type="text"
-            id="quizSubject"
-            placeholder="Enter Subject">
+        <li>
+            ⚡ Revise Physics Notes
+        </li>
 
-        <button onclick="generateQuiz()">
-            Generate Quiz
-        </button>
+        <li>
+            📝 Practice English Grammar
+        </li>
 
-        <div id="quizResult"></div>
+        <li>
+            🚀 Complete Daily Tasks
+        </li>
 
-    </section>
+        <li>
+            🎯 Improve Coding Skills
+        </li>
 
-    <!-- AI Assistant -->
+    </ul>
 
-    <section class="section-card">
+</section>
 
-        <h2>🤖 AI Assistant</h2>
+<!-- Quiz -->
 
-        <input
-            type="text"
-            id="doubtInput"
-            placeholder="Ask your doubt">
+<section
+class="section-card"
+id="quiz">
 
-        <button onclick="solveDoubt()">
-            Get Answer
-        </button>
+    <h2>
+        🧠 Practice Quiz
+    </h2>
 
-        <div id="doubtResult"></div>
+    <input
+    type="text"
+    id="quizSubject"
+    placeholder="Enter Subject">
 
-    </section>
+    <button
+    onclick="generateQuiz()">
 
-    <!-- Footer -->
+        Generate Quiz
 
-    <footer class="dashboard-footer">
+    </button>
 
-        <p>🎓 Student Study Planner</p>
+    <div id="quizResult">
+    </div>
 
-    </footer>
+</section>
+<!-- AI Assistant -->
 
+<section
+class="section-card"
+id="ai">
+
+    <h2>
+        🤖 AI Assistant
+    </h2>
+
+    <input
+    type="text"
+    id="doubtInput"
+    placeholder="Ask your doubt">
+
+    <button
+    onclick="solveDoubt()">
+
+        Get Answer
+
+    </button>
+
+    <div id="doubtResult">
+    </div>
+
+</section>
+
+<!-- Notes Section -->
+
+<section class="section-card">
+
+    <h2>
+        📝 Quick Notes
+    </h2>
+
+    <textarea
+    id="notes"
+    placeholder="Write your notes here..."
+    style="
+    width:100%;
+    min-height:150px;
+    padding:15px;
+    border-radius:15px;
+    border:none;
+    background:#f3f4f6;
+    resize:vertical;">
+    </textarea>
+
+</section>
+
+<!-- Footer -->
+
+<footer class="dashboard-footer">
+
+    <h3>
+        🎓 Student OS
+    </h3>
+
+    <p>
+        Learn • Plan • Practice • Improve
+    </p>
+
+</footer>
+
+</div>
 </div>
 
 <script src="script.js"></script>
