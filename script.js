@@ -675,3 +675,44 @@ window.onload = function(){
     loadStudentName();
 
 };
+function saveNotes(){
+
+    const notes =
+    document.getElementById(
+    "notes"
+    ).value;
+
+    localStorage.setItem(
+    "studentNotes",
+    notes
+    );
+
+    alert(
+    "Notes Saved Successfully"
+    );
+
+}
+
+function loadNotes(){
+
+    const savedNotes =
+    localStorage.getItem(
+    "studentNotes"
+    );
+
+    const notesBox =
+    document.getElementById(
+    "notes"
+    );
+
+    if(
+        savedNotes &&
+        notesBox
+    ){
+
+        notesBox.value =
+        savedNotes;
+
+    }
+
+}
