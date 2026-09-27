@@ -673,6 +673,8 @@ window.onload = function(){
     updateTodayDate();
     loadQuote();
     loadStudentName();
+loadNotes();
+updateStreak();
 
 };
 function saveNotes(){
