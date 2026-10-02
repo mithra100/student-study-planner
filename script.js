@@ -42,6 +42,9 @@ function addTask(){
     const date =
     document.getElementById("date").value;
 
+    const priority =
+    document.getElementById("priority").value;
+
     if(subject === "" || topic === ""){
 
         alert("Enter Subject and Topic");
@@ -54,6 +57,7 @@ function addTask(){
         subject: subject,
         topic: topic,
         date: date,
+        priority: priority,
         completed: false
 
     });
@@ -65,6 +69,7 @@ function addTask(){
     document.getElementById("subject").value = "";
     document.getElementById("topic").value = "";
     document.getElementById("date").value = "";
+    document.getElementById("priority").value = "Medium";
 
 }
 
