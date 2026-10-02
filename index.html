@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Student Study Planner</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+AI Study Planner Login
+</title>
 
 <style>
 
@@ -20,49 +26,52 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(135deg,#eef2ff,#dbeafe);
+    background:linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed
+    );
     padding:20px;
 }
 
 .login-container{
     width:100%;
-    max-width:400px;
+    max-width:420px;
     background:white;
-    border-radius:35px;
+    border-radius:30px;
     padding:35px;
-    box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    box-shadow:0 15px 40px
+    rgba(0,0,0,0.15);
 }
 
 .logo{
     text-align:center;
-    font-size:80px;
+    font-size:70px;
     margin-bottom:15px;
 }
 
 h1{
     text-align:center;
     color:#111827;
-    font-size:34px;
     margin-bottom:10px;
-    font-weight:800;
 }
 
 .subtitle{
     text-align:center;
     color:#6b7280;
+    margin-bottom:25px;
     line-height:1.6;
-    margin-bottom:30px;
 }
 
 .input-box{
-    margin-bottom:18px;
+    margin-bottom:15px;
 }
 
 .input-box input{
     width:100%;
-    padding:16px;
+    padding:15px;
     border:none;
-    border-radius:16px;
+    border-radius:15px;
     background:#f3f4f6;
     font-size:16px;
     outline:none;
@@ -74,19 +83,18 @@ h1{
 
 .login-btn{
     width:100%;
-    padding:16px;
+    padding:15px;
     border:none;
-    border-radius:16px;
-    background:linear-gradient(135deg,#7c3aed,#4f46e5);
+    border-radius:15px;
+    background:linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed
+    );
     color:white;
-    font-size:18px;
+    font-size:16px;
     font-weight:bold;
     cursor:pointer;
-    margin-top:10px;
-}
-
-.login-btn:hover{
-    transform:translateY(-2px);
 }
 
 .divider{
@@ -97,68 +105,92 @@ h1{
 
 .guest-btn{
     width:100%;
-    padding:14px;
+    padding:15px;
     border:none;
-    border-radius:16px;
+    border-radius:15px;
     background:#eef2ff;
     color:#4f46e5;
-    font-weight:700;
+    font-weight:bold;
     cursor:pointer;
 }
 
 .quote{
     text-align:center;
-    margin-top:25px;
+    margin-top:20px;
     color:#6b7280;
-    font-size:14px;
-    line-height:1.5;
 }
 
 </style>
+
 </head>
 
 <body>
 
 <div class="login-container">
 
-    <div class="logo">📚</div>
+    <div class="logo">
+        🎓
+    </div>
 
-    <h1>Welcome Back 👋</h1>
+    <h1>
+        Welcome Back
+    </h1>
 
     <p class="subtitle">
-        Student Smart Planner<br>
+
+        AI Study Planner
+
+        <br>
+
         Plan • Learn • Practice • Achieve
+
     </p>
 
     <div class="input-box">
-        <input type="text"
+
+        <input
+        type="text"
         id="username"
-        placeholder="Student Name">
+        placeholder="Enter Student Name">
+
     </div>
 
     <div class="input-box">
-        <input type="password"
+
+        <input
+        type="password"
         id="password"
-        placeholder="Password">
+        placeholder="Enter Password">
+
     </div>
 
-    <button class="login-btn"
+    <button
+    class="login-btn"
     onclick="login()">
+
         Continue Learning 🚀
+
     </button>
 
     <div class="divider">
+
         ─── OR ───
+
     </div>
 
-    <button class="guest-btn"
+    <button
+    class="guest-btn"
     onclick="guestLogin()">
+
         Continue as Guest
+
     </button>
 
     <p class="quote">
-        Small progress every day<br>
+
+        Small progress every day
         adds up to big results.
+
     </p>
 
 </div>
@@ -168,35 +200,48 @@ h1{
 function login(){
 
     const username =
-    document.getElementById("username").value;
+    document.getElementById(
+    "username"
+    ).value;
 
     const password =
-    document.getElementById("password").value;
+    document.getElementById(
+    "password"
+    ).value;
 
-    if(username==="" || password===""){
+    if(
+    username === "" ||
+    password === ""
+    ){
 
-        alert("Enter Username and Password");
+        alert(
+        "Enter Username and Password"
+        );
+
         return;
+
     }
 
     localStorage.setItem(
-        "studentName",
-        username
+    "studentName",
+    username
     );
 
     window.location.href =
     "dashboard.html";
+
 }
 
 function guestLogin(){
 
     localStorage.setItem(
-        "studentName",
-        "Guest Student"
+    "studentName",
+    "Guest Student"
     );
 
     window.location.href =
     "dashboard.html";
+
 }
 
 </script>
