@@ -8,116 +8,166 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>
-AI Study Planner Login
-</title>
+<title>Student OS Login</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(
-    135deg,
-    #4f46e5,
-    #7c3aed
-    );
-    padding:20px;
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:linear-gradient(
+135deg,
+#4f46e5,
+#7c3aed
+);
+
+padding:20px;
+
 }
 
-.login-container{
-    width:100%;
-    max-width:420px;
-    background:white;
-    border-radius:30px;
-    padding:35px;
-    box-shadow:0 15px 40px
-    rgba(0,0,0,0.15);
+.login-card{
+
+width:100%;
+max-width:420px;
+
+background:white;
+
+padding:35px;
+
+border-radius:25px;
+
+box-shadow:
+0 15px 40px rgba(0,0,0,0.15);
+
+text-align:center;
+
 }
 
 .logo{
-    text-align:center;
-    font-size:70px;
-    margin-bottom:15px;
+
+font-size:70px;
+margin-bottom:15px;
+
 }
 
 h1{
-    text-align:center;
-    color:#111827;
-    margin-bottom:10px;
+
+color:#111827;
+margin-bottom:10px;
+
 }
 
 .subtitle{
-    text-align:center;
-    color:#6b7280;
-    margin-bottom:25px;
-    line-height:1.6;
+
+color:#6b7280;
+margin-bottom:25px;
+
 }
 
-.input-box{
-    margin-bottom:15px;
+input{
+
+width:100%;
+
+padding:15px;
+
+margin-bottom:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:#f3f4f6;
+
+font-size:16px;
+
+outline:none;
+
 }
 
-.input-box input{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:15px;
-    background:#f3f4f6;
-    font-size:16px;
-    outline:none;
-}
+input:focus{
 
-.input-box input:focus{
-    border:2px solid #7c3aed;
+border:2px solid #7c3aed;
+
 }
 
 .login-btn{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:15px;
-    background:linear-gradient(
-    135deg,
-    #4f46e5,
-    #7c3aed
-    );
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
 
-.divider{
-    text-align:center;
-    margin:20px 0;
-    color:#9ca3af;
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:linear-gradient(
+135deg,
+#4f46e5,
+#7c3aed
+);
+
+color:white;
+
+font-size:16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
 }
 
 .guest-btn{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:15px;
-    background:#eef2ff;
-    color:#4f46e5;
-    font-weight:bold;
-    cursor:pointer;
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:15px;
+
+background:#eef2ff;
+
+color:#4f46e5;
+
+font-weight:bold;
+
+cursor:pointer;
+
+margin-top:10px;
+
+}
+
+.divider{
+
+margin:20px 0;
+
+color:#9ca3af;
+
 }
 
 .quote{
-    text-align:center;
-    margin-top:20px;
-    color:#6b7280;
+
+margin-top:20px;
+
+color:#6b7280;
+
+font-size:14px;
+
 }
 
 </style>
@@ -126,72 +176,58 @@ h1{
 
 <body>
 
-<div class="login-container">
+<div class="login-card">
 
-    <div class="logo">
-        🎓
-    </div>
+<div class="logo">
+🎓
+</div>
 
-    <h1>
-        Welcome Back
-    </h1>
+<h1>
+Student OS
+</h1>
 
-    <p class="subtitle">
+<p class="subtitle">
+Plan • Learn • Practice • Improve
+</p>
 
-        AI Study Planner
+<input
+type="text"
+id="username"
+placeholder="Enter Student Name">
 
-        <br>
+<input
+type="password"
+id="password"
+placeholder="Enter Password">
 
-        Plan • Learn • Practice • Achieve
+<button
+class="login-btn"
+onclick="login()">
 
-    </p>
+Login
 
-    <div class="input-box">
+</button>
 
-        <input
-        type="text"
-        id="username"
-        placeholder="Enter Student Name">
+<div class="divider">
 
-    </div>
+──── OR ────
 
-    <div class="input-box">
+</div>
 
-        <input
-        type="password"
-        id="password"
-        placeholder="Enter Password">
+<button
+class="guest-btn"
+onclick="guestLogin()">
 
-    </div>
+Continue as Guest
 
-    <button
-    class="login-btn"
-    onclick="login()">
+</button>
 
-        Continue Learning 🚀
+<p class="quote">
 
-    </button>
+Small progress every day
+adds up to big results 🚀
 
-    <div class="divider">
-
-        ─── OR ───
-
-    </div>
-
-    <button
-    class="guest-btn"
-    onclick="guestLogin()">
-
-        Continue as Guest
-
-    </button>
-
-    <p class="quote">
-
-        Small progress every day
-        adds up to big results.
-
-    </p>
+</p>
 
 </div>
 
@@ -199,48 +235,48 @@ h1{
 
 function login(){
 
-    const username =
-    document.getElementById(
-    "username"
-    ).value;
+const username =
+document.getElementById(
+"username"
+).value;
 
-    const password =
-    document.getElementById(
-    "password"
-    ).value;
+const password =
+document.getElementById(
+"password"
+).value;
 
-    if(
-    username === "" ||
-    password === ""
-    ){
+if(
+username === "" ||
+password === ""
+){
 
-        alert(
-        "Enter Username and Password"
-        );
+alert(
+"Enter Username and Password"
+);
 
-        return;
+return;
 
-    }
+}
 
-    localStorage.setItem(
-    "studentName",
-    username
-    );
+localStorage.setItem(
+"studentName",
+username
+);
 
-    window.location.href =
-    "dashboard.html";
+window.location.href =
+"dashboard.html";
 
 }
 
 function guestLogin(){
 
-    localStorage.setItem(
-    "studentName",
-    "Guest Student"
-    );
+localStorage.setItem(
+"studentName",
+"Guest Student"
+);
 
-    window.location.href =
-    "dashboard.html";
+window.location.href =
+"dashboard.html";
 
 }
 
