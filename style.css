@@ -1,9 +1,3 @@
-
-
-/* =========================
-   GLOBAL STYLES
-========================= */
-
 *{
     margin:0;
     padding:0;
@@ -12,25 +6,17 @@
 }
 
 body{
-    background:#f3f4f6;
-    color:#111827;
+    background:#f5f7fb;
+    color:#1f2937;
 }
-
-/* =========================
-   SIDEBAR
-========================= */
 
 .sidebar{
     position:fixed;
     left:0;
     top:0;
-    width:260px;
+    width:240px;
     height:100vh;
-    background:linear-gradient(
-    180deg,
-    #4f46e5,
-    #7c3aed
-    );
+    background:#111827;
     padding:25px;
     overflow-y:auto;
 }
@@ -38,7 +24,7 @@ body{
 .sidebar-logo{
     color:white;
     font-size:24px;
-    font-weight:700;
+    font-weight:bold;
     text-align:center;
     margin-bottom:30px;
 }
@@ -56,89 +42,80 @@ body{
     text-decoration:none;
     color:white;
     padding:14px;
-    border-radius:14px;
+    border-radius:12px;
     transition:0.3s;
 }
 
 .sidebar-menu a:hover{
-    background:rgba(
-    255,255,255,0.2
-    );
+    background:#4f46e5;
 }
 
-/* =========================
-   MAIN CONTENT
-========================= */
-
 .main-content{
-    margin-left:260px;
-    width:calc(100% - 260px);
+    margin-left:240px;
+    padding:25px;
 }
 
 .container{
-    width:95%;
     max-width:1400px;
     margin:auto;
-    padding:25px;
 }
+/* =====================
+   HERO CARD
+===================== */
 
-/* =========================
-   HEADER
-========================= */
-
-.dashboard-header{
-    background:white;
-    padding:25px;
+.hero-card{
+    background:linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed
+    );
+    color:white;
+    padding:35px;
     border-radius:25px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
+    text-align:center;
     margin-bottom:25px;
     box-shadow:0 10px 25px
-    rgba(0,0,0,0.08);
+    rgba(79,70,229,0.25);
 }
 
-.header-left{
-    display:flex;
-    align-items:center;
-    gap:15px;
+.hero-logo{
+    font-size:70px;
+    margin-bottom:15px;
 }
 
-.app-icon{
-    width:70px;
-    height:70px;
+.hero-card h1{
+    font-size:34px;
+    margin-bottom:10px;
+}
+
+.hero-card p{
+    opacity:0.9;
+    margin-bottom:15px;
+}
+
+.productivity-badge{
+    display:inline-block;
+    background:rgba(255,255,255,0.2);
+    padding:10px 18px;
     border-radius:20px;
-    background:#eef2ff;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:32px;
-}
-
-.header-left h1{
-    font-size:30px;
-}
-
-.student-badge{
-    background:#eef2ff;
-    color:#4f46e5;
-    padding:12px 18px;
-    border-radius:14px;
+    margin-top:10px;
     font-weight:bold;
 }
 
 #darkModeBtn{
-    width:55px;
-    height:55px;
+    margin-top:15px;
+    width:60px;
+    height:60px;
     border:none;
     border-radius:15px;
+    background:white;
     cursor:pointer;
-    font-size:22px;
-    margin-left:10px;
+    font-size:24px;
 }
-/* =========================
-   STATS CARDS
-========================= */
+
+/* =====================
+   STATS SECTION
+===================== */
 
 .stats-section{
     display:grid;
@@ -151,148 +128,24 @@ body{
 .stat-card{
     background:white;
     padding:25px;
-    border-radius:22px;
-    text-align:center;
-    box-shadow:0 8px 20px
-    rgba(0,0,0,0.08);
-    transition:0.3s;
-}
-
-.stat-card:hover{
-    transform:translateY(-5px);
-}
-
-.stat-card h3{
-    margin-bottom:12px;
-    color:#6b7280;
-}
-
-.stat-card strong{
-    font-size:36px;
-    color:#4f46e5;
-}
-
-/* =========================
-   SECTION CARDS
-========================= */
-
-.section-card{
-    background:white;
-    padding:25px;
-    border-radius:22px;
-    margin-bottom:25px;
-    box-shadow:0 8px 20px
-    rgba(0,0,0,0.08);
-}
-
-.section-card h2{
-    margin-bottom:15px;
-    color:#111827;
-}
-
-/* =========================
-   INPUTS
-========================= */
-
-input,
-textarea{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:15px;
-    background:#f3f4f6;
-    margin-bottom:15px;
-    font-size:16px;
-    outline:none;
-}
-
-textarea{
-    min-height:150px;
-    resize:vertical;
-}
-
-/* =========================
-   BUTTONS
-========================= */
-
-button{
-    width:100%;
-    padding:15px;
-    border:none;
-    border-radius:15px;
-    background:linear-gradient(
-    135deg,
-    #4f46e5,
-    #7c3aed
-    );
-    color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-/* =========================
-   QUICK ACTIONS
-========================= */
-
-.quick-actions{
-    display:grid;
-    grid-template-columns:
-    repeat(2,1fr);
-    gap:20px;
-    margin-bottom:25px;
-}
-
-.action-card{
-    background:white;
-    padding:25px;
     border-radius:20px;
     text-align:center;
     box-shadow:0 8px 20px
     rgba(0,0,0,0.08);
-    transition:0.3s;
 }
 
-.action-card:hover{
-    transform:translateY(-5px);
-}
-
-.action-card span{
-    font-size:40px;
-    display:block;
+.stat-card h3{
     margin-bottom:10px;
 }
 
-.action-card h3{
+.stat-card strong{
+    font-size:32px;
     color:#4f46e5;
-    margin-bottom:8px;
-}
-/* =========================
-   TASKS & LISTS
-========================= */
-
-#taskList li,
-#completedList li,
-#examList li{
-    background:#f9fafb;
-    padding:15px;
-    border-radius:15px;
-    margin-bottom:12px;
-    list-style:none;
-    border-left:5px solid #4f46e5;
 }
 
-.goal-list{
-    padding-left:20px;
-}
-
-.goal-list li{
-    margin-bottom:12px;
-}
-
-/* =========================
+/* =====================
    PROGRESS BAR
-========================= */
+===================== */
 
 .progress-container{
     width:100%;
@@ -300,6 +153,7 @@ button{
     background:#e5e7eb;
     border-radius:20px;
     overflow:hidden;
+    margin-top:15px;
 }
 
 .progress-bar{
@@ -317,38 +171,129 @@ button{
     text-align:center;
     margin-top:10px;
     font-weight:bold;
-    font-size:18px;
+}
+/* =====================
+   SECTION CARDS
+===================== */
+
+.section-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    margin-bottom:25px;
+    box-shadow:0 8px 20px
+    rgba(0,0,0,0.08);
 }
 
-/* =========================
-   QUIZ & AI
-========================= */
+.section-card h2{
+    margin-bottom:15px;
+}
 
+/* =====================
+   INPUTS
+===================== */
+
+input,
+textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:15px;
+    border:none;
+    border-radius:15px;
+    background:#f3f4f6;
+    font-size:16px;
+    outline:none;
+}
+
+textarea{
+    min-height:150px;
+    resize:vertical;
+}
+
+/* =====================
+   BUTTONS
+===================== */
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:15px;
+    background:linear-gradient(
+    135deg,
+    #4f46e5,
+    #7c3aed
+    );
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* =====================
+   QUICK ACTIONS
+===================== */
+
+.quick-actions{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    margin-bottom:25px;
+}
+
+.action-card{
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 8px 20px
+    rgba(0,0,0,0.08);
+}
+
+.action-card span{
+    font-size:40px;
+    display:block;
+    margin-bottom:10px;
+}
+
+/* =====================
+   LISTS
+===================== */
+
+#taskList li,
+#completedList li,
+#examList li{
+    list-style:none;
+    background:#f8fafc;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:10px;
+}
+
+/* =====================
+   AI RESULT
+===================== */
+
+#doubtResult,
 #quizResult{
     margin-top:15px;
-    font-weight:bold;
-}
-
-#doubtResult{
-    margin-top:15px;
     padding:15px;
-    background:#eef2ff;
     border-radius:12px;
+    background:#eef2ff;
 }
 
-/* =========================
+/* =====================
    FOOTER
-========================= */
+===================== */
 
 .dashboard-footer{
     text-align:center;
     padding:25px;
-    color:#6b7280;
 }
 
-/* =========================
+/* =====================
    DARK MODE
-========================= */
+===================== */
 
 .dark-mode{
     background:#111827;
@@ -357,8 +302,7 @@ button{
 
 .dark-mode .section-card,
 .dark-mode .stat-card,
-.dark-mode .action-card,
-.dark-mode .dashboard-header{
+.dark-mode .action-card{
     background:#1f2937;
     color:white;
 }
@@ -375,18 +319,9 @@ button{
     background:#374151;
 }
 
-.dark-mode #doubtResult{
-    background:#374151;
-}
-
-.dark-mode .student-badge{
-    background:#374151;
-    color:white;
-}
-
-/* =========================
-   MOBILE RESPONSIVE
-========================= */
+/* =====================
+   MOBILE
+===================== */
 
 @media(max-width:768px){
 
@@ -397,25 +332,14 @@ button{
     }
 
     .main-content{
-        width:100%;
         margin-left:0;
     }
 
-    .dashboard-header{
-        flex-direction:column;
-        gap:15px;
-        text-align:center;
-    }
-
-    .header-left{
-        flex-direction:column;
-    }
-
-    .quick-actions{
+    .stats-section{
         grid-template-columns:1fr;
     }
 
-    .stats-section{
+    .quick-actions{
         grid-template-columns:1fr;
     }
 
