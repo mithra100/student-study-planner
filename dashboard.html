@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
 
-    <title>Student OS</title>
+<meta charset="UTF-8">
 
-    <link rel="stylesheet"
-    href="style.css">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>
+AI Study Planner
+</title>
+
+<link rel="stylesheet"
+href="style.css">
+
 </head>
 
 <body>
@@ -16,26 +22,40 @@
 <div class="sidebar">
 
     <div class="sidebar-logo">
-        📚 Student OS
+
+        🎓 AI Study Planner
+
     </div>
 
     <ul class="sidebar-menu">
 
         <li>
             <a href="#dashboard">
-                📊 Dashboard
+                🏠 Dashboard
             </a>
         </li>
 
         <li>
-            <a href="#tasks">
-                📋 Tasks
+            <a href="#addtask">
+                ➕ Add Task
+            </a>
+        </li>
+
+        <li>
+            <a href="#mytasks">
+                📋 My Tasks
+            </a>
+        </li>
+
+        <li>
+            <a href="#studyplan">
+                📚 Study Plan
             </a>
         </li>
 
         <li>
             <a href="#exams">
-                📅 Exams
+                📝 Exams
             </a>
         </li>
 
@@ -52,8 +72,14 @@
         </li>
 
         <li>
-            <a href="#goals">
-                🎯 Goals
+            <a href="#notes">
+                📒 Notes
+            </a>
+        </li>
+
+        <li>
+            <a href="#profile">
+                👤 Profile
             </a>
         </li>
 
@@ -72,22 +98,25 @@ id="dashboard">
     <div class="header-left">
 
         <div class="app-icon">
-            📚
+
+            🎓
+
         </div>
 
         <div>
 
             <h1>
-                Student Study Planner
+                AI Study Planner
             </h1>
 
             <p>
-                Plan • Learn • Practice
-                • Improve
+                Plan • Learn • Practice • Improve
             </p>
 
             <p id="welcomeUser">
+
                 👋 Welcome Student
+
             </p>
 
         </div>
@@ -97,7 +126,9 @@ id="dashboard">
     <div class="header-right">
 
         <div class="student-badge">
-            🎓 Student
+
+            🚀 Productivity Mode
+
         </div>
 
         <button
@@ -112,152 +143,52 @@ id="dashboard">
 
 </header>
 
-<section class="welcome-banner">
-
-    <h2>
-        🚀 Stay Focused,
-        Keep Learning
-    </h2>
-
-    <p>
-        Complete your tasks,
-        prepare for exams,
-        and achieve your goals.
-    </p>
-
-</section>
-
-<section class="section-card">
-
-    <h2>
-        📅 Today's Date
-    </h2>
-
-    <p id="todayDate"></p>
-
-</section>
-
-<section class="section-card">
-
-    <h2>
-        🔥 Daily Motivation
-    </h2>
-
-    <p id="dailyQuote"></p>
-
-</section>
-
-<section class="section-card">
-
-    <h2>
-        📈 Overall Progress
-    </h2>
-
-    <div class="progress-container">
-
-        <div
-        class="progress-bar"
-        id="progressBar">
-        </div>
-
-    </div>
-
-    <p id="progressText">
-        0%
-    </p>
-
-</section>
-
 <section class="stats-section">
 
     <div class="stat-card">
 
-        <h3>
-            📋 Total Tasks
-        </h3>
+        <h3>📋 Total Tasks</h3>
 
-        <strong
-        id="totalTasks">
-        0
+        <strong id="totalTasks">
+            0
         </strong>
 
     </div>
 
     <div class="stat-card">
 
-        <h3>
-            ⏳ Pending
-        </h3>
+        <h3>⏳ Pending</h3>
 
-        <strong
-        id="pendingTasks">
-        0
+        <strong id="pendingTasks">
+            0
         </strong>
 
     </div>
 
     <div class="stat-card">
 
-        <h3>
-            ✅ Completed
-        </h3>
+        <h3>✅ Completed</h3>
 
-        <strong
-        id="completedTasks">
-        0
+        <strong id="completedTasks">
+            0
         </strong>
 
     </div>
 
     <div class="stat-card">
 
-        <h3>
-            📈 Progress
-        </h3>
+        <h3>📈 Progress</h3>
 
-        <strong
-        id="progressPercent">
-        0%
+        <strong id="progressPercent">
+            0%
         </strong>
 
     </div>
 
 </section>
-<!-- Quick Actions -->
-
-<section class="quick-actions">
-
-    <div class="action-card">
-        <span>➕</span>
-        <h3>Add Task</h3>
-        <p>Create new study tasks</p>
-    </div>
-
-    <div class="action-card">
-        <span>📚</span>
-        <h3>Study Plan</h3>
-        <p>Manage study schedule</p>
-    </div>
-
-    <div class="action-card">
-        <span>🧠</span>
-        <h3>Quiz</h3>
-        <p>Practice and test skills</p>
-    </div>
-
-    <div class="action-card">
-        <span>🤖</span>
-        <h3>AI Assistant</h3>
-        <p>Ask doubts instantly</p>
-    </div>
-
-</section>
-
-<!-- Add Task -->
-
 <section
 class="section-card"
-id="tasks">
+id="addtask">
 
     <h2>
         ➕ Add New Task
@@ -286,9 +217,9 @@ id="tasks">
 
 </section>
 
-<!-- Task List -->
-
-<section class="section-card">
+<section
+class="section-card"
+id="mytasks">
 
     <h2>
         📋 My Tasks
@@ -298,8 +229,6 @@ id="tasks">
     </ul>
 
 </section>
-
-<!-- Completed Tasks -->
 
 <section class="section-card">
 
@@ -312,7 +241,33 @@ id="tasks">
 
 </section>
 
-<!-- Exams -->
+<section
+class="section-card"
+id="studyplan">
+
+    <h2>
+        📚 Weekly Study Plan
+    </h2>
+
+    <ul class="goal-list">
+
+        <li>📘 Monday - Coding Practice</li>
+
+        <li>📗 Tuesday - AI & DS</li>
+
+        <li>📙 Wednesday - Database</li>
+
+        <li>📕 Thursday - Web Development</li>
+
+        <li>📘 Friday - Project Work</li>
+
+        <li>📗 Saturday - Mock Test</li>
+
+        <li>📙 Sunday - Revision</li>
+
+    </ul>
+
+</section>
 
 <section
 class="section-card"
@@ -342,45 +297,6 @@ id="exams">
     </ul>
 
 </section>
-
-<!-- Study Goals -->
-
-<section
-class="section-card"
-id="goals">
-
-    <h2>
-        🎯 Study Goals
-    </h2>
-
-    <ul class="goal-list">
-
-        <li>
-            📘 Complete Maths Chapter
-        </li>
-
-        <li>
-            ⚡ Revise Physics Notes
-        </li>
-
-        <li>
-            📝 Practice English Grammar
-        </li>
-
-        <li>
-            🚀 Complete Daily Tasks
-        </li>
-
-        <li>
-            🎯 Improve Coding Skills
-        </li>
-
-    </ul>
-
-</section>
-
-<!-- Quiz -->
-
 <section
 class="section-card"
 id="quiz">
@@ -405,7 +321,6 @@ id="quiz">
     </div>
 
 </section>
-<!-- AI Assistant -->
 
 <section
 class="section-card"
@@ -432,9 +347,9 @@ id="ai">
 
 </section>
 
-<!-- Notes Section -->
-
-<section class="section-card">
+<section
+class="section-card"
+id="notes">
 
     <h2>
         📝 Quick Notes
@@ -442,32 +357,60 @@ id="ai">
 
     <textarea
     id="notes"
-    placeholder="Write your notes here..."
-    style="
-    width:100%;
-    min-height:150px;
-    padding:15px;
-    border-radius:15px;
-    border:none;
-    background:#f3f4f6;
-    resize:vertical;">
+    placeholder="Write your notes here...">
     </textarea>
 
-</section>
-<button onclick="saveNotes()">
-💾 Save Notes
-</button>
+    <button
+    onclick="saveNotes()">
 
-<!-- Footer -->
+        💾 Save Notes
+
+    </button>
+
+</section>
+
+<section
+class="section-card"
+id="profile">
+
+    <h2>
+        👤 Student Profile
+    </h2>
+
+    <ul class="goal-list">
+
+        <li>
+            👤 Name :
+            Mithra Saravanakumar
+        </li>
+
+        <li>
+            🎓 Course :
+            B.Sc AI & DS
+        </li>
+
+        <li>
+            🏫 College :
+            Kamadhenu Arts and Science College
+        </li>
+
+        <li>
+            📍 Location :
+            Erode
+        </li>
+
+    </ul>
+
+</section>
 
 <footer class="dashboard-footer">
 
     <h3>
-        🎓 Student OS
+        🎓 AI Study Planner
     </h3>
 
     <p>
-        Learn • Plan • Practice • Improve
+        Plan • Learn • Practice • Achieve
     </p>
 
 </footer>
