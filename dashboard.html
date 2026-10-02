@@ -8,9 +8,7 @@
 <meta name="viewport"
 content="width=device-width, initial-scale=1.0">
 
-<title>
-AI Study Planner
-</title>
+<title>Student OS</title>
 
 <link rel="stylesheet"
 href="style.css">
@@ -21,69 +19,29 @@ href="style.css">
 
 <div class="sidebar">
 
-    <div class="sidebar-logo">
+<div class="sidebar-logo">
+🎓 Student OS
+</div>
 
-        🎓 AI Study Planner
+<ul class="sidebar-menu">
 
-    </div>
+<li><a href="#dashboard">🏠 Dashboard</a></li>
 
-    <ul class="sidebar-menu">
+<li><a href="#tasks">➕ Add Task</a></li>
 
-        <li>
-            <a href="#dashboard">
-                🏠 Dashboard
-            </a>
-        </li>
+<li><a href="#mytasks">📋 My Tasks</a></li>
 
-        <li>
-            <a href="#addtask">
-                ➕ Add Task
-            </a>
-        </li>
+<li><a href="#exams">📝 Exams</a></li>
 
-        <li>
-            <a href="#mytasks">
-                📋 My Tasks
-            </a>
-        </li>
+<li><a href="#quiz">🧠 Quiz</a></li>
 
-        <li>
-            <a href="#studyplan">
-                📚 Study Plan
-            </a>
-        </li>
+<li><a href="#ai">🤖 AI Assistant</a></li>
 
-        <li>
-            <a href="#exams">
-                📝 Exams
-            </a>
-        </li>
+<li><a href="#notesSection">📝 Notes</a></li>
 
-        <li>
-            <a href="#quiz">
-                🧠 Quiz
-            </a>
-        </li>
+<li><a href="#profile">👤 Profile</a></li>
 
-        <li>
-            <a href="#ai">
-                🤖 AI Assistant
-            </a>
-        </li>
-
-        <li>
-            <a href="#notes">
-                📒 Notes
-            </a>
-        </li>
-
-        <li>
-            <a href="#profile">
-                👤 Profile
-            </a>
-        </li>
-
-    </ul>
+</ul>
 
 </div>
 
@@ -91,327 +49,318 @@ href="style.css">
 
 <div class="container">
 
-<header
-class="dashboard-header"
+<section
+class="hero-card"
 id="dashboard">
 
-    <div class="header-left">
+<div class="hero-logo">
+🎓
+</div>
 
-        <div class="app-icon">
+<h1>
+AI Study Planner
+</h1>
 
-            🎓
+<p>
+Plan • Learn • Practice • Improve
+</p>
 
-        </div>
+<h3 id="welcomeUser">
+👋 Welcome Student
+</h3>
 
-        <div>
+<div class="productivity-badge">
+🚀 Productivity Mode
+</div>
 
-            <h1>
-                AI Study Planner
-            </h1>
+<button
+id="darkModeBtn"
+onclick="toggleDarkMode()">
 
-            <p>
-                Plan • Learn • Practice • Improve
-            </p>
+🌙
 
-            <p id="welcomeUser">
+</button>
 
-                👋 Welcome Student
-
-            </p>
-
-        </div>
-
-    </div>
-
-    <div class="header-right">
-
-        <div class="student-badge">
-
-            🚀 Productivity Mode
-
-        </div>
-
-        <button
-        id="darkModeBtn"
-        onclick="toggleDarkMode()">
-
-            🌙
-
-        </button>
-
-    </div>
-
-</header>
+</section>
 
 <section class="stats-section">
 
-    <div class="stat-card">
+<div class="stat-card">
+<h3>📋 Total Tasks</h3>
+<strong id="totalTasks">0</strong>
+</div>
 
-        <h3>📋 Total Tasks</h3>
+<div class="stat-card">
+<h3>⏳ Pending</h3>
+<strong id="pendingTasks">0</strong>
+</div>
 
-        <strong id="totalTasks">
-            0
-        </strong>
+<div class="stat-card">
+<h3>✅ Completed</h3>
+<strong id="completedTasks">0</strong>
+</div>
 
-    </div>
-
-    <div class="stat-card">
-
-        <h3>⏳ Pending</h3>
-
-        <strong id="pendingTasks">
-            0
-        </strong>
-
-    </div>
-
-    <div class="stat-card">
-
-        <h3>✅ Completed</h3>
-
-        <strong id="completedTasks">
-            0
-        </strong>
-
-    </div>
-
-    <div class="stat-card">
-
-        <h3>📈 Progress</h3>
-
-        <strong id="progressPercent">
-            0%
-        </strong>
-
-    </div>
-
-</section>
-<section
-class="section-card"
-id="addtask">
-
-    <h2>
-        ➕ Add New Task
-    </h2>
-
-    <input
-    type="text"
-    id="subject"
-    placeholder="Subject Name">
-
-    <input
-    type="text"
-    id="topic"
-    placeholder="Study Topic">
-
-    <input
-    type="date"
-    id="date">
-
-    <button
-    onclick="addTask()">
-
-        Add Task
-
-    </button>
-
-</section>
-
-<section
-class="section-card"
-id="mytasks">
-
-    <h2>
-        📋 My Tasks
-    </h2>
-
-    <ul id="taskList">
-    </ul>
+<div class="stat-card">
+<h3>📈 Progress</h3>
+<strong id="progressPercent">0%</strong>
+</div>
 
 </section>
 
 <section class="section-card">
 
-    <h2>
-        ✅ Completed Tasks
-    </h2>
+<h2>
+📊 Overall Progress
+</h2>
 
-    <ul id="completedList">
-    </ul>
+<div class="progress-container">
+
+<div
+class="progress-bar"
+id="progressBar">
+</div>
+
+</div>
+
+<p id="progressText">
+0%
+</p>
 
 </section>
+<!-- QUICK ACTIONS -->
+
+<section class="quick-actions">
+
+<div class="action-card">
+<span>➕</span>
+<h3>Add Task</h3>
+<p>Create Study Tasks</p>
+</div>
+
+<div class="action-card">
+<span>📚</span>
+<h3>Study Plan</h3>
+<p>Manage Schedule</p>
+</div>
+
+<div class="action-card">
+<span>🧠</span>
+<h3>Quiz</h3>
+<p>Practice Questions</p>
+</div>
+
+<div class="action-card">
+<span>🤖</span>
+<h3>AI Assistant</h3>
+<p>Ask Doubts</p>
+</div>
+
+</section>
+
+<!-- ADD TASK -->
 
 <section
 class="section-card"
-id="studyplan">
+id="tasks">
 
-    <h2>
-        📚 Weekly Study Plan
-    </h2>
+<h2>
+➕ Add New Task
+</h2>
 
-    <ul class="goal-list">
+<input
+type="text"
+id="subject"
+placeholder="Subject Name">
 
-        <li>📘 Monday - Coding Practice</li>
+<input
+type="text"
+id="topic"
+placeholder="Study Topic">
 
-        <li>📗 Tuesday - AI & DS</li>
+<input
+type="date"
+id="date">
 
-        <li>📙 Wednesday - Database</li>
+<button
+onclick="addTask()">
 
-        <li>📕 Thursday - Web Development</li>
+Add Task
 
-        <li>📘 Friday - Project Work</li>
-
-        <li>📗 Saturday - Mock Test</li>
-
-        <li>📙 Sunday - Revision</li>
-
-    </ul>
+</button>
 
 </section>
+
+<!-- MY TASKS -->
+
+<section
+class="section-card"
+id="mytasks">
+
+<h2>
+📋 My Tasks
+</h2>
+
+<ul id="taskList">
+</ul>
+
+</section>
+
+<!-- COMPLETED TASKS -->
+
+<section class="section-card">
+
+<h2>
+✅ Completed Tasks
+</h2>
+
+<ul id="completedList">
+</ul>
+
+</section>
+<!-- EXAMS -->
 
 <section
 class="section-card"
 id="exams">
 
-    <h2>
-        📝 Upcoming Exams
-    </h2>
+<h2>
+📝 Upcoming Exams
+</h2>
 
-    <input
-    type="text"
-    id="examName"
-    placeholder="Exam Name">
+<input
+type="text"
+id="examName"
+placeholder="Exam Name">
 
-    <input
-    type="date"
-    id="examDate">
+<input
+type="date"
+id="examDate">
 
-    <button
-    onclick="addExam()">
+<button
+onclick="addExam()">
 
-        Add Exam
+Add Exam
 
-    </button>
+</button>
 
-    <ul id="examList">
-    </ul>
+<ul id="examList">
+</ul>
 
 </section>
+
+<!-- QUIZ -->
+
 <section
 class="section-card"
 id="quiz">
 
-    <h2>
-        🧠 Practice Quiz
-    </h2>
+<h2>
+🧠 Practice Quiz
+</h2>
 
-    <input
-    type="text"
-    id="quizSubject"
-    placeholder="Enter Subject">
+<input
+type="text"
+id="quizSubject"
+placeholder="Enter Subject">
 
-    <button
-    onclick="generateQuiz()">
+<button
+onclick="generateQuiz()">
 
-        Generate Quiz
+Generate Quiz
 
-    </button>
+</button>
 
-    <div id="quizResult">
-    </div>
+<div id="quizResult">
+</div>
 
 </section>
+
+<!-- AI ASSISTANT -->
 
 <section
 class="section-card"
 id="ai">
 
-    <h2>
-        🤖 AI Assistant
-    </h2>
+<h2>
+🤖 AI Assistant
+</h2>
 
-    <input
-    type="text"
-    id="doubtInput"
-    placeholder="Ask your doubt">
+<input
+type="text"
+id="doubtInput"
+placeholder="Ask your doubt">
 
-    <button
-    onclick="solveDoubt()">
+<button
+onclick="solveDoubt()">
 
-        Get Answer
+Get Answer
 
-    </button>
+</button>
 
-    <div id="doubtResult">
-    </div>
+<div id="doubtResult">
+</div>
 
 </section>
+
+<!-- NOTES -->
 
 <section
 class="section-card"
-id="notes">
+id="notesSection">
 
-    <h2>
-        📝 Quick Notes
-    </h2>
+<h2>
+📝 Quick Notes
+</h2>
 
-    <textarea
-    id="notes"
-    placeholder="Write your notes here...">
-    </textarea>
+<textarea
+id="notes"
+placeholder="Write your notes here...">
+</textarea>
 
-    <button
-    onclick="saveNotes()">
+<button
+onclick="saveNotes()">
 
-        💾 Save Notes
+💾 Save Notes
 
-    </button>
+</button>
 
 </section>
+
+<!-- PROFILE -->
 
 <section
 class="section-card"
 id="profile">
 
-    <h2>
-        👤 Student Profile
-    </h2>
+<h2>
+👤 Student Profile
+</h2>
 
-    <ul class="goal-list">
+<p>
+🎓 B.Sc AI & DS Student
+</p>
 
-        <li>
-            👤 Name :
-            Mithra Saravanakumar
-        </li>
+<p>
+🏫 Kamadhenu Arts and Science College
+</p>
 
-        <li>
-            🎓 Course :
-            B.Sc AI & DS
-        </li>
-
-        <li>
-            🏫 College :
-            Kamadhenu Arts and Science College
-        </li>
-
-        <li>
-            📍 Location :
-            Erode
-        </li>
-
-    </ul>
+<p>
+📍 Sathyamangalam
+</p>
 
 </section>
 
+<!-- FOOTER -->
+
 <footer class="dashboard-footer">
 
-    <h3>
-        🎓 AI Study Planner
-    </h3>
+<h3>
+🎓 Student OS
+</h3>
 
-    <p>
-        Plan • Learn • Practice • Achieve
-    </p>
+<p>
+Learn • Plan • Practice • Improve
+</p>
 
 </footer>
 
