@@ -100,6 +100,57 @@ function deleteTask(index){
 
 
 /* =====================
+   TASK DATE STATUS
+===================== */
+
+function getTaskStatus(date){
+
+    if(!date){
+
+        return "📅 No Date";
+
+    }
+
+    const today =
+    new Date();
+
+    today.setHours(0,0,0,0);
+
+    const taskDate =
+    new Date(date + "T00:00:00");
+
+    taskDate.setHours(0,0,0,0);
+
+    const difference =
+    Math.round(
+    (taskDate - today)
+    / (1000 * 60 * 60 * 24)
+    );
+
+    if(difference < 0){
+
+        return "🔴 Overdue";
+
+    }
+
+    if(difference === 0){
+
+        return "🟠 Due Today";
+
+    }
+
+    if(difference === 1){
+
+        return "🟡 Due Tomorrow";
+
+    }
+
+    return "🟢 Upcoming";
+
+}
+
+
+/* =====================
    RENDER TASKS
 ===================== */
 
@@ -123,12 +174,17 @@ function renderTasks(){
         const li =
         document.createElement("li");
 
+        const status =
+        getTaskStatus(task.date);
+
         li.innerHTML = `
         <strong>${task.subject}</strong>
         <br>
         ${task.topic}
         <br>
         📅 ${task.date || "No Date"}
+        <br>
+        <strong>${status}</strong>
         <br><br>
         `;
 
@@ -175,9 +231,11 @@ function renderTasks(){
 
 function updateStats(completed){
 
-    const total = tasks.length;
+    const total =
+    tasks.length;
 
-    const pending = total - completed;
+    const pending =
+    total - completed;
 
     let progress = 0;
 
@@ -190,13 +248,21 @@ function updateStats(completed){
 
     }
 
-    document.getElementById("totalTasks").textContent = total;
+    document.getElementById(
+    "totalTasks"
+    ).textContent = total;
 
-    document.getElementById("pendingTasks").textContent = pending;
+    document.getElementById(
+    "pendingTasks"
+    ).textContent = pending;
 
-    document.getElementById("completedTasks").textContent = completed;
+    document.getElementById(
+    "completedTasks"
+    ).textContent = completed;
 
-    document.getElementById("progressPercent").textContent =
+    document.getElementById(
+    "progressPercent"
+    ).textContent =
     progress + "%";
 
 }
@@ -208,7 +274,8 @@ function updateStats(completed){
 
 function updateProgressBar(){
 
-    const total = tasks.length;
+    const total =
+    tasks.length;
 
     const completed =
     tasks.filter(
@@ -227,10 +294,14 @@ function updateProgressBar(){
     }
 
     const bar =
-    document.getElementById("progressBar");
+    document.getElementById(
+    "progressBar"
+    );
 
     const text =
-    document.getElementById("progressText");
+    document.getElementById(
+    "progressText"
+    );
 
     if(bar){
 
@@ -259,11 +330,15 @@ function updateStudyStreak(){
     new Date().toDateString();
 
     const lastStudyDate =
-    localStorage.getItem("lastStudyDate");
+    localStorage.getItem(
+    "lastStudyDate"
+    );
 
     let streak =
     Number(
-    localStorage.getItem("studyStreak")
+    localStorage.getItem(
+    "studyStreak"
+    )
     ) || 0;
 
     if(lastStudyDate !== today){
@@ -311,7 +386,9 @@ function updateStudyStreak(){
     }
 
     const streakElement =
-    document.getElementById("streakCount");
+    document.getElementById(
+    "streakCount"
+    );
 
     if(streakElement){
 
@@ -349,10 +426,14 @@ function updateDailyProgress(){
     }
 
     const bar =
-    document.getElementById("dailyProgressBar");
+    document.getElementById(
+    "dailyProgressBar"
+    );
 
     const text =
-    document.getElementById("dailyProgressText");
+    document.getElementById(
+    "dailyProgressText"
+    );
 
     if(bar){
 
@@ -421,7 +502,9 @@ function updateTodayDate(){
     });
 
     const dateElement =
-    document.getElementById("todayDate");
+    document.getElementById(
+    "todayDate"
+    );
 
     if(dateElement){
 
@@ -460,7 +543,9 @@ function loadQuote(){
     );
 
     const quoteElement =
-    document.getElementById("dailyQuote");
+    document.getElementById(
+    "dailyQuote"
+    );
 
     if(quoteElement){
 
@@ -479,12 +564,19 @@ function loadQuote(){
 function loadStudentName(){
 
     const studentName =
-    localStorage.getItem("studentName");
+    localStorage.getItem(
+    "studentName"
+    );
 
     const welcome =
-    document.getElementById("welcomeUser");
+    document.getElementById(
+    "welcomeUser"
+    );
 
-    if(studentName && welcome){
+    if(
+    studentName &&
+    welcome
+    ){
 
         welcome.innerHTML =
         "👋 Welcome, " +
@@ -511,14 +603,23 @@ function saveExams(){
 function addExam(){
 
     const examName =
-    document.getElementById("examName").value;
+    document.getElementById(
+    "examName"
+    ).value;
 
     const examDate =
-    document.getElementById("examDate").value;
+    document.getElementById(
+    "examDate"
+    ).value;
 
-    if(examName === "" || examDate === ""){
+    if(
+    examName === "" ||
+    examDate === ""
+    ){
 
-        alert("Enter Exam Name and Date");
+        alert(
+        "Enter Exam Name and Date"
+        );
 
         return;
 
@@ -534,8 +635,13 @@ function addExam(){
     saveExams();
     renderExams();
 
-    document.getElementById("examName").value = "";
-    document.getElementById("examDate").value = "";
+    document.getElementById(
+    "examName"
+    ).value = "";
+
+    document.getElementById(
+    "examDate"
+    ).value = "";
 
 }
 
@@ -551,13 +657,16 @@ function deleteExam(index){
 function renderExams(){
 
     const examList =
-    document.getElementById("examList");
+    document.getElementById(
+    "examList"
+    );
 
     if(!examList) return;
 
     examList.innerHTML = "";
 
-    exams.forEach((exam,index)=>{
+    exams.forEach(
+    (exam,index)=>{
 
         const li =
         document.createElement("li");
@@ -586,26 +695,37 @@ function renderExams(){
 function saveNotes(){
 
     const notes =
-    document.getElementById("notes").value;
+    document.getElementById(
+    "notes"
+    ).value;
 
     localStorage.setItem(
     "studentNotes",
     notes
     );
 
-    alert("Notes Saved Successfully");
+    alert(
+    "Notes Saved Successfully"
+    );
 
 }
 
 function loadNotes(){
 
     const savedNotes =
-    localStorage.getItem("studentNotes");
+    localStorage.getItem(
+    "studentNotes"
+    );
 
     const notesBox =
-    document.getElementById("notes");
+    document.getElementById(
+    "notes"
+    );
 
-    if(savedNotes && notesBox){
+    if(
+    savedNotes &&
+    notesBox
+    ){
 
         notesBox.value =
         savedNotes;
@@ -622,10 +742,14 @@ function loadNotes(){
 function solveDoubt(){
 
     const doubt =
-    document.getElementById("doubtInput").value.toLowerCase();
+    document.getElementById(
+    "doubtInput"
+    ).value.toLowerCase();
 
     const result =
-    document.getElementById("doubtResult");
+    document.getElementById(
+    "doubtResult"
+    );
 
     if(!result) return;
 
@@ -667,7 +791,9 @@ function solveDoubt(){
 function generateQuiz(){
 
     const quizResult =
-    document.getElementById("quizResult");
+    document.getElementById(
+    "quizResult"
+    );
 
     if(quizResult){
 
@@ -686,8 +812,9 @@ function generateQuiz(){
 window.onload = function(){
 
     if(
-    localStorage.getItem("darkMode")
-    === "on"
+    localStorage.getItem(
+    "darkMode"
+    ) === "on"
     ){
 
         document.body
