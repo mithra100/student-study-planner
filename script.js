@@ -246,6 +246,82 @@ function renderTasks(){
     updateDailyProgress();
 
 }
+function searchTasks(){
+
+    const searchInput =
+    document.getElementById("taskSearch");
+
+    const taskList =
+    document.getElementById("taskList");
+
+    if(!searchInput || !taskList) return;
+
+    const searchText =
+    searchInput.value.toLowerCase().trim();
+
+    taskList.innerHTML = "";
+
+    tasks.forEach((task,index)=>{
+
+        const subject =
+        task.subject.toLowerCase();
+
+        const topic =
+        task.topic.toLowerCase();
+
+        if(
+            subject.includes(searchText) ||
+            topic.includes(searchText)
+        ){
+
+            const li =
+            document.createElement("li");
+
+            const status =
+            getTaskStatus(task.date);
+
+            const priority =
+            task.priority || "Medium";
+
+            let priorityText = "";
+
+            if(priority === "High"){
+                priorityText = "🔴 High Priority";
+            }
+            else if(priority === "Low"){
+                priorityText = "🟢 Low Priority";
+            }
+            else{
+                priorityText = "🟡 Medium Priority";
+            }
+
+            li.innerHTML = `
+            <strong>${task.subject}</strong>
+            <br>
+            ${task.topic}
+            <br>
+            📅 ${task.date || "No Date"}
+            <br>
+            <strong>${status}</strong>
+            <br>
+            <strong>${priorityText}</strong>
+            <br><br>
+
+            <button onclick="completeTask(${index})">
+            Complete
+            </button>
+
+            <button onclick="deleteTask(${index})">
+            Delete
+            </button>
+            `;
+
+            taskList.appendChild(li);
+        }
+
+    });
+
+}
 
 /* =====================
    UPDATE STATS
