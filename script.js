@@ -12,6 +12,7 @@ JSON.parse(
 localStorage.getItem("exams")
 ) || [];
 
+
 /* =====================
    SAVE TASKS
 ===================== */
@@ -25,6 +26,7 @@ function saveTasks(){
 
 }
 
+
 /* =====================
    ADD TASK
 ===================== */
@@ -32,38 +34,27 @@ function saveTasks(){
 function addTask(){
 
     const subject =
-    document.getElementById(
-    "subject"
-    ).value.trim();
+    document.getElementById("subject").value.trim();
 
     const topic =
-    document.getElementById(
-    "topic"
-    ).value.trim();
+    document.getElementById("topic").value.trim();
 
     const date =
-    document.getElementById(
-    "date"
-    ).value;
+    document.getElementById("date").value;
 
-    if(
-    subject === "" ||
-    topic === ""
-    ){
+    if(subject === "" || topic === ""){
 
-        alert(
-        "Enter Subject and Topic"
-        );
+        alert("Enter Subject and Topic");
 
         return;
     }
 
     tasks.push({
 
-        subject:subject,
-        topic:topic,
-        date:date,
-        completed:false
+        subject: subject,
+        topic: topic,
+        date: date,
+        completed: false
 
     });
 
@@ -71,19 +62,12 @@ function addTask(){
 
     renderTasks();
 
-    document.getElementById(
-    "subject"
-    ).value = "";
-
-    document.getElementById(
-    "topic"
-    ).value = "";
-
-    document.getElementById(
-    "date"
-    ).value = "";
+    document.getElementById("subject").value = "";
+    document.getElementById("topic").value = "";
+    document.getElementById("date").value = "";
 
 }
+
 
 /* =====================
    COMPLETE TASK
@@ -91,14 +75,14 @@ function addTask(){
 
 function completeTask(index){
 
-    tasks[index].completed =
-    true;
+    tasks[index].completed = true;
 
     saveTasks();
 
     renderTasks();
 
 }
+
 
 /* =====================
    DELETE TASK
@@ -113,6 +97,8 @@ function deleteTask(index){
     renderTasks();
 
 }
+
+
 /* =====================
    RENDER TASKS
 ===================== */
@@ -120,27 +106,19 @@ function deleteTask(index){
 function renderTasks(){
 
     const taskList =
-    document.getElementById(
-    "taskList"
-    );
+    document.getElementById("taskList");
 
     const completedList =
-    document.getElementById(
-    "completedList"
-    );
+    document.getElementById("completedList");
 
-    if(
-    !taskList ||
-    !completedList
-    ) return;
+    if(!taskList || !completedList) return;
 
     taskList.innerHTML = "";
     completedList.innerHTML = "";
 
     let completed = 0;
 
-    tasks.forEach(
-    (task,index)=>{
+    tasks.forEach((task,index)=>{
 
         const li =
         document.createElement("li");
@@ -159,31 +137,26 @@ function renderTasks(){
             completed++;
 
             li.innerHTML += `
-            <button
-            onclick="deleteTask(${index})">
+            <button onclick="deleteTask(${index})">
             Delete
             </button>
             `;
 
-            completedList
-            .appendChild(li);
+            completedList.appendChild(li);
 
         }else{
 
             li.innerHTML += `
-            <button
-            onclick="completeTask(${index})">
+            <button onclick="completeTask(${index})">
             Complete
             </button>
 
-            <button
-            onclick="deleteTask(${index})">
+            <button onclick="deleteTask(${index})">
             Delete
             </button>
             `;
 
-            taskList
-            .appendChild(li);
+            taskList.appendChild(li);
 
         }
 
@@ -191,8 +164,10 @@ function renderTasks(){
 
     updateStats(completed);
     updateProgressBar();
+    updateDailyProgress();
 
 }
+
 
 /* =====================
    UPDATE STATS
@@ -200,11 +175,9 @@ function renderTasks(){
 
 function updateStats(completed){
 
-    const total =
-    tasks.length;
+    const total = tasks.length;
 
-    const pending =
-    total - completed;
+    const pending = total - completed;
 
     let progress = 0;
 
@@ -217,30 +190,144 @@ function updateStats(completed){
 
     }
 
-    document.getElementById(
-    "totalTasks"
-    ).textContent = total;
+    document.getElementById("totalTasks").textContent = total;
 
-    document.getElementById(
-    "pendingTasks"
-    ).textContent = pending;
+    document.getElementById("pendingTasks").textContent = pending;
 
-    document.getElementById(
-    "completedTasks"
-    ).textContent = completed;
+    document.getElementById("completedTasks").textContent = completed;
 
-    document.getElementById(
-    "progressPercent"
-    ).textContent =
+    document.getElementById("progressPercent").textContent =
     progress + "%";
 
 }
+
 
 /* =====================
    PROGRESS BAR
 ===================== */
 
 function updateProgressBar(){
+
+    const total = tasks.length;
+
+    const completed =
+    tasks.filter(
+    task => task.completed
+    ).length;
+
+    let percent = 0;
+
+    if(total > 0){
+
+        percent =
+        Math.round(
+        (completed / total) * 100
+        );
+
+    }
+
+    const bar =
+    document.getElementById("progressBar");
+
+    const text =
+    document.getElementById("progressText");
+
+    if(bar){
+
+        bar.style.width =
+        percent + "%";
+
+    }
+
+    if(text){
+
+        text.innerHTML =
+        percent + "%";
+
+    }
+
+}
+
+
+/* =====================
+   STUDY STREAK
+===================== */
+
+function updateStudyStreak(){
+
+    const today =
+    new Date().toDateString();
+
+    const lastStudyDate =
+    localStorage.getItem("lastStudyDate");
+
+    let streak =
+    Number(
+    localStorage.getItem("studyStreak")
+    ) || 0;
+
+    if(lastStudyDate !== today){
+
+        if(lastStudyDate){
+
+            const lastDate =
+            new Date(lastStudyDate);
+
+            const todayDate =
+            new Date();
+
+            const difference =
+            Math.floor(
+            (todayDate - lastDate)
+            / (1000 * 60 * 60 * 24)
+            );
+
+            if(difference === 1){
+
+                streak++;
+
+            }else if(difference > 1){
+
+                streak = 1;
+
+            }
+
+        }else{
+
+            streak = 1;
+
+        }
+
+        localStorage.setItem(
+        "studyStreak",
+        streak
+        );
+
+        localStorage.setItem(
+        "lastStudyDate",
+        today
+        );
+
+    }
+
+    const streakElement =
+    document.getElementById("streakCount");
+
+    if(streakElement){
+
+        streakElement.textContent =
+        streak;
+
+    }
+
+}
+
+
+/* =====================
+   DAILY PROGRESS
+===================== */
+
+function updateDailyProgress(){
 
     const total =
     tasks.length;
@@ -262,14 +349,10 @@ function updateProgressBar(){
     }
 
     const bar =
-    document.getElementById(
-    "progressBar"
-    );
+    document.getElementById("dailyProgressBar");
 
     const text =
-    document.getElementById(
-    "progressText"
-    );
+    document.getElementById("dailyProgressText");
 
     if(bar){
 
@@ -280,12 +363,14 @@ function updateProgressBar(){
 
     if(text){
 
-        text.innerHTML =
-        percent + "%";
+        text.textContent =
+        percent + "% Completed";
 
     }
 
 }
+
+
 /* =====================
    DARK MODE
 ===================== */
@@ -316,6 +401,7 @@ function toggleDarkMode(){
 
 }
 
+
 /* =====================
    TODAY DATE
 ===================== */
@@ -335,9 +421,7 @@ function updateTodayDate(){
     });
 
     const dateElement =
-    document.getElementById(
-    "todayDate"
-    );
+    document.getElementById("todayDate");
 
     if(dateElement){
 
@@ -347,6 +431,7 @@ function updateTodayDate(){
     }
 
 }
+
 
 /* =====================
    DAILY QUOTES
@@ -375,9 +460,7 @@ function loadQuote(){
     );
 
     const quoteElement =
-    document.getElementById(
-    "dailyQuote"
-    );
+    document.getElementById("dailyQuote");
 
     if(quoteElement){
 
@@ -388,6 +471,7 @@ function loadQuote(){
 
 }
 
+
 /* =====================
    STUDENT NAME
 ===================== */
@@ -395,19 +479,12 @@ function loadQuote(){
 function loadStudentName(){
 
     const studentName =
-    localStorage.getItem(
-    "studentName"
-    );
+    localStorage.getItem("studentName");
 
     const welcome =
-    document.getElementById(
-    "welcomeUser"
-    );
+    document.getElementById("welcomeUser");
 
-    if(
-    studentName &&
-    welcome
-    ){
+    if(studentName && welcome){
 
         welcome.innerHTML =
         "👋 Welcome, " +
@@ -416,6 +493,8 @@ function loadStudentName(){
     }
 
 }
+
+
 /* =====================
    EXAMS
 ===================== */
@@ -432,23 +511,14 @@ function saveExams(){
 function addExam(){
 
     const examName =
-    document.getElementById(
-    "examName"
-    ).value;
+    document.getElementById("examName").value;
 
     const examDate =
-    document.getElementById(
-    "examDate"
-    ).value;
+    document.getElementById("examDate").value;
 
-    if(
-    examName === "" ||
-    examDate === ""
-    ){
+    if(examName === "" || examDate === ""){
 
-        alert(
-        "Enter Exam Name and Date"
-        );
+        alert("Enter Exam Name and Date");
 
         return;
 
@@ -456,21 +526,16 @@ function addExam(){
 
     exams.push({
 
-        name:examName,
-        date:examDate
+        name: examName,
+        date: examDate
 
     });
 
     saveExams();
     renderExams();
 
-    document.getElementById(
-    "examName"
-    ).value = "";
-
-    document.getElementById(
-    "examDate"
-    ).value = "";
+    document.getElementById("examName").value = "";
+    document.getElementById("examDate").value = "";
 
 }
 
@@ -486,16 +551,13 @@ function deleteExam(index){
 function renderExams(){
 
     const examList =
-    document.getElementById(
-    "examList"
-    );
+    document.getElementById("examList");
 
     if(!examList) return;
 
     examList.innerHTML = "";
 
-    exams.forEach(
-    (exam,index)=>{
+    exams.forEach((exam,index)=>{
 
         const li =
         document.createElement("li");
@@ -516,6 +578,7 @@ function renderExams(){
 
 }
 
+
 /* =====================
    NOTES
 ===================== */
@@ -523,37 +586,26 @@ function renderExams(){
 function saveNotes(){
 
     const notes =
-    document.getElementById(
-    "notes"
-    ).value;
+    document.getElementById("notes").value;
 
     localStorage.setItem(
     "studentNotes",
     notes
     );
 
-    alert(
-    "Notes Saved Successfully"
-    );
+    alert("Notes Saved Successfully");
 
 }
 
 function loadNotes(){
 
     const savedNotes =
-    localStorage.getItem(
-    "studentNotes"
-    );
+    localStorage.getItem("studentNotes");
 
     const notesBox =
-    document.getElementById(
-    "notes"
-    );
+    document.getElementById("notes");
 
-    if(
-    savedNotes &&
-    notesBox
-    ){
+    if(savedNotes && notesBox){
 
         notesBox.value =
         savedNotes;
@@ -562,6 +614,7 @@ function loadNotes(){
 
 }
 
+
 /* =====================
    AI ASSISTANT
 ===================== */
@@ -569,14 +622,10 @@ function loadNotes(){
 function solveDoubt(){
 
     const doubt =
-    document.getElementById(
-    "doubtInput"
-    ).value.toLowerCase();
+    document.getElementById("doubtInput").value.toLowerCase();
 
     const result =
-    document.getElementById(
-    "doubtResult"
-    );
+    document.getElementById("doubtResult");
 
     if(!result) return;
 
@@ -610,6 +659,7 @@ function solveDoubt(){
 
 }
 
+
 /* =====================
    QUIZ
 ===================== */
@@ -617,9 +667,7 @@ function solveDoubt(){
 function generateQuiz(){
 
     const quizResult =
-    document.getElementById(
-    "quizResult"
-    );
+    document.getElementById("quizResult");
 
     if(quizResult){
 
@@ -630,6 +678,7 @@ function generateQuiz(){
 
 }
 
+
 /* =====================
    PAGE LOAD
 ===================== */
@@ -637,9 +686,8 @@ function generateQuiz(){
 window.onload = function(){
 
     if(
-    localStorage.getItem(
-    "darkMode"
-    ) === "on"
+    localStorage.getItem("darkMode")
+    === "on"
     ){
 
         document.body
@@ -655,5 +703,8 @@ window.onload = function(){
     loadQuote();
     updateTodayDate();
     loadNotes();
+
+    updateStudyStreak();
+    updateDailyProgress();
 
 };
