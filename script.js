@@ -657,16 +657,48 @@ function deleteExam(index){
 function renderExams(){
 
     const examList =
-    document.getElementById(
-    "examList"
-    );
+    document.getElementById("examList");
 
     if(!examList) return;
 
     examList.innerHTML = "";
 
-    exams.forEach(
-    (exam,index)=>{
+    exams.forEach((exam,index)=>{
+
+        let status = "";
+
+        if(!exam.date){
+
+            status = "📅 No Date";
+
+        }else{
+
+            const today = new Date();
+            today.setHours(0,0,0,0);
+
+            const examDate =
+            new Date(exam.date + "T00:00:00");
+            examDate.setHours(0,0,0,0);
+
+            const difference =
+            Math.round(
+                (examDate - today)
+                / (1000 * 60 * 60 * 24)
+            );
+
+            if(difference < 0){
+                status = "✅ Completed";
+            }
+            else if(difference === 0){
+                status = "🟠 Exam Today";
+            }
+            else if(difference === 1){
+                status = "🟡 Exam Tomorrow";
+            }
+            else{
+                status = "🟢 Upcoming";
+            }
+        }
 
         const li =
         document.createElement("li");
@@ -674,8 +706,11 @@ function renderExams(){
         li.innerHTML = `
         <strong>${exam.name}</strong>
         <br>
-        📅 ${exam.date}
+        📅 ${exam.date || "No Date"}
+        <br>
+        <strong>${status}</strong>
         <br><br>
+
         <button onclick="deleteExam(${index})">
         Delete
         </button>
@@ -686,7 +721,6 @@ function renderExams(){
     });
 
 }
-
 
 /* =====================
    NOTES
@@ -834,4 +868,4 @@ window.onload = function(){
     updateStudyStreak();
     updateDailyProgress();
 
-};
+}; 
