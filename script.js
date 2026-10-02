@@ -159,6 +159,7 @@ function getTaskStatus(date){
    RENDER TASKS
 ===================== */
 
+
 function renderTasks(){
 
     const taskList =
@@ -182,6 +183,21 @@ function renderTasks(){
         const status =
         getTaskStatus(task.date);
 
+        const priority =
+        task.priority || "Medium";
+
+        let priorityText = "";
+
+        if(priority === "High"){
+            priorityText = "🔴 High Priority";
+        }
+        else if(priority === "Low"){
+            priorityText = "🟢 Low Priority";
+        }
+        else{
+            priorityText = "🟡 Medium Priority";
+        }
+
         li.innerHTML = `
         <strong>${task.subject}</strong>
         <br>
@@ -190,6 +206,8 @@ function renderTasks(){
         📅 ${task.date || "No Date"}
         <br>
         <strong>${status}</strong>
+        <br>
+        <strong>${priorityText}</strong>
         <br><br>
         `;
 
@@ -228,7 +246,6 @@ function renderTasks(){
     updateDailyProgress();
 
 }
-
 
 /* =====================
    UPDATE STATS
