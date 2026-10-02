@@ -1,5 +1,3 @@
-
-    
 /* =====================
    TASK SYSTEM
 ===================== */
@@ -9,39 +7,35 @@ JSON.parse(
 localStorage.getItem("tasks")
 ) || [];
 
-/* Save Tasks */
-
 function saveTasks(){
 
     localStorage.setItem(
-        "tasks",
-        JSON.stringify(tasks)
+    "tasks",
+    JSON.stringify(tasks)
     );
 
 }
-
-/* Add Task */
 
 function addTask(){
 
     const subject =
     document.getElementById(
-        "subject"
+    "subject"
     ).value.trim();
 
     const topic =
     document.getElementById(
-        "topic"
+    "topic"
     ).value.trim();
 
     const date =
     document.getElementById(
-        "date"
+    "date"
     ).value;
 
     if(
-        subject === "" ||
-        topic === ""
+    subject === "" ||
+    topic === ""
     ){
 
         alert(
@@ -49,6 +43,7 @@ function addTask(){
         );
 
         return;
+
     }
 
     tasks.push({
@@ -61,24 +56,21 @@ function addTask(){
     });
 
     saveTasks();
-
     renderTasks();
 
     document.getElementById(
-        "subject"
+    "subject"
     ).value = "";
 
     document.getElementById(
-        "topic"
+    "topic"
     ).value = "";
 
     document.getElementById(
-        "date"
+    "date"
     ).value = "";
 
 }
-
-/* Complete Task */
 
 function completeTask(index){
 
@@ -86,40 +78,34 @@ function completeTask(index){
     true;
 
     saveTasks();
-
     renderTasks();
 
 }
-
-/* Delete Task */
 
 function deleteTask(index){
 
     tasks.splice(index,1);
 
     saveTasks();
-
     renderTasks();
 
 }
-
-/* Render Tasks */
 
 function renderTasks(){
 
     const taskList =
     document.getElementById(
-        "taskList"
+    "taskList"
     );
 
     const completedList =
     document.getElementById(
-        "completedList"
+    "completedList"
     );
 
     if(
-        !taskList ||
-        !completedList
+    !taskList ||
+    !completedList
     ) return;
 
     taskList.innerHTML = "";
@@ -134,16 +120,10 @@ function renderTasks(){
         document.createElement("li");
 
         li.innerHTML = `
-        <strong>
-        ${task.subject}
-        </strong>
-
+        <strong>${task.subject}</strong>
         - ${task.topic}
-
         <br>
-
         📅 ${task.date || "No Date"}
-
         <br><br>
         `;
 
@@ -152,48 +132,34 @@ function renderTasks(){
             completed++;
 
             li.innerHTML += `
-            <button
-            onclick="deleteTask(${index})">
-
+            <button onclick="deleteTask(${index})">
             Delete
-
             </button>
             `;
 
-            completedList
-            .appendChild(li);
+            completedList.appendChild(li);
 
         }
 
         else{
 
             li.innerHTML += `
-            <button
-            onclick="completeTask(${index})">
-
+            <button onclick="completeTask(${index})">
             Complete
-
             </button>
 
-            <button
-            onclick="deleteTask(${index})">
-
+            <button onclick="deleteTask(${index})">
             Delete
-
             </button>
             `;
 
-            taskList
-            .appendChild(li);
+            taskList.appendChild(li);
 
         }
 
     });
 
-    updateStats(
-        completed
-    );
-
+    updateStats(completed);
     updateProgressBar();
 
 }
@@ -222,22 +188,22 @@ function updateStats(completed){
 
     const totalTasks =
     document.getElementById(
-        "totalTasks"
+    "totalTasks"
     );
 
     const pendingTasks =
     document.getElementById(
-        "pendingTasks"
+    "pendingTasks"
     );
 
     const completedTasks =
     document.getElementById(
-        "completedTasks"
+    "completedTasks"
     );
 
     const progressPercent =
     document.getElementById(
-        "progressPercent"
+    "progressPercent"
     );
 
     if(totalTasks)
@@ -269,8 +235,7 @@ function updateProgressBar(){
 
     const completed =
     tasks.filter(
-    task =>
-    task.completed
+    task => task.completed
     ).length;
 
     let percent = 0;
@@ -286,12 +251,12 @@ function updateProgressBar(){
 
     const bar =
     document.getElementById(
-        "progressBar"
+    "progressBar"
     );
 
     const text =
     document.getElementById(
-        "progressText"
+    "progressText"
     );
 
     if(bar){
@@ -320,14 +285,13 @@ function toggleDarkMode(){
     .toggle("dark-mode");
 
     if(
-        document.body
-        .classList
-        .contains("dark-mode")
+    document.body.classList
+    .contains("dark-mode")
     ){
 
         localStorage.setItem(
-            "darkMode",
-            "on"
+        "darkMode",
+        "on"
         );
 
     }
@@ -335,8 +299,8 @@ function toggleDarkMode(){
     else{
 
         localStorage.setItem(
-            "darkMode",
-            "off"
+        "darkMode",
+        "off"
         );
 
     }
@@ -363,7 +327,7 @@ function updateTodayDate(){
 
     const dateElement =
     document.getElementById(
-        "todayDate"
+    "todayDate"
     );
 
     if(dateElement){
@@ -382,13 +346,9 @@ function updateTodayDate(){
 const quotes = [
 
     "Success starts with self-discipline.",
-
     "Small progress is still progress.",
-
     "Study hard today, shine tomorrow.",
-
     "Dream big and work hard.",
-
     "Consistency beats motivation."
 
 ];
@@ -403,7 +363,7 @@ function loadQuote(){
 
     const quoteElement =
     document.getElementById(
-        "dailyQuote"
+    "dailyQuote"
     );
 
     if(quoteElement){
@@ -423,17 +383,17 @@ function loadStudentName(){
 
     const studentName =
     localStorage.getItem(
-        "studentName"
+    "studentName"
     );
 
     const welcome =
     document.getElementById(
-        "welcomeUser"
+    "welcomeUser"
     );
 
     if(
-        studentName &&
-        welcome
+    studentName &&
+    welcome
     ){
 
         welcome.innerHTML =
@@ -451,12 +411,12 @@ function solveDoubt(){
 
     const doubt =
     document.getElementById(
-        "doubtInput"
+    "doubtInput"
     ).value.toLowerCase();
 
     const result =
     document.getElementById(
-        "doubtResult"
+    "doubtResult"
     );
 
     if(!result) return;
@@ -464,38 +424,35 @@ function solveDoubt(){
     if(doubt.includes("html")){
 
         result.innerHTML =
-        "HTML stands for HyperText Markup Language. It is used to create web pages.";
+        "HTML is used to create web pages.";
 
     }
 
     else if(doubt.includes("css")){
 
         result.innerHTML =
-        "CSS stands for Cascading Style Sheets. It is used for styling web pages.";
+        "CSS is used for styling web pages.";
 
     }
 
     else if(doubt.includes("javascript")){
 
         result.innerHTML =
-        "JavaScript is used to make websites interactive.";
+        "JavaScript makes websites interactive.";
 
     }
 
-    else if(
-        doubt.includes("hi") ||
-        doubt.includes("hello")
-    ){
+    else if(doubt.includes("python")){
 
         result.innerHTML =
-        "Hello 👋 How can I help you today?";
+        "Python is a popular programming language used in AI, Data Science and Web Development.";
 
     }
 
     else{
 
         result.innerHTML =
-        "I understand your question. More AI features can be added later.";
+        "AI Assistant is ready. More features can be added later.";
 
     }
 
@@ -509,27 +466,27 @@ function generateQuiz(){
 
     const subject =
     document.getElementById(
-        "quizSubject"
-    ).value.toLowerCase();
+    "quizSubject"
+    ).value;
 
     const quizResult =
     document.getElementById(
-        "quizResult"
+    "quizResult"
     );
 
     if(subject === ""){
 
         quizResult.innerHTML =
-        "Please enter a subject";
+        "Please enter a subject.";
 
         return;
 
     }
 
     quizResult.innerHTML =
-    "<h3>Quiz for " +
+    "<h3>Quiz Topic: " +
     subject +
-    "</h3><p>Quiz module ready.</p>";
+    "</h3><p>Quiz Module Ready ✅</p>";
 
 }
 
@@ -545,8 +502,8 @@ localStorage.getItem("exams")
 function saveExams(){
 
     localStorage.setItem(
-        "exams",
-        JSON.stringify(exams)
+    "exams",
+    JSON.stringify(exams)
     );
 
 }
@@ -555,17 +512,17 @@ function addExam(){
 
     const examName =
     document.getElementById(
-        "examName"
+    "examName"
     ).value;
 
     const examDate =
     document.getElementById(
-        "examDate"
+    "examDate"
     ).value;
 
     if(
-        examName === "" ||
-        examDate === ""
+    examName === "" ||
+    examDate === ""
     ){
 
         alert(
@@ -584,26 +541,15 @@ function addExam(){
     });
 
     saveExams();
-
     renderExams();
 
     document.getElementById(
-        "examName"
+    "examName"
     ).value = "";
 
     document.getElementById(
-        "examDate"
+    "examDate"
     ).value = "";
-
-}
-
-function deleteExam(index){
-
-    exams.splice(index,1);
-
-    saveExams();
-
-    renderExams();
 
 }
 
@@ -611,7 +557,7 @@ function renderExams(){
 
     const examList =
     document.getElementById(
-        "examList"
+    "examList"
     );
 
     if(!examList) return;
@@ -625,21 +571,12 @@ function renderExams(){
         document.createElement("li");
 
         li.innerHTML = `
-        <strong>
-        ${exam.name}
-        </strong>
-
+        <strong>${exam.name}</strong>
         <br>
-
         📅 ${exam.date}
-
         <br><br>
-
-        <button
-        onclick="deleteExam(${index})">
-
+        <button onclick="deleteExam(${index})">
         Delete
-
         </button>
         `;
 
@@ -649,34 +586,19 @@ function renderExams(){
 
 }
 
-/* =====================
-   PAGE LOAD
-===================== */
+function deleteExam(index){
 
-window.onload = function(){
+    exams.splice(index,1);
 
-    if(
-        localStorage.getItem(
-        "darkMode"
-        ) === "on"
-    ){
-
-        document.body
-        .classList
-        .add("dark-mode");
-
-    }
-
-    renderTasks();
+    saveExams();
     renderExams();
 
-    updateTodayDate();
-    loadQuote();
-    loadStudentName();
-loadNotes();
-updateStreak();
+}
 
-};
+/* =====================
+   NOTES
+===================== */
+
 function saveNotes(){
 
     const notes =
@@ -708,8 +630,8 @@ function loadNotes(){
     );
 
     if(
-        savedNotes &&
-        notesBox
+    savedNotes &&
+    notesBox
     ){
 
         notesBox.value =
@@ -718,3 +640,31 @@ function loadNotes(){
     }
 
 }
+
+/* =====================
+   PAGE LOAD
+===================== */
+
+window.onload = function(){
+
+    if(
+    localStorage.getItem(
+    "darkMode"
+    ) === "on"
+    ){
+
+        document.body
+        .classList
+        .add("dark-mode");
+
+    }
+
+    renderTasks();
+    renderExams();
+
+    updateTodayDate();
+    loadQuote();
+    loadStudentName();
+    loadNotes();
+
+};
