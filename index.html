@@ -5,17 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Student OS</title>
+    <title>Student OS - AI Study Planner</title>
 
-    <!-- CSS LINK -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================
-         SIDEBAR
-    ========================== -->
+    <!-- SIDEBAR -->
 
     <div class="sidebar">
 
@@ -25,88 +22,54 @@
 
         <ul class="sidebar-menu">
 
-            <li>
-                <a href="#dashboard">🏠 Dashboard</a>
-            </li>
-
-            <li>
-                <a href="#tasks">➕ Add Task</a>
-            </li>
-
-            <li>
-                <a href="#mytasks">📋 My Tasks</a>
-            </li>
-
-            <li>
-                <a href="#exams">📝 Exams</a>
-            </li>
-
-            <li>
-                <a href="#quiz">🧠 Quiz</a>
-            </li>
-
-            <li>
-                <a href="#ai">🤖 AI Assistant</a>
-            </li>
-
-            <li>
-                <a href="#notesSection">📝 Notes</a>
-            </li>
-
-            <li>
-                <a href="#profile">👤 Profile</a>
-            </li>
+            <li><a href="#dashboard">🏠 Dashboard</a></li>
+            <li><a href="#tasks">➕ Add Task</a></li>
+            <li><a href="#mytasks">📋 My Tasks</a></li>
+            <li><a href="#exams">📝 Exams</a></li>
+            <li><a href="#quiz">🧠 Quiz</a></li>
+            <li><a href="#ai">🤖 AI Assistant</a></li>
+            <li><a href="#notesSection">📝 Notes</a></li>
+            <li><a href="#profile">👤 Profile</a></li>
 
         </ul>
 
     </div>
 
 
-    <!-- =========================
-         MAIN CONTENT
-    ========================== -->
+    <!-- MAIN CONTENT -->
 
-    <div class="main-content">
+    <main class="main-content">
 
         <div class="container">
 
-
-            <!-- HERO -->
+            <!-- DASHBOARD HERO -->
 
             <section class="hero-card" id="dashboard">
 
-                <div class="hero-logo">
-                    🎓
-                </div>
+                <div class="hero-logo">🎓</div>
 
-                <h1>
-                    AI Study Planner
-                </h1>
+                <h1>AI Study Planner</h1>
 
-                <p>
-                    Plan • Learn • Practice • Improve
-                </p>
+                <p>Plan • Learn • Practice • Improve</p>
 
-                <h3 id="welcomeUser">
-                    👋 Welcome Student
-                </h3>
+                <h3 id="welcomeUser">👋 Welcome Student</h3>
 
                 <div class="productivity-badge">
                     🚀 Productivity Mode
                 </div>
 
                 <button
+                    type="button"
                     id="darkModeBtn"
-                    onclick="toggleDarkMode()">
+                    onclick="toggleDarkMode()"
+                    aria-label="Toggle dark mode">
                     🌙
                 </button>
 
             </section>
 
 
-            <!-- =========================
-                 STATS
-            ========================== -->
+            <!-- STATISTICS -->
 
             <section class="stats-section">
 
@@ -133,23 +96,16 @@
             </section>
 
 
-            <!--
-            <!-- =========================
-                 STUDY STREAK
-            ========================== -->
+            <!-- STUDY STREAK AND DAILY PROGRESS -->
 
             <section class="streak-section">
 
                 <div class="streak-card">
 
-                    <div class="streak-icon">
-                        🔥
-                    </div>
+                    <div class="streak-icon">🔥</div>
 
                     <div>
-                        <h2>
-                            Study Streak
-                        </h2>
+                        <h2>Study Streak</h2>
 
                         <p>
                             <span id="streakCount">0</span> Days
@@ -158,12 +114,9 @@
 
                 </div>
 
-
                 <div class="daily-progress-card">
 
-                    <h2>
-                        📊 Daily Progress
-                    </h2>
+                    <h2>📊 Daily Progress</h2>
 
                     <div class="daily-progress-container">
 
@@ -174,22 +127,18 @@
 
                     </div>
 
-                    <p id="dailyProgressText">
-                        0% Completed
-                    </p>
+                    <p id="dailyProgressText">0% Completed</p>
 
                 </div>
 
             </section>
- =========================
-                 PROGRESS
-            ==========================
+
+
+            <!-- OVERALL PROGRESS -->
 
             <section class="section-card">
 
-                <h2>
-                    📊 Overall Progress
-                </h2>
+                <h2>📊 Overall Progress</h2>
 
                 <div class="progress-container">
 
@@ -200,167 +149,155 @@
 
                 </div>
 
-                <p id="progressText">
-                    0%
-                </p>
+                <p id="progressText">0%</p>
 
             </section>
 
 
-            <!-- =========================
-                 QUICK ACTIONS
-            ========================== -->
+            <!-- QUICK ACTIONS -->
 
             <section class="quick-actions">
 
-                <div class="action-card"
-                     onclick="document.getElementById('tasks').scrollIntoView()">
+                <div
+                    class="action-card"
+                    onclick="document.getElementById('tasks').scrollIntoView({behavior:'smooth'})">
 
                     <span>➕</span>
-
-                    <h3>
-                        Add Task
-                    </h3>
-
-                    <p>
-                        Create Study Tasks
-                    </p>
+                    <h3>Add Task</h3>
+                    <p>Create Study Tasks</p>
 
                 </div>
 
-
-                <div class="action-card"
-                     onclick="document.getElementById('mytasks').scrollIntoView()">
+                <div
+                    class="action-card"
+                    onclick="document.getElementById('mytasks').scrollIntoView({behavior:'smooth'})">
 
                     <span>📚</span>
-
-                    <h3>
-                        Study Plan
-                    </h3>
-
-                    <p>
-                        Manage Schedule
-                    </p>
+                    <h3>Study Plan</h3>
+                    <p>Manage Schedule</p>
 
                 </div>
 
-
-                <div class="action-card"
-                     onclick="document.getElementById('quiz').scrollIntoView()">
+                <div
+                    class="action-card"
+                    onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">
 
                     <span>🧠</span>
-
-                    <h3>
-                        Quiz
-                    </h3>
-
-                    <p>
-                        Practice Questions
-                    </p>
+                    <h3>Quiz</h3>
+                    <p>Practice Questions</p>
 
                 </div>
 
-
-                <div class="action-card"
-                     onclick="document.getElementById('ai').scrollIntoView()">
+                <div
+                    class="action-card"
+                    onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
 
                     <span>🤖</span>
-
-                    <h3>
-                        AI Assistant
-                    </h3>
-
-                    <p>
-                        Ask Doubts
-                    </p>
+                    <h3>AI Assistant</h3>
+                    <p>Ask Doubts</p>
 
                 </div>
 
             </section>
 
 
-            <!-- =========================
-                 ADD TASK
-            ========================== -->
+            <!-- ADD NEW TASK -->
 
             <section class="section-card" id="tasks">
 
-                <h2>
-                    ➕ Add New Task
-                </h2>
+                <h2>➕ Add New Task</h2>
+
+                <label for="subject">Subject Name</label>
 
                 <input
                     type="text"
                     id="subject"
-                    placeholder="Subject Name">
+                    placeholder="Enter subject name">
+
+                <label for="topic">Study Topic</label>
 
                 <input
                     type="text"
                     id="topic"
-                    placeholder="Study Topic">
+                    placeholder="Enter study topic">
+
+                <label for="date">Due Date</label>
 
                 <input
                     type="date"
                     id="date">
 
-                <button onclick="addTask()">
-                    Add Task
+                <label for="priority">Priority</label>
+
+                <select id="priority">
+
+                    <option value="High">🔴 High</option>
+                    <option value="Medium" selected>🟡 Medium</option>
+                    <option value="Low">🟢 Low</option>
+
+                </select>
+
+                <button type="button" onclick="addTask()">
+                    ➕ Add Task
                 </button>
 
             </section>
 
 
-            <!-- =========================
-                 MY TASKS
-            ========================== -->
+            <!-- MY TASKS -->
 
             <section class="section-card" id="mytasks">
 
-                <h2>
-                    📋 My Tasks
-                </h2>
+                <h2>📋 My Tasks</h2>
+
+                <div class="task-search">
+
+                    <input
+                        type="search"
+                        id="taskSearch"
+                        placeholder="🔎 Search tasks..."
+                        oninput="searchTasks()"
+                        aria-label="Search tasks">
+
+                </div>
 
                 <ul id="taskList"></ul>
 
             </section>
 
 
-            <!-- =========================
-                 COMPLETED TASKS
-            ========================== -->
+            <!-- COMPLETED TASKS -->
 
             <section class="section-card">
 
-                <h2>
-                    ✅ Completed Tasks
-                </h2>
+                <h2>✅ Completed Tasks</h2>
 
                 <ul id="completedList"></ul>
 
             </section>
 
 
-            <!-- =========================
-                 EXAMS
-            ========================== -->
+            <!-- UPCOMING EXAMS -->
 
             <section class="section-card" id="exams">
 
-                <h2>
-                    📝 Upcoming Exams
-                </h2>
+                <h2>📝 Upcoming Exams</h2>
+
+                <label for="examName">Exam Name</label>
 
                 <input
                     type="text"
                     id="examName"
-                    placeholder="Exam Name">
+                    placeholder="Enter exam name">
+
+                <label for="examDate">Exam Date</label>
 
                 <input
                     type="date"
                     id="examDate">
 
-                <button onclick="addExam()">
-                    Add Exam
+                <button type="button" onclick="addExam()">
+                    ➕ Add Exam
                 </button>
 
                 <ul id="examList"></ul>
@@ -368,123 +305,100 @@
             </section>
 
 
-            <!-- =========================
-                 QUIZ
-            ========================== -->
+            <!-- PRACTICE QUIZ -->
 
             <section class="section-card" id="quiz">
 
-                <h2>
-                    🧠 Practice Quiz
-                </h2>
+                <h2>🧠 Practice Quiz</h2>
+
+                <label for="quizSubject">Subject</label>
 
                 <input
                     type="text"
                     id="quizSubject"
-                    placeholder="Enter Subject">
+                    placeholder="Enter subject">
 
-                <button onclick="generateQuiz()">
+                <button type="button" onclick="generateQuiz()">
                     Generate Quiz
                 </button>
 
-                <div id="quizResult"></div>
+                <div id="quizResult" aria-live="polite"></div>
 
             </section>
 
 
-            <!-- =========================
-                 AI ASSISTANT
-            ========================== -->
+            <!-- AI ASSISTANT -->
 
             <section class="section-card" id="ai">
 
-                <h2>
-                    🤖 AI Assistant
-                </h2>
+                <h2>🤖 AI Assistant</h2>
+
+                <label for="doubtInput">Ask Your Doubt</label>
 
                 <input
                     type="text"
                     id="doubtInput"
-                    placeholder="Ask your doubt">
+                    placeholder="Ask about HTML, CSS or JavaScript">
 
-                <button onclick="solveDoubt()">
+                <button type="button" onclick="solveDoubt()">
                     Get Answer
                 </button>
 
-                <div id="doubtResult"></div>
+                <div id="doubtResult" aria-live="polite"></div>
 
             </section>
 
 
-            <!-- =========================
-                 NOTES
-            ========================== -->
+            <!-- QUICK NOTES -->
 
             <section class="section-card" id="notesSection">
 
-                <h2>
-                    📝 Quick Notes
-                </h2>
+                <h2>📝 Quick Notes</h2>
 
                 <textarea
                     id="notes"
-                    placeholder="Write your notes here...">
-                </textarea>
+                    placeholder="Write your notes here..."
+                    aria-label="Quick notes"></textarea>
 
-                <button onclick="saveNotes()">
+                <button type="button" onclick="saveNotes()">
                     💾 Save Notes
                 </button>
 
             </section>
 
 
-            <!-- =========================
-                 PROFILE
-            ========================== -->
+            <!-- STUDENT PROFILE -->
 
             <section class="section-card" id="profile">
 
-                <h2>
-                    👤 Student Profile
-                </h2>
+                <h2>👤 Student Profile</h2>
 
-                <p>
-                    🎓 B.Sc AI & DS Student
-                </p>
+                <p>🎓 B.Sc AI &amp; DS Student</p>
 
-                <p>
-                    🏫 Kamadhenu Arts and Science College
-                </p>
+                <p>🏫 Kamadhenu Arts and Science College</p>
 
-                <p>
-                    📍 Sathyamangalam
-                </p>
+                <p>📍 Sathyamangalam</p>
 
             </section>
 
 
-            <!-- =========================
-                 FOOTER
-            ========================== -->
+            <!-- FOOTER -->
 
             <footer class="dashboard-footer">
 
-                <h3>
-                    🎓 Student OS
-                </h3>
+                <h3>🎓 Student OS</h3>
 
-                <p>
-                    Learn • Plan • Practice • Improve
-                </p>
+                <p>Learn • Plan • Practice • Improve</p>
 
             </footer>
 
         </div>
 
-    </div>
+    </main>
 
 
-    <!-- JAVASCRIPT LINK -->
+    <!-- JAVASCRIPT -->
+
     <script src="script.js"></script>
 
 </body>
