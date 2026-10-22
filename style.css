@@ -1111,3 +1111,34 @@ padding: 12px;
 }
 
 }
+/* LOGIN PAGE TEXT VISIBILITY FIX */
+
+.auth-form label {
+color: #374151;
+}
+
+.auth-form input:not([type="checkbox"]) {
+background: #ffffff;
+color: #111827;
+border: 1px solid #d1d5db;
+}
+
+.auth-form input:not([type="checkbox"])::placeholder {
+color: #9ca3af;
+}
+
+.auth-options label {
+color: #4b5563;
+}
+
+.auth-form > p {
+color: #6b7280;
+}
+
+.auth-form a {
+color: #4f46e5;
+}
+
+.auth-form input[type="checkbox"] {
+accent-color: #4f46e5;
+}
