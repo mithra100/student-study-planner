@@ -1,406 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Student OS - AI Study Planner</title>
-
+    <title>Login | Student OS</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
-<body>
-
-    <!-- SIDEBAR -->
-
-    <div class="sidebar">
-
-        <div class="sidebar-logo">
-            🎓 Student OS
-        </div>
-
-        <ul class="sidebar-menu">
-
-            <li><a href="#dashboard">🏠 Dashboard</a></li>
-            <li><a href="#tasks">➕ Add Task</a></li>
-            <li><a href="#mytasks">📋 My Tasks</a></li>
-            <li><a href="#exams">📝 Exams</a></li>
-            <li><a href="#quiz">🧠 Quiz</a></li>
-            <li><a href="#ai">🤖 AI Assistant</a></li>
-            <li><a href="#notesSection">📝 Notes</a></li>
-            <li><a href="#profile">👤 Profile</a></li>
-
-        </ul>
-
-    </div>
-
-
-    <!-- MAIN CONTENT -->
-
-    <main class="main-content">
-
-        <div class="container">
-
-            <!-- DASHBOARD HERO -->
-
-            <section class="hero-card" id="dashboard">
-
-                <div class="hero-logo">🎓</div>
-
-                <h1>AI Study Planner</h1>
-
-                <p>Plan • Learn • Practice • Improve</p>
-
-                <h3 id="welcomeUser">👋 Welcome Student</h3>
-
-                <div class="productivity-badge">
-                    🚀 Productivity Mode
-                </div>
-
-                <button
-                    type="button"
-                    id="darkModeBtn"
-                    onclick="toggleDarkMode()"
-                    aria-label="Toggle dark mode">
-                    🌙
-                </button>
-
-            </section>
-
-
-            <!-- STATISTICS -->
-
-            <section class="stats-section">
-
-                <div class="stat-card">
-                    <h3>📋 Total Tasks</h3>
-                    <strong id="totalTasks">0</strong>
-                </div>
-
-                <div class="stat-card">
-                    <h3>⏳ Pending</h3>
-                    <strong id="pendingTasks">0</strong>
-                </div>
-
-                <div class="stat-card">
-                    <h3>✅ Completed</h3>
-                    <strong id="completedTasks">0</strong>
-                </div>
-
-                <div class="stat-card">
-                    <h3>📈 Progress</h3>
-                    <strong id="progressPercent">0%</strong>
-                </div>
-
-            </section>
-
-
-            <!-- STUDY STREAK AND DAILY PROGRESS -->
-
-            <section class="streak-section">
-
-                <div class="streak-card">
-
-                    <div class="streak-icon">🔥</div>
-
-                    <div>
-                        <h2>Study Streak</h2>
-
-                        <p>
-                            <span id="streakCount">0</span> Days
-                        </p>
-                    </div>
-
-                </div>
-
-                <div class="daily-progress-card">
-
-                    <h2>📊 Daily Progress</h2>
-
-                    <div class="daily-progress-container">
-
-                        <div
-                            class="daily-progress-bar"
-                            id="dailyProgressBar">
-                        </div>
-
-                    </div>
-
-                    <p id="dailyProgressText">0% Completed</p>
-
-                </div>
-
-            </section>
-
-
-            <!-- OVERALL PROGRESS -->
-
-            <section class="section-card">
-
-                <h2>📊 Overall Progress</h2>
-
-                <div class="progress-container">
-
-                    <div
-                        class="progress-bar"
-                        id="progressBar">
-                    </div>
-
-                </div>
-
-                <p id="progressText">0%</p>
-
-            </section>
-
-
-            <!-- QUICK ACTIONS -->
-
-            <section class="quick-actions">
-
-                <div
-                    class="action-card"
-                    onclick="document.getElementById('tasks').scrollIntoView({behavior:'smooth'})">
-
-                    <span>➕</span>
-                    <h3>Add Task</h3>
-                    <p>Create Study Tasks</p>
-
-                </div>
-
-                <div
-                    class="action-card"
-                    onclick="document.getElementById('mytasks').scrollIntoView({behavior:'smooth'})">
-
-                    <span>📚</span>
-                    <h3>Study Plan</h3>
-                    <p>Manage Schedule</p>
-
-                </div>
-
-                <div
-                    class="action-card"
-                    onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">
-
-                    <span>🧠</span>
-                    <h3>Quiz</h3>
-                    <p>Practice Questions</p>
-
-                </div>
-
-                <div
-                    class="action-card"
-                    onclick="document.getElementById('ai').scrollIntoView({behavior:'smooth'})">
-
-                    <span>🤖</span>
-                    <h3>AI Assistant</h3>
-                    <p>Ask Doubts</p>
-
-                </div>
-
-            </section>
-
-
-            <!-- ADD NEW TASK -->
-
-            <section class="section-card" id="tasks">
-
-                <h2>➕ Add New Task</h2>
-
-                <label for="subject">Subject Name</label>
-
-                <input
-                    type="text"
-                    id="subject"
-                    placeholder="Enter subject name">
-
-                <label for="topic">Study Topic</label>
-
-                <input
-                    type="text"
-                    id="topic"
-                    placeholder="Enter study topic">
-
-                <label for="date">Due Date</label>
-
-                <input
-                    type="date"
-                    id="date">
-
-                <label for="priority">Priority</label>
-
-                <select id="priority">
-
-                    <option value="High">🔴 High</option>
-                    <option value="Medium" selected>🟡 Medium</option>
-                    <option value="Low">🟢 Low</option>
-
-                </select>
-
-                <button type="button" onclick="addTask()">
-                    ➕ Add Task
-                </button>
-
-            </section>
-
-
-            <!-- MY TASKS -->
-
-            <section class="section-card" id="mytasks">
-
-                <h2>📋 My Tasks</h2>
-
-                <div class="task-search">
-
-                    <input
-                        type="search"
-                        id="taskSearch"
-                        placeholder="🔎 Search tasks..."
-                        oninput="searchTasks()"
-                        aria-label="Search tasks">
-
-                </div>
-
-                <ul id="taskList"></ul>
-
-            </section>
-
-
-            <!-- COMPLETED TASKS -->
-
-            <section class="section-card">
-
-                <h2>✅ Completed Tasks</h2>
-
-                <ul id="completedList"></ul>
-
-            </section>
-
-
-            <!-- UPCOMING EXAMS -->
-
-            <section class="section-card" id="exams">
-
-                <h2>📝 Upcoming Exams</h2>
-
-                <label for="examName">Exam Name</label>
-
-                <input
-                    type="text"
-                    id="examName"
-                    placeholder="Enter exam name">
-
-                <label for="examDate">Exam Date</label>
-
-                <input
-                    type="date"
-                    id="examDate">
-
-                <button type="button" onclick="addExam()">
-                    ➕ Add Exam
-                </button>
-
-                <ul id="examList"></ul>
-
-            </section>
-
-
-            <!-- PRACTICE QUIZ -->
-
-            <section class="section-card" id="quiz">
-
-                <h2>🧠 Practice Quiz</h2>
-
-                <label for="quizSubject">Subject</label>
-
-                <input
-                    type="text"
-                    id="quizSubject"
-                    placeholder="Enter subject">
-
-                <button type="button" onclick="generateQuiz()">
-                    Generate Quiz
-                </button>
-
-                <div id="quizResult" aria-live="polite"></div>
-
-            </section>
-
-
-            <!-- AI ASSISTANT -->
-
-            <section class="section-card" id="ai">
-
-                <h2>🤖 AI Assistant</h2>
-
-                <label for="doubtInput">Ask Your Doubt</label>
-
-                <input
-                    type="text"
-                    id="doubtInput"
-                    placeholder="Ask about HTML, CSS or JavaScript">
-
-                <button type="button" onclick="solveDoubt()">
-                    Get Answer
-                </button>
-
-                <div id="doubtResult" aria-live="polite"></div>
-
-            </section>
-
-
-            <!-- QUICK NOTES -->
-
-            <section class="section-card" id="notesSection">
-
-                <h2>📝 Quick Notes</h2>
-
-                <textarea
-                    id="notes"
-                    placeholder="Write your notes here..."
-                    aria-label="Quick notes"></textarea>
-
-                <button type="button" onclick="saveNotes()">
-                    💾 Save Notes
-                </button>
-
-            </section>
-
-
-            <!-- STUDENT PROFILE -->
-
-            <section class="section-card" id="profile">
-
-                <h2>👤 Student Profile</h2>
-
-                <p>🎓 B.Sc AI &amp; DS Student</p>
-
-                <p>🏫 Kamadhenu Arts and Science College</p>
-
-                <p>📍 Sathyamangalam</p>
-
-            </section>
-
-
-            <!-- FOOTER -->
-
-            <footer class="dashboard-footer">
-
-                <h3>🎓 Student OS</h3>
-
-                <p>Learn • Plan • Practice • Improve</p>
-
-            </footer>
-
-        </div>
-
-    </main>
-
-
-    <!-- JAVASCRIPT -->
-
-    <script src="script.js"></script>
+<body class="auth-page"><main class="auth-container">
+
+    <section class="auth-welcome">
+        <div class="auth-logo">🎓</div>
+        <h1>AI Study Planner</h1>
+        <p>Plan • Learn • Practice • Improve</p>
+
+        <div class="auth-illustration">📚 💻 ✨</div>
+
+        <h3>Small Steps Today</h3>
+        <p>Big Dreams Tomorrow ❤️</p>
+    </section>
+
+    <section class="auth-form">
+
+        <h2>👋 Welcome Back!</h2>
+        <p>Login to continue your study journey.</p>
+
+        <form id="loginForm">
+            <label for="username">Username</label>
+            <input
+                type="text"
+                id="username"
+                placeholder="Enter your name"
+                autocomplete="username"
+                required>
+
+            <label for="password">Password</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter password"
+                autocomplete="current-password"
+                required>
+
+            <div class="auth-options">
+                <label>
+                    <input type="checkbox" id="rememberMe">
+                    Remember me
+                </label>
+
+                <a href="#" id="forgotLink">Forgot Password?</a>
+            </div>
+
+            <button type="submit" class="auth-button">
+                🔑 Login
+            </button>
+        </form>
+
+        <div class="auth-divider">OR</div>
+
+        <button
+            type="button"
+            class="auth-secondary"
+            id="guestButton">
+            Continue as Guest
+        </button>
+
+        <p class="auth-switch">
+            Don't have an account?
+            <a href="#" id="signupLink">Sign Up</a>
+        </p>
+
+        <p id="authMessage" role="status"></p>
+
+    </section>
+
+</main>
+
+<script>
+    const loginForm = document.getElementById("loginForm");
+    const authMessage = document.getElementById("authMessage");
+
+    loginForm.addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const username =
+            document.getElementById("username").value.trim();
+
+        const password =
+            document.getElementById("password").value;
+
+        if (!username || !password.trim()) {
+            authMessage.textContent =
+                "Please enter your username and password.";
+            return;
+        }
+
+        // Demo login: this is not real account authentication.
+        localStorage.setItem("studentName", username);
+        window.location.href = "Dashboard.html";
+    });
+
+    document.getElementById("guestButton")
+        .addEventListener("click", function() {
+            localStorage.setItem("studentName", "Guest Student");
+            window.location.href = "Dashboard.html";
+        });
+
+    document.getElementById("signupLink")
+        .addEventListener("click", function(event) {
+            event.preventDefault();
+            authMessage.textContent =
+                "Signup page will be added in the next step.";
+        });
+
+    document.getElementById("forgotLink")
+        .addEventListener("click", function(event) {
+            event.preventDefault();
+            authMessage.textContent =
+                "Forgot Password page will be added in the next step.";
+        });
+</script>
 
 </body>
-
 </html>
